@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class GameEngine {
 
 	public static void main(String[] args) {
@@ -15,11 +16,13 @@ public class GameEngine {
 			if(i.equals("q")) {
 				System.out.println("Exiting");
 				exit = true;
+				    
 				reader.close();
 			}
 			else {
 				System.out.println("Else happend");
 			}
+			
 		}
 		System.out.println("Hello tiddles");
 		System.out.println("Yay end of the day");
