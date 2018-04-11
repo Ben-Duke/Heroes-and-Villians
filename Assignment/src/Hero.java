@@ -112,11 +112,27 @@ public class Hero {
 	}
 	
 	/**
+	 * Returns power up items in the Array List of heroPowerUp
+	 * @return The power up items Hero has
+	 */
+	public ArrayList<String> getPowerUp() {
+		return heroPowerUp;
+	}
+	
+	/**
 	 * Adds the healing item in an Array List
-	 * @param item The healing item
+	 * @param item The healing item purchased
 	 */
 	public void addHealingItems(String item) {
 		heroHealingItems.add(item);
+	}
+	
+	/**
+	 * Returns healing items in the Array List of heroHealingItems
+	 * @return The healing items Hero has
+	 */
+	public ArrayList<String> getHealingItems() {
+		return heroHealingItems;
 	}
 	
 	/**
@@ -125,6 +141,14 @@ public class Hero {
 	 */
 	public void addMap(String item) {
 		heroMapList.add(item);
+	}
+	
+	/**
+	 * Returns the maps in the Array List of heroMapList
+	 * @return The Maps the Hero has
+	 */
+	public ArrayList<String> getMap() {
+		return heroMapList;
 	}
 	
 	/**
