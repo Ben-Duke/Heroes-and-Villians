@@ -11,6 +11,14 @@ public class Character {
 	private String characterName; 
 	
 	/**
+	 * 
+	 * @param name The String name of s
+	 */
+	Character(String name) {
+		characterName = name;
+	}
+	
+	/**
 	 * Sets the name of the alien to the parameter givenName
 	 * @param givenName gives the name of the Character
 	 */
@@ -26,8 +34,9 @@ public class Character {
 	}
 	
 	public static void main(String[] args) {
-		Character charac = new Character();
-		charac.setName("Abby");
+		Character charac = new Character("Abby");
+		System.out.println(charac.getName());
+		charac.setName("Marie");
 		System.out.println(charac.getName());
 	}
 	
