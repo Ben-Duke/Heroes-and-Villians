@@ -31,15 +31,15 @@ public class Hero {
 	/**
 	 * The inventory for the power-up items
 	 */
-	private static ArrayList<String> heroPowerUp = new ArrayList<String>();
+	private ArrayList<String> heroPowerUp = new ArrayList<String>();
 	/**
 	 * The inventory for the healing items
 	 */
-	private static ArrayList<String> heroHealingItems = new ArrayList<String>(); 
+	private ArrayList<String> heroHealingItems = new ArrayList<String>(); 
 	/**
 	 * The inventory for the map list
 	 */
-	private static ArrayList<String> heroMapList = new ArrayList<String>();
+	private ArrayList<String> heroMapList = new ArrayList<String>();
 	/**
 	 * The status of the hero; if they are alive (true)
 	 * and if they are dead (false)
@@ -125,6 +125,7 @@ public class Hero {
 	 */
 	public void addHealingItems(String item) {
 		heroHealingItems.add(item);
+		System.out.println(heroHealingItems);
 	}
 	
 	/**
@@ -176,8 +177,8 @@ public class Hero {
 		creature.setStatus(true);
 		System.out.println("Creature is alive: " + creature.getStatus());
 		creature.addHealingItems("Healing Potion");
-		System.out.println("Healing Items: " + heroHealingItems);
 		creature.addHealingItems("Ultra Heal");
+		/*
 		System.out.println("Healing Items: " + heroHealingItems);
 		creature.addPowerUp("Power Up");
 		System.out.println("Power-up Items: " + heroPowerUp);
@@ -187,5 +188,6 @@ public class Hero {
 		System.out.println("Map List: " + heroMapList);
 		creature.addMap("City 2");
 		System.out.println("Map List: " + heroMapList);
+		*/
 	}
 }
