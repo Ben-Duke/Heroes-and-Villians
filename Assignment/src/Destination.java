@@ -1,4 +1,4 @@
 
-public class interface Destination {
-
+public interface Destination {
+	public String getDestinationName();
 }

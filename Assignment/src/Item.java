@@ -9,16 +9,25 @@ public class Item {
 	/**
 	 * Price of item
 	 */
-	private double itemPrice;
+	private int itemPrice;
+	private String name;
+	
+	Item(String newName, int price){
+		name = newName;
+		itemPrice = price;
+	}
 	
 	/**
 	 * Sets the price of the item to the parameter givenPrice
 	 * @param givenPrice gives the price of the item
 	 */
-	public void setPrice(double givenPrice) {
+	public void setPrice(int givenPrice) {
 		itemPrice = givenPrice;
 	}
 	
+	public String getName() {
+		return name;
+	}
 	/**
 	 * Returns the price of the item
 	 * @return the item price 
@@ -29,9 +38,9 @@ public class Item {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Item thing = new Item();
-		thing.setPrice(3.00);
-		System.out.printf("The price is %.2f", thing.getPrice());
+		Item thing = new Item("dib dob", 3);
+		thing.setPrice(3);
+		System.out.printf("The price is ", thing.getPrice());
 	}
 
 }
