@@ -3,7 +3,7 @@
  * @author BenDuke
  *
  */
-public class Villian {
+public class Villain {
 	private String name;
 	private int villainLives;
 	private int villainDamage;
@@ -16,7 +16,7 @@ public class Villian {
 	 * @param damage A Integer that sets how much damage the hero will take from losing.
 	 * @param faveGame A String that determines the game the Villain will want to play.
 	 */
-	Villian(String newName, int newLives, int damage, String faveGame){
+	Villain(String newName, int newLives, int damage, String faveGame){
 		name = newName;
 		villainLives = newLives;
 		villainDamage = damage;
@@ -27,9 +27,6 @@ public class Villian {
 	 */
 	public void decreaseLives() {
 		villainLives -= 1;
-		if (villainLives <= 0) {
-			alive = false;
-		}
 	}
 	
 	/**
@@ -37,6 +34,9 @@ public class Villian {
 	 * @return Returns true or false
 	 */
 	public boolean isAlive() {
+		if (villainLives <= 0) {
+			alive = false;
+		}
 		return alive;
 	}
 	
@@ -54,6 +54,13 @@ public class Villian {
 	 */
 	public String favGame() {
 		return villainFaveGame;
+	}
+	
+	/**
+	 * Used to change the value of alive.
+	 */
+	public void killVillain() {
+		alive = false;
 	}
 	
 	/**

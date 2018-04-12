@@ -1,7 +1,7 @@
 
 public class City {
 	
-	City(Villian villain){
+	City(Villain villain){
 		
 	}
 }
