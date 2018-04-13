@@ -11,23 +11,23 @@ public class Character {
 	private String characterName; 
 	
 	/**
-	 * 
-	 * @param name The String name of s
+	 * The constructor for the class Character
+	 * @param name A String that is used to set the name of the Character.
 	 */
 	Character(String name) {
 		characterName = name;
 	}
 	
 	/**
-	 * Sets the name of the alien to the parameter givenName
-	 * @param givenName gives the name of the Character
+	 * A function that sets the name of the Character to the parameter givenName.
+	 * @param givenName A String that gives the name of the Character created.
 	 */
 	public void setName(String givenName) {
 		characterName = givenName;
 	}
 	/**
-	 * Returns the Character's name
-	 * @return the name of Character
+	 * A function that returns the name of the Character.
+	 * @return Return the Character's name.
 	 */
 	public String getName() {
 		return characterName;

@@ -11,7 +11,7 @@ public class Hero {
 	/**
 	 * 
 	 */
-	private ArrayList<String> heroTypes = new ArrayList<String>(Arrays.asList("Earth", "Air", "Water", "Fire"));
+	private ArrayList<String> heroTypes = new ArrayList<String>(Arrays.asList("Earth", "Air", "Water", "Fire", "Divine", "Demonic"));
 	/**
 	 * The maximum health of the Hero
 	 */
@@ -47,8 +47,34 @@ public class Hero {
 	private boolean heroStatus = true;
 	
 	/**
-	 * Makes the health of the Hero increase to the given health
-	 * @param health The given health to increase the health of a Hero
+	 * This is a constructor for the class Hero.
+	 * @param type A String that determines the type of the Hero created.
+	 */
+	Hero(String type) {
+		heroType = type;
+		setAbility();
+	}
+	
+	/**
+	 * A function that returns the current health of the Hero.
+	 * @return Returns the Hero's health at the time and is an integer.
+	 */
+	public int getCurrentHealth() {
+		return currentHealth;
+	}
+	
+	/**
+	 * A function that returns the maximum health of the Hero.
+	 * @return Returns the Hero's maximum possible health and is an integer.
+	 */
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+	
+	/**
+	 * A function that increases the health of the Hero by the given health
+	 * once the timer is done.
+	 * @param health The given health to increase the health of a Hero from its current health.
 	 */
 	public void increaseHealth(int health) {
 		if(currentHealth < maxHealth) {
@@ -57,8 +83,8 @@ public class Hero {
 	}
 	
 	/**
-	 * Makes the health of the Hero decrease by the given damage
-	 * @param damage The given damage that decrease the health of a Hero
+	 * A function that decreases the health of the Hero by the given damage.
+	 * @param damage The given damage that decreases the health of a Hero from its current health.
 	 */
 	public void decreaseHealth(int damage) {
 		if(currentHealth < maxHealth) {
@@ -71,57 +97,79 @@ public class Hero {
 	}
 	
 	/**
-	 * Sets the Hero type
-	 * @param type Gives the given type of the Hero
+	 * Sets the type of the Hero given the parameter type.
+	 * @param type A string that is used to set the type of the Hero.
 	 */
 	public void setType(String type) {
 		if(heroTypes.contains(type)) {
 			heroType = type;
 		}
+		setAbility();
 	}
 	
 	/**
-	 * Returns the Hero type
-	 * @return the type of the Hero
+	 * A function that returns the type of the Hero.
+	 * @return Returns the Hero's type.
 	 */
 	public String getType() {
 		return heroType;
 	}
 	
 	/**
-	 * Sets the ability of the Hero based on its type
+	 * A function that sets the ability of the Hero based on its type.
 	 */
 	public void setAbility() {
+		if(heroType == "Air") {
+			heroAbility = "Map Expertise";
+		}
+		if(heroType == "Fire") {
+			heroAbility = "Lower Price in Shops";
+		}
+		if(heroType == "Water") {
+			heroAbility = "Faster Recovery Rates";
+		}
+		if(heroType == "Earth") {
+			heroAbility = "Takes less Damage";
+		}
+		if(heroType == "Divine") {
+			heroAbility = "Double Maximum Health";
+			maxHealth = 200;
+			currentHealth = 200;
+		}
+		if(heroType == "Demonic") {
+			heroAbility = "Subtracts 2 lives to a Villain per win";
+		}
+		
 		
 	}
 	
 	/**
-	 * Returns the ability of the Hero based on its type
-	 * @return The Hero ability
+	 * A function that gets the ability of the Hero based on its type.
+	 * @return Returns the ability of Hero.
 	 */
 	public String getAbility() {
 		return heroAbility;
 	}
 	
 	/**
-	 * Adds the power-up item in an Array List
-	 * @param item The power-up item
+	 * A function that adds the power-up item in an Array List.
+	 * @param item A String that names the power-up item.
 	 */
 	public void addPowerUp(String item) {
 		heroPowerUp.add(item);
 	}
 	
 	/**
-	 * Returns power up items in the Array List of heroPowerUp
-	 * @return The power up items Hero has
+	 * A function that returns the power up items in the Array List of heroPowerUp.
+	 * @return Returns an ArrayList of the power up items of the Hero.
 	 */
 	public ArrayList<String> getPowerUp() {
 		return heroPowerUp;
 	}
 	
 	/**
-	 * Adds the healing item in an Array List
-	 * @param item The healing item purchased
+	 * A function that adds the healing item in an Array List.
+	 * @param item A String that names the healing item.
 	 */
 	public void addHealingItems(String item) {
 		heroHealingItems.add(item);
@@ -129,55 +177,58 @@ public class Hero {
 	}
 	
 	/**
-	 * Returns healing items in the Array List of heroHealingItems
-	 * @return The healing items Hero has
+	 * A function that returns the healing items in the Array List of heroHealingItems.
+	 * @return Returns an ArrayList of the healing items of the Hero.
 	 */
 	public ArrayList<String> getHealingItems() {
 		return heroHealingItems;
 	}
 	
 	/**
-	 * Adds the map in an Array List
-	 * @param item The map 
+	 * A function that adds the map of a city in an Array List.
+	 * @param item A String that names the map of a given city.
 	 */
 	public void addMap(String item) {
 		heroMapList.add(item);
 	}
 	
 	/**
-	 * Returns the maps in the Array List of heroMapList
-	 * @return The Maps the Hero has
+	 * A function that returns the maps in the Array List of heroMapList.
+	 * @return Returns an ArrayList of the map items of the Hero.
 	 */
 	public ArrayList<String> getMap() {
 		return heroMapList;
 	}
 	
 	/**
-	 * Sets the status of the Hero whether they are 
-	 * alive (true) or dead (false)
-	 * @param stats The status of the Hero
+	 * Sets the status of the Hero whether they are alive (true) or dead (false).
+	 * @param stats A boolean value that states whether the Hero is alive or not.
 	 */
 	public void setStatus(boolean stats) {
 		heroStatus = stats;
 	}
 	
 	/**
-	 * Returns the status of the Hero whether they are
-	 * alive (true) or dead (false)
-	 * @return The status of the Hero
+	 * Returns the status of the Hero whether they are alive (true) or dead (false)
+	 * @return Returns the status of the Hero; if they are alive or not.
 	 */
 	public boolean getStatus() {
 		return heroStatus;
 	}
 	
 	public static void main(String[] args) {
-		Hero creature = new Hero();
-		creature.setType("Air");
+		Hero creature = new Hero("Divine");
 		System.out.println("Creature type: " + creature.getType());
+		System.out.println(creature.getCurrentHealth());
+		System.out.println(creature.getMaxHealth());
 		creature.setStatus(true);
 		System.out.println("Creature is alive: " + creature.getStatus());
 		creature.addHealingItems("Healing Potion");
 		creature.addHealingItems("Ultra Heal");
+		Hero c1 = new Hero("Air");
+		System.out.println("Creature type: " + c1.getType());
+		System.out.println(c1.getCurrentHealth());
+		System.out.println(c1.getMaxHealth());
 		/*
 		System.out.println("Healing Items: " + heroHealingItems);
 		creature.addPowerUp("Power Up");
