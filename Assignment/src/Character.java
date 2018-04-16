@@ -11,7 +11,8 @@ public class Character {
 	private String characterName; 
 	
 	/**
-	 * The constructor for the class Character
+	 * The constructor for the class Character that takes a String name that is
+	 * used to set the name of the Character.
 	 * @param name A String that is used to set the name of the Character.
 	 */
 	Character(String name) {
@@ -19,7 +20,7 @@ public class Character {
 	}
 	
 	/**
-	 * A function that sets the name of the Character to the parameter givenName.
+	 * A function that takes the String givenName and sets the name of the Character to the parameter givenName.
 	 * @param givenName A String that gives the name of the Character created.
 	 */
 	public void setName(String givenName) {

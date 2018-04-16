@@ -1,6 +1,6 @@
 
 public class Hospital implements Destination {
-	private String name;
+	private String name = "Hospital";
 	
 	
 	@Override
@@ -8,8 +8,10 @@ public class Hospital implements Destination {
 		// TODO Auto-generated method stub
 		return name;
 	}
+	
 	public void healHero(Hero hero) {
 		hero.increaseHealth(25);
 	}
+	
 }
 
