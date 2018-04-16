@@ -75,12 +75,12 @@ public class Team {
 		
 		//Trying out by adding the inventories of each hero 
 		// to the overall inventory
-		Hero c1 = new Hero();
+		Hero c1 = new Hero("Air");
 		c1.addHealingItems("Heal1");
 		c1.addHealingItems("Heal2");
 		PowerRangers.addHealingItemsList(c1.getHealingItems());
 		
-		Hero c2 = new Hero();
+		Hero c2 = new Hero("Divine");
 		c2.addHealingItems("Heal3");
 		c2.addHealingItems("Heal4");
 		PowerRangers.addHealingItemsList(c2.getHealingItems());
