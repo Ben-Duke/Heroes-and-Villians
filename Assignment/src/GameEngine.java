@@ -8,15 +8,18 @@ public class GameEngine {
 		
 		
 		while (exit == false) {
+			
+			XAndOs game = new XAndOs();
+			game.playGame();
+			System.out.println("Player "+game.getWinner()+ " won the Game");
+			
 			Scanner reader = new Scanner(System.in);
-			System.out.println("Press q to exit");
+			System.out.println("Press q to quit or any other button to play.");
 			String i = reader.nextLine();
-			System.out.println(i);
-
+			
 			if(i.equals("q")) {
-				System.out.println("Exiting");
 				exit = true;
-				    
+				
 				reader.close();
 			}
 			else {
@@ -24,8 +27,6 @@ public class GameEngine {
 			}
 			
 		}
-		System.out.println("Hello tiddles");
-		System.out.println("Yay end of the day");
 	}
 
 }
