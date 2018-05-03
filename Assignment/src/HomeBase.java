@@ -7,11 +7,14 @@ public class HomeBase {
 		for(Hero hero: teamHeroes) {
 			System.out.println(hero + "The attributes of the Hero is" + hero.getAbility());
 		}
+		return "";
 		
 	}
 	
 	public boolean viewHeroStatus() {
-		if()
+		
+		//if()
+		return true;
 	}
 	
 	public static void main(String[] args) {

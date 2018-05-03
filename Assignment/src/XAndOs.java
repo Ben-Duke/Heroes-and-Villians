@@ -1,7 +1,7 @@
-import java.util.Arrays;
-import java.util.Scanner;
 import java.util.ArrayList;
-
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
 /**
  * A class that plays a game of Xs and Os.
  * @author BenDuke
@@ -42,6 +42,7 @@ public class XAndOs {
 				else {
 					
 					valid = true;
+					cpuMove();
 				}
 			}
 			//Changes valid to false so the user can pick again.
@@ -54,8 +55,39 @@ public class XAndOs {
 	/**
 	 * Checks the game string array to see if there is a winner based
 	 * on rows.
+	 * @return 
 	 * @return Returns who won, otherwise returns none as a string.
 	 */
+	
+	public ArrayList<Integer[]> cpuMoveHelper(){
+		
+		
+		ArrayList<Integer[]> moves = new ArrayList<Integer[]>();
+		
+		for(int row = 0; row < game.length; row++) {
+			for (int column = 0; column < game[row].length; column++) {
+				if (game[row][column] == "-") {
+					
+					Integer[] co = {row,column};
+					moves.add(co);
+				}
+			}
+		}
+		return moves;
+	}
+	
+	public void cpuMove() {
+		if (ableToPlay()) {
+			ArrayList<Integer[]> moves = cpuMoveHelper();
+			Random rand = new Random();
+			int placement = (int)rand.nextInt(moves.size());
+			placeMarker("O", moves.get(placement)[0], moves.get(placement)[1]);
+			
+		}
+		
+		
+	}
+	
 	public String checkRows() {
 		for(int row = 0; row < game.length; row++) {
 			int x = 0;
@@ -240,6 +272,27 @@ public class XAndOs {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		XAndOs game = new XAndOs();
+		for(int row = 0; row < 3; row++) {
+			game.placeMarker("X", row, 0);
+		}
+		ArrayList<Integer[]> x = game.cpuMoveHelper();
+		
+		
+		for(int index = 0; index < x.size(); index++) {
+			System.out.println(x.get(index)[0]+ "," + x.get(index)[1]);
+		}
+		
+		game.printState();
+		game.placeMarker("O", 0, 1);
+		x = game.cpuMoveHelper();
+		
+		
+		for(int index = 0; index < x.size(); index++) {
+			System.out.println(x.get(index)[0]+ "," + x.get(index)[1]);
+		}
+		game.printState();
+		
 	}
 
 }
