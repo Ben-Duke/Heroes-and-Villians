@@ -9,11 +9,13 @@ public class GameEngine {
 		
 		while (exit == false) {
 			
-			XAndOs game = new XAndOs();
-			game.playGame();
-			System.out.println("Player "+game.getWinner()+ " won the Game");
+			//XAndOs game = new XAndOs();
+			//game.playGame();
+			//System.out.println("Player "+game.getWinner()+ " won the Game");
 			
-			Scanner reader = new Scanner(System.in);
+			Scanner reader = new Scanner(System.in);	
+			
+			String teamname = "";
 			System.out.println("Press q to quit or any other button to play.");
 			String i = reader.nextLine();
 			
@@ -22,8 +24,12 @@ public class GameEngine {
 				
 				reader.close();
 			}
+			
 			else {
-				System.out.println("Else happend");
+				System.out.println("Starting Game");
+				System.out.println("Please enter your team name");
+				teamname = reader.nextLine();
+				System.out.println(teamname);
 			}
 			
 		}
