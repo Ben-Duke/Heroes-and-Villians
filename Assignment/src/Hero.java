@@ -53,9 +53,9 @@ public class Hero {
 	
 	private String name = "";
 	
-	Hero(String type, String name) {
+	Hero(String _name, String type) {
 		heroType = type;
-		
+		name = _name;
 		setAbility();
 	}
 	

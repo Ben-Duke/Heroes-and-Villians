@@ -45,6 +45,7 @@ public class Team {
 	public void setTeamName(String name) {
 		if((name.length() >= 2) && (name.length() <= 10)) {
 			teamName = name;
+			
 		}
 	}
 	
@@ -55,16 +56,36 @@ public class Team {
 	public String getTeamName() {
 		return teamName;
 	}
-
+	
+	
+	
 	/**
 	 * A function that adds the Heroes into the Team. It takes the String parameter name which 
 	 * is added to the Array List of teamHeroes. The maximum number of Heroes a Team can have is 3.
 	 * @param name A String parameter name that represents the name of the Hero.
 	 */
-	public void addHeroes(Hero name) {
-		if(!(teamHeroes.contains(name)) && (teamHeroes.size() != 3)) { 
-			teamHeroes.add(name);
+	public String addHeroes(String name, String type) {
+		if(teamHeroes.size() != 3){ 
+			if (!checkName(name)) {
+				Hero temphero = new Hero(name, type);
+				teamHeroes.add(temphero);
+				return "Success";
+			}
+			
+			
 		}
+		return "Failed";
+	}
+	
+	public boolean checkName(String name) {
+		
+		for (Hero tempHero: teamHeroes) {
+			
+			if (tempHero.getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**

@@ -31,6 +31,7 @@ public class GameView {
 	private JButton btnAddHero;
 	private JList HeroList;
 	private JList<String> list;
+	private JList cityCount;
 	/**
 	 * Launch the application.
 	 */
@@ -63,7 +64,7 @@ public class GameView {
 		frame.setBounds(100, 100, 583, 453);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		modelref.createTeam("Team 1");
 		
 		String[] types = {"Earth", "Air", "Water", "Fire", "Divine", "Demonic"}; 
 		DefaultListModel<String> typeslist = new DefaultListModel<>();
@@ -93,9 +94,9 @@ public class GameView {
 		TeamNamePanel.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Confirm");
-		btnNewButton.setBounds(379, 310, 95, 29);
-		TeamNamePanel.add(btnNewButton);
+		JButton Done = new JButton("Done");
+		Done.setBounds(379, 310, 95, 29);
+		TeamNamePanel.add(Done);
 		
 		JLabel lblSelectHowMany = new JLabel("Select how many heros in the team");
 		lblSelectHowMany.setBounds(40, 111, 289, 16);
@@ -117,8 +118,14 @@ public class GameView {
 		btnAddHero = new JButton("Add Hero");
 		btnAddHero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (GetHeroType() != null) {
-					System.out.println(GetHeroType().getSelectedIndex());
+				if (GetHeroType() != null && HeroName != null) {
+					if(!HeroName.getText().equals("")) {
+					modelref.game_team.addHeroes(HeroName.getText(), types[GetHeroType().getSelectedIndex()]);
+					HeroName.setText("");
+					list.clearSelection();
+					updateHeroes();
+					
+					}
 				}
 				else {
 					System.out.println("No value");
@@ -132,7 +139,16 @@ public class GameView {
 		HeroList = new JList();
 		HeroList.setBounds(341, 167, 149, 131);
 		TeamNamePanel.add(HeroList);
-		btnNewButton.addActionListener(new ActionListener() {
+		
+		cityCount = new JList();
+		cityCount.setBounds(341, 84, 149, 59);
+		TeamNamePanel.add(cityCount);
+		
+		JLabel lblHowManyCities = new JLabel("How many cities?");
+		lblHowManyCities.setBounds(341, 65, 149, 16);
+		TeamNamePanel.add(lblHowManyCities);
+		
+		Done.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (getTeamNameTextField().getText().length() < 2) {
 					System.out.println("Needs to be longer name");
@@ -144,12 +160,21 @@ public class GameView {
 					lblErrormessage.setText("Needs to be a shorter name");
 					lblErrormessage.setVisible(true);
 				}
+				
 				else {
-					
-						System.out.println(modelref.createTeam(getTeamNameTextField().getText()));
-						System.out.println(999);
-						System.out.println(modelref.getTeam().getTeamName());
-						TeamNamePanel.setVisible(false);
+						if (modelref.getTeam().getHeroes().size() == 0) {
+							System.out.println("Print out that you need more heros");
+						}
+						else {
+							modelref.getTeam().setTeamName(getTeamNameTextField().getText());
+							System.out.println(modelref.getTeam().getTeamName());
+							
+							for (Hero tempHero: modelref.getTeam().getHeroes()) {
+								System.out.println(tempHero.getName());
+							}
+							TeamNamePanel.setVisible(false);
+						}
+						
 					
 					
 				}
@@ -158,9 +183,18 @@ public class GameView {
 	}
 	
 	public void updateHeroes() {
-		HeroList = new JList();
+		String[] heroNames = new String[modelref.getTeam().getHeroes().size()];
+		int index = 0;
+		for (Hero temp: modelref.getTeam().getHeroes()) {
+			heroNames[index] = temp.getName() + " " + temp.getType();
+			index +=1;
+		}
+		HeroList = new JList(heroNames);
 		HeroList.setBounds(341, 167, 149, 131);
-		//TeamNamePanel.add(HeroList);
+		TeamNamePanel.add(HeroList);
+		if (modelref.getTeam().getHeroes().size() == 3) {
+			btnAddHero.setEnabled(false);
+		}
 	}
 	public JTextField getTeamNameTextField() {
 		return textField;
