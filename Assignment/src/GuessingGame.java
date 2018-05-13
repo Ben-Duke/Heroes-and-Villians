@@ -32,7 +32,6 @@ public class GuessingGame {
 		int answer = number.nextInt(11);
 		
 		while ((tries < 3) && (win == false)) {
-			System.out.println(answer);
 			Scanner scanner = new Scanner(System.in);
 			System.out.print("Enter a number between 1 to 10:");
 			int guess = scanner.nextInt();

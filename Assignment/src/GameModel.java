@@ -3,7 +3,7 @@ public class GameModel {
 	
 	Team game_team = null;
 	int cityCount = 1;
-	GameView session;
+	
 	
 	boolean createTeam(String name) {
 		game_team = new Team();
@@ -11,16 +11,8 @@ public class GameModel {
 		return true;
 	}
 	
-	void setgame(MainGame game) {
-		
-	}
-	
 	void updateCityCount(int numOfCity) {
 		cityCount = numOfCity;
-	}
-	
-	int getCityCount() {
-		return cityCount;
 	}
 	
 	Team getTeam() {
