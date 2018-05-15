@@ -19,6 +19,11 @@ public class XAndOs {
 	/**
 	 * Starts the game loop for Xs and Os.
 	 */
+	
+	public String[][] getGameState(){
+		return game;
+	}
+	
 	public void playGame() {
 	
 		boolean valid = false;
@@ -50,6 +55,27 @@ public class XAndOs {
 			winner = checkforWinner();
 		}
 			
+	}
+	
+	void makeMove(int[] move) {
+				
+				
+				if (placeMarker("X", move[0], move[1]) == "Failed" && move[0] < 3 && move[1] < 3) {
+					System.out.println("MoveFailed");
+				}
+				else {
+					winner = checkforWinner();
+					if (winner != "X" || winner != "O") {
+						cpuMove();
+					}
+					System.out.println(winner);
+				}
+			
+			//Changes valid to false so the user can pick again.
+			
+			winner = checkforWinner();
+			System.out.println(winner);
+		
 	}
 	
 	/**
@@ -273,24 +299,32 @@ public class XAndOs {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		XAndOs game = new XAndOs();
-		for(int row = 0; row < 3; row++) {
-			game.placeMarker("X", row, 0);
-		}
-		ArrayList<Integer[]> x = game.cpuMoveHelper();
+		int[] move = {0,1};
+		game.makeMove(move);
 		
+		move = new int[]{0,2};
+		game.makeMove(move);
 		
-		for(int index = 0; index < x.size(); index++) {
-			System.out.println(x.get(index)[0]+ "," + x.get(index)[1]);
-		}
-		
-		game.printState();
-		game.placeMarker("O", 0, 1);
-		x = game.cpuMoveHelper();
-		
-		
-		for(int index = 0; index < x.size(); index++) {
-			System.out.println(x.get(index)[0]+ "," + x.get(index)[1]);
-		}
+		move = new int[]{0,0};
+		game.makeMove(move);
+//		for(int row = 0; row < 3; row++) {
+//			game.placeMarker("X", row, 0);
+//		}
+//		ArrayList<Integer[]> x = game.cpuMoveHelper();
+//		
+//		
+//		for(int index = 0; index < x.size(); index++) {
+//			System.out.println(x.get(index)[0]+ "," + x.get(index)[1]);
+//		}
+//		
+//		game.printState();
+//		game.placeMarker("O", 0, 1);
+//		x = game.cpuMoveHelper();
+//		
+//		
+//		for(int index = 0; index < x.size(); index++) {
+//			System.out.println(x.get(index)[0]+ "," + x.get(index)[1]);
+//		}
 		game.printState();
 		
 	}

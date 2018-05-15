@@ -17,7 +17,7 @@ public class City {
 	/**
 	 * An array list of integers in which the hero knows the locations of the destinations.
 	 */
-	private ArrayList<Integer> knownDestination = new ArrayList<Integer>(Arrays.asList(null, null, null, null, null));
+	private ArrayList<Integer> knownDestination = new ArrayList<Integer>(Arrays.asList(null, null, null, null, 4));
 	
 	/**
 	 * The boolean status of the villain in which true if they are alive and false if they are dead.
@@ -36,6 +36,12 @@ public class City {
 	 */
 	public boolean getvillainStatus() {
 		return villainStatus;
+	}
+	
+	void setlocations(int locationindex, int direction) {
+		
+		 knownDestination.set(locationindex, direction);
+		 System.out.println(getKnownDestination());
 	}
 	
 	/**
@@ -79,7 +85,10 @@ public class City {
 		City c1 = new City();
 		c1.setCityDestination();
 		System.out.println(c1.getCityDestination());
-	
+		System.out.println("__________");
+		c1.setlocations(0, 2);
+		System.out.println("__________");
+		System.out.println(c1.getKnownDestination());
 		
 }
 }
