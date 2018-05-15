@@ -37,6 +37,7 @@ public class GameView {
 	//Panel refs
 	JPanel VillainLair = new JPanel();
 	JPanel MapPanel = new JPanel();
+	JPanel XandOPanel = new JPanel();
 		
 	//button refrences
 	JButton button_0 = new JButton("-");
@@ -86,125 +87,107 @@ public class GameView {
 		frame.getContentPane().setLayout(null);
 		modelref.setCities();
 		System.out.println(modelref.getCities()[0].getCityDestination());
-		//Xandos game panel
-//		JPanel XandOPanel = new JPanel();
-//		XandOPanel.setBounds(6, 6, 571, 390);
-//		frame.getContentPane().add(XandOPanel);
-//		XandOPanel.setLayout(null);
-//		modelref.createXAndOGame();
-//		
-//		button_0.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				int[] move = {0,0};
-//				modelref.getXAndOGame().makeMove(move);
-//				updateUI(modelref.getXAndOGame().getGameState());
-//				modelref.getXAndOGame().printState();
-//			}
-//		});
-//		button_0.setBounds(26, 40, 144, 81);
-//		XandOPanel.add(button_0);
-//		
-//		button_1.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				int[] move = {0,1};
-//				modelref.getXAndOGame().makeMove(move);
-//				updateUI(modelref.getXAndOGame().getGameState());
-//				modelref.getXAndOGame().printState();
-//			}
-//		});
-//		button_1.setBounds(200, 40, 144, 81);
-//		XandOPanel.add(button_1);
-//		
-//		button_2.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				int[] move = {0,2};
-//				modelref.getXAndOGame().makeMove(move);
-//				updateUI(modelref.getXAndOGame().getGameState());
-//				modelref.getXAndOGame().printState();
-//			}
-//		});
-//		button_2.setBounds(367, 40, 144, 81);
-//		XandOPanel.add(button_2);
-//		
-//		button_3.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				int[] move = {1,0};
-//				modelref.getXAndOGame().makeMove(move);
-//				updateUI(modelref.getXAndOGame().getGameState());
-//				modelref.getXAndOGame().printState();
-//			}
-//		});
-//		button_3.setBounds(26, 133, 144, 81);
-//		XandOPanel.add(button_3);
-//		
-//		button_4.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				int[] move = {1,1};
-//				modelref.getXAndOGame().makeMove(move);
-//				updateUI(modelref.getXAndOGame().getGameState());
-//				modelref.getXAndOGame().printState();
-//			}
-//		});
-//		button_4.setBounds(200, 140, 144, 81);
-//		XandOPanel.add(button_4);
-//		
-//		button_5.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				int[] move = {1,2};
-//				modelref.getXAndOGame().makeMove(move);
-//				updateUI(modelref.getXAndOGame().getGameState());
-//				modelref.getXAndOGame().printState();
-//			}
-//		});
-//		button_5.setBounds(367, 133, 144, 81);
-//		XandOPanel.add(button_5);
-//		
-//		button_6.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				int[] move = {2,0};
-//				modelref.getXAndOGame().makeMove(move);
-//				updateUI(modelref.getXAndOGame().getGameState());
-//				modelref.getXAndOGame().printState();
-//			}
-//		});
-//		button_6.setBounds(26, 226, 144, 81);
-//		XandOPanel.add(button_6);
-//		
-//		button_7.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				int[] move = {2,1};
-//				modelref.getXAndOGame().makeMove(move);
-//				updateUI(modelref.getXAndOGame().getGameState());
-//				modelref.getXAndOGame().printState();
-//			}
-//		});
-//		button_7.setBounds(199, 230, 144, 81);
-//		XandOPanel.add(button_7);
-//		
-//		button_8.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				int[] move = {2,2};
-//				modelref.getXAndOGame().makeMove(move);
-//				updateUI(modelref.getXAndOGame().getGameState());
-//				modelref.getXAndOGame().printState();
-//			}
-//		});
-//		button_8.setBounds(367, 226, 144, 81);
-//		XandOPanel.add(button_8);
-//		
-//		JLabel lblYouAreX = new JLabel("You are X, you need to get 3 in a row to win");
-//		lblYouAreX.setBounds(28, 8, 294, 16);
-//		XandOPanel.add(lblYouAreX);
-//		
-//		
-//		WinnerLabel.setBounds(167, 334, 188, 39);
-//		XandOPanel.add(WinnerLabel);
-//		
-//		JButton btnReturnToHomebase = new JButton("Return to homebase");
-//		btnReturnToHomebase.setBounds(392, 340, 152, 29);
-//		XandOPanel.add(btnReturnToHomebase);
-//		modelref.createTeam("Team 1");
 		
+		//Xandos game panel
+		XandOPanel.setVisible(false);
+		XandOPanel.setBounds(6, 6, 571, 390);
+		frame.getContentPane().add(XandOPanel);
+		XandOPanel.setLayout(null);
+		modelref.createXAndOGame();
+		
+		button_0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(0, 0);
+			}
+		});
+		button_0.setBounds(26, 40, 144, 81);
+		XandOPanel.add(button_0);
+		
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(0, 1);
+			}
+		});
+		button_1.setBounds(200, 40, 144, 81);
+		XandOPanel.add(button_1);
+		
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(0, 2);
+			}
+		});
+		button_2.setBounds(367, 40, 144, 81);
+		XandOPanel.add(button_2);
+		
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(1, 0);
+			}
+		});
+		button_3.setBounds(26, 133, 144, 81);
+		XandOPanel.add(button_3);
+		
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(1, 1);
+			}
+		});
+		button_4.setBounds(200, 140, 144, 81);
+		XandOPanel.add(button_4);
+		
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(1, 2);
+			}
+		});
+		button_5.setBounds(367, 133, 144, 81);
+		XandOPanel.add(button_5);
+		
+		button_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(2, 0);
+			}
+		});
+		button_6.setBounds(26, 226, 144, 81);
+		XandOPanel.add(button_6);
+		
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(2, 1);
+			}
+		});
+		button_7.setBounds(199, 230, 144, 81);
+		XandOPanel.add(button_7);
+		
+		button_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(2, 2);
+			}
+		});
+		button_8.setBounds(367, 226, 144, 81);
+		XandOPanel.add(button_8);
+		
+		JLabel lblYouAreX = new JLabel("You are X, you need to get 3 in a row to win");
+		lblYouAreX.setBounds(28, 8, 294, 16);
+		XandOPanel.add(lblYouAreX);
+		
+		
+		WinnerLabel.setBounds(167, 334, 188, 39);
+		XandOPanel.add(WinnerLabel);
+		
+		JButton btnReturnToHomebase = new JButton("Return to homebase");
+		btnReturnToHomebase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MapPanel.setVisible(true);
+				modelref.createXAndOGame();
+				XandOPanel.setVisible(false);
+				
+			}
+		});
+		btnReturnToHomebase.setBounds(392, 340, 152, 29);
+		XandOPanel.add(btnReturnToHomebase);
+		modelref.createTeam("Team 1");
+		//Panel end
 		
 		
 		
@@ -221,10 +204,22 @@ public class GameView {
 		VillainLair.setLayout(null);
 		
 		JButton btnReturnToHero = new JButton("Return to hero base");
+		btnReturnToHero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MapPanel.setVisible(true);
+				VillainLair.setVisible(false);
+			}
+		});
 		btnReturnToHero.setBounds(73, 359, 167, 29);
 		VillainLair.add(btnReturnToHero);
 		
 		JButton BattleVillainButton = new JButton("FIGHT!!!");
+		BattleVillainButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOPanel.setVisible(true);
+				VillainLair.setVisible(false);
+			}
+		});
 		BattleVillainButton.setBounds(306, 359, 187, 29);
 		VillainLair.add(BattleVillainButton);
 		
@@ -286,6 +281,7 @@ public class GameView {
 		JLabel lblVillainLives = new JLabel("Villain lives :");
 		lblVillainLives.setBounds(404, 6, 161, 16);
 		MapPanel.add(lblVillainLives);
+		
 		
 //		Team Panel Gui
 		
@@ -439,6 +435,12 @@ public class GameView {
 		}
 	}
 	
+	void XandOButtonfunction(int row, int col) {
+		int[] move = {row,col};
+		modelref.getXAndOGame().makeMove(move);
+		updateUI(modelref.getXAndOGame().getGameState());
+		modelref.getXAndOGame().printState();
+	}
 	
 	void updateUI(String[][] board) {
 		ArrayList<JButton[]> boardarray = new ArrayList<JButton[]>(); 

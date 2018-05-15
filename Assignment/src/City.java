@@ -29,6 +29,12 @@ public class City {
 	 */
 	private Random number;
 	
+	Villain villain;
+	
+	void setVillain() {
+		villain = new Villain("Dibs", 2, 20, "XAndOs");
+	}
+	
 	/**
 	 * A function that returns the life status of villain in the city. 
 	 * It returns a boolean value in which true is for alive and false is for dead.

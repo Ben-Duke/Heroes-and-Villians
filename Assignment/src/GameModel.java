@@ -41,6 +41,7 @@ public class GameModel {
 	void setCities() {
 		City city1 = new City();
 		city1.setCityDestination();
+	
 		citylist = new City[]{city1};
 	}
 	
