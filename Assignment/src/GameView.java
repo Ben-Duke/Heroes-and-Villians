@@ -36,6 +36,9 @@ public class GameView {
 	
 	//Panel refs
 	JPanel VillainLair = new JPanel();
+	JPanel HospitalPanel = new JPanel();
+	JPanel PowerUpDenPanel = new JPanel();
+	JPanel ShopPanel = new JPanel();
 	JPanel MapPanel = new JPanel();
 	JPanel XandOPanel = new JPanel();
 		
@@ -81,112 +84,180 @@ public class GameView {
 	 * @wbp.parser.entryPoint
 	 */
 	private void initialize() {
+		modelref.setCities();
+		System.out.println(modelref.getCities()[0].getCityDestination());
 		frame = new JFrame();
 		frame.setBounds(100, 100, 583, 453);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		modelref.setCities();
-		System.out.println(modelref.getCities()[0].getCityDestination());
 		
-		//Xandos game panel
-		XandOPanel.setVisible(false);
-		XandOPanel.setBounds(6, 6, 571, 390);
-		frame.getContentPane().add(XandOPanel);
-		XandOPanel.setLayout(null);
-		modelref.createXAndOGame();
+		PowerUpDenPanel.setVisible(false);
+		PowerUpDenPanel.setBounds(6, 6, 571, 398);
+		frame.getContentPane().add(PowerUpDenPanel);
+		PowerUpDenPanel.setLayout(null);
 		
-		button_0.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				XandOButtonfunction(0, 0);
-			}
-		});
-		button_0.setBounds(26, 40, 144, 81);
-		XandOPanel.add(button_0);
+		JLabel lblPowerUpDen = new JLabel("Power Up Den");
+		lblPowerUpDen.setBounds(243, 6, 98, 16);
+		PowerUpDenPanel.add(lblPowerUpDen);
 		
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				XandOButtonfunction(0, 1);
-			}
-		});
-		button_1.setBounds(200, 40, 144, 81);
-		XandOPanel.add(button_1);
-		
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				XandOButtonfunction(0, 2);
-			}
-		});
-		button_2.setBounds(367, 40, 144, 81);
-		XandOPanel.add(button_2);
-		
-		button_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				XandOButtonfunction(1, 0);
-			}
-		});
-		button_3.setBounds(26, 133, 144, 81);
-		XandOPanel.add(button_3);
-		
-		button_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				XandOButtonfunction(1, 1);
-			}
-		});
-		button_4.setBounds(200, 140, 144, 81);
-		XandOPanel.add(button_4);
-		
-		button_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				XandOButtonfunction(1, 2);
-			}
-		});
-		button_5.setBounds(367, 133, 144, 81);
-		XandOPanel.add(button_5);
-		
-		button_6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				XandOButtonfunction(2, 0);
-			}
-		});
-		button_6.setBounds(26, 226, 144, 81);
-		XandOPanel.add(button_6);
-		
-		button_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				XandOButtonfunction(2, 1);
-			}
-		});
-		button_7.setBounds(199, 230, 144, 81);
-		XandOPanel.add(button_7);
-		
-		button_8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				XandOButtonfunction(2, 2);
-			}
-		});
-		button_8.setBounds(367, 226, 144, 81);
-		XandOPanel.add(button_8);
-		
-		JLabel lblYouAreX = new JLabel("You are X, you need to get 3 in a row to win");
-		lblYouAreX.setBounds(28, 8, 294, 16);
-		XandOPanel.add(lblYouAreX);
-		
-		
-		WinnerLabel.setBounds(167, 334, 188, 39);
-		XandOPanel.add(WinnerLabel);
-		
-		JButton btnReturnToHomebase = new JButton("Return to homebase");
-		btnReturnToHomebase.addActionListener(new ActionListener() {
+		JButton btnReturnToBase = new JButton("Return to base");
+		btnReturnToBase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MapPanel.setVisible(true);
-				modelref.createXAndOGame();
-				XandOPanel.setVisible(false);
+				PowerUpDenPanel.setVisible(false);
+			}
+		});
+		btnReturnToBase.setBounds(428, 312, 117, 29);
+		PowerUpDenPanel.add(btnReturnToBase);
+		
+		
+		
+		//Shop panel
+		ShopPanel.setVisible(false);
+		ShopPanel.setBounds(6, 6, 571, 398);
+		frame.getContentPane().add(ShopPanel);
+		ShopPanel.setLayout(null);
+		
+		JLabel lblShopPanel = new JLabel("Shop");
+		lblShopPanel.setBounds(243, 6, 98, 16);
+		ShopPanel.add(lblShopPanel);
+		
+		JButton btnShopReturnToBase = new JButton("Return to base");
+		btnShopReturnToBase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MapPanel.setVisible(true);
+				ShopPanel.setVisible(false);
+			}
+		});
+		btnShopReturnToBase.setBounds(428, 312, 117, 29);
+		ShopPanel.add(btnShopReturnToBase);
+		
+		
+		
+		
+		//Hospital Panel
+		HospitalPanel.setVisible(false);
+		HospitalPanel.setBounds(6, 6, 571, 395);
+		frame.getContentPane().add(HospitalPanel);
+		HospitalPanel.setLayout(null);
+		
+		JButton btnhospitolReturnToBase = new JButton("Return to base");
+		btnhospitolReturnToBase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HospitalPanel.setVisible(false);
+				MapPanel.setVisible(true);
 				
 			}
 		});
-		btnReturnToHomebase.setBounds(392, 340, 152, 29);
-		XandOPanel.add(btnReturnToHomebase);
-		modelref.createTeam("Team 1");
+		btnhospitolReturnToBase.setBounds(386, 314, 117, 29);
+		HospitalPanel.add(btnhospitolReturnToBase);
+		
+		JLabel lblHospital = new JLabel("Hospital");
+		lblHospital.setBounds(246, 17, 61, 16);
+		HospitalPanel.add(lblHospital);
+//		
+		
+		//Xandos game panel
+//		XandOPanel.setVisible(false);
+//		XandOPanel.setBounds(6, 6, 571, 390);
+//		frame.getContentPane().add(XandOPanel);
+//		XandOPanel.setLayout(null);
+//		modelref.createXAndOGame();
+//		
+//		button_0.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				XandOButtonfunction(0, 0);
+//			}
+//		});
+//		button_0.setBounds(26, 40, 144, 81);
+//		XandOPanel.add(button_0);
+//		
+//		button_1.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				XandOButtonfunction(0, 1);
+//			}
+//		});
+//		button_1.setBounds(200, 40, 144, 81);
+//		XandOPanel.add(button_1);
+//		
+//		button_2.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				XandOButtonfunction(0, 2);
+//			}
+//		});
+//		button_2.setBounds(367, 40, 144, 81);
+//		XandOPanel.add(button_2);
+//		
+//		button_3.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				XandOButtonfunction(1, 0);
+//			}
+//		});
+//		button_3.setBounds(26, 133, 144, 81);
+//		XandOPanel.add(button_3);
+//		
+//		button_4.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				XandOButtonfunction(1, 1);
+//			}
+//		});
+//		button_4.setBounds(200, 140, 144, 81);
+//		XandOPanel.add(button_4);
+//		
+//		button_5.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				XandOButtonfunction(1, 2);
+//			}
+//		});
+//		button_5.setBounds(367, 133, 144, 81);
+//		XandOPanel.add(button_5);
+//		
+//		button_6.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				XandOButtonfunction(2, 0);
+//			}
+//		});
+//		button_6.setBounds(26, 226, 144, 81);
+//		XandOPanel.add(button_6);
+//		
+//		button_7.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				XandOButtonfunction(2, 1);
+//			}
+//		});
+//		button_7.setBounds(199, 230, 144, 81);
+//		XandOPanel.add(button_7);
+//		
+//		button_8.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				XandOButtonfunction(2, 2);
+//			}
+//		});
+//		button_8.setBounds(367, 226, 144, 81);
+//		XandOPanel.add(button_8);
+//		
+//		JLabel lblYouAreX = new JLabel("You are X, you need to get 3 in a row to win");
+//		lblYouAreX.setBounds(28, 8, 294, 16);
+//		XandOPanel.add(lblYouAreX);
+//		
+//		
+//		WinnerLabel.setBounds(167, 334, 188, 39);
+//		XandOPanel.add(WinnerLabel);
+//		
+//		JButton btnReturnToHomebase = new JButton("Return to homebase");
+//		btnReturnToHomebase.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				MapPanel.setVisible(true);
+//				modelref.createXAndOGame();
+//				updateUI(modelref.XAndOgame.getGameState());
+//				WinnerLabel.setText("Winner is ");
+//				XandOPanel.setVisible(false);
+//				
+//			}
+//		});
+//		btnReturnToHomebase.setBounds(392, 340, 152, 29);
+//		XandOPanel.add(btnReturnToHomebase);
+//		modelref.createTeam("Team 1");
 		//Panel end
 		
 		
@@ -416,21 +487,38 @@ public class GameView {
 		City cityref = modelref.getCities()[modelref.getCurrentCity()];
 		cityref.setlocations(direction, cityref.getCityDestination().get(direction));
 		System.out.println(cityref.getCityDestination().get(direction));
-		
+		//The indices of the Array List stands for the map directions 0 - North, 1 - South, 2 - East, 3 - West and 4 - Center
+		// * The elements in the Array List stands for the destination 0 - Shop, 1 - Power up den, 2 - Hospital, 3 - Villain's Lair and 4 - Home Base.
 		int switchCase = cityref.getCityDestination().get(direction);
-		switch(switchCase) {
-		case 1: switchCase = 3;
-			System.out.println("Lair Found");
-			MapPanel.setVisible(false);
-			VillainLair.setVisible(true);
-			break;
+		System.out.println(switchCase);
+		switch(switchCase +1) {		
+		
+		
+		case 1:
+		System.out.println("Shop Found");
+		MapPanel.setVisible(false);
+		ShopPanel.setVisible(true);
+		break;
 		case 2:
-			break;
-		case 3:
-			break;
+		System.out.println("Den Found");
+		MapPanel.setVisible(false);
+		PowerUpDenPanel.setVisible(true);
+		break;	
+					
+		case 3: 
+		System.out.println("Hospital Found");
+		MapPanel.setVisible(false);
+		HospitalPanel.setVisible(true);
+		break;
+			
+			
 		case 4:
-			break;
+		System.out.println("Lair Found");
+		MapPanel.setVisible(false);
+		VillainLair.setVisible(true);
+		break;
 		default:
+			System.out.println("Default happend on the switch statement");
 			break;
 		}
 	}

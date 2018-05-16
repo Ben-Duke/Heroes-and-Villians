@@ -65,10 +65,16 @@ public class XAndOs {
 				}
 				else {
 					winner = checkforWinner();
-					if (winner != "X" || winner != "O") {
-						cpuMove();
+					if (winner == "X"){
+						System.out.println(winner);
 					}
-					System.out.println(winner);
+					else {
+						if (winner != "X" || winner != "O") {
+						cpuMove();
+						}
+					}
+					
+					
 				}
 			
 			//Changes valid to false so the user can pick again.
