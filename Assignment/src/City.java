@@ -34,8 +34,13 @@ public class City {
 	 * It returns a boolean value in which true is for alive and false is for dead.
 	 * @return Returns the boolean value true or false indicating whether the villain in the city is alive or not.
 	 */
+	
 	public boolean getvillainStatus() {
 		return villainStatus;
+	}
+	
+	public void setVillainStatus(boolean status) {
+		villainStatus = status;
 	}
 	
 	/**
@@ -79,7 +84,7 @@ public class City {
 		City c1 = new City();
 		c1.setCityDestination();
 		System.out.println(c1.getCityDestination());
-	
-		
-}
+		System.out.print(c1.getvillainStatus());
+	}
+
 }

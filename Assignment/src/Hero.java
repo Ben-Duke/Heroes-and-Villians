@@ -77,8 +77,11 @@ public class Hero {
 	 * @param health The given health to increase the health of a Hero from its current health.
 	 */
 	public void increaseHealth(int health) {
-		if(currentHealth < maxHealth) {
+		if(currentHealth <= maxHealth) {
 			currentHealth += health;
+			if(currentHealth > maxHealth) {
+				currentHealth = maxHealth;
+			}
 		}
 	}
 	
@@ -87,11 +90,14 @@ public class Hero {
 	 * @param damage The given damage that decreases the health of a Hero from its current health.
 	 */
 	public void decreaseHealth(int damage) {
-		if(currentHealth < maxHealth) {
+		if(currentHealth <= maxHealth) {
 			currentHealth -= damage;
+			if(currentHealth < 0) {
+				currentHealth = 0;
+			}
 		}
-		
 		if(currentHealth < 1) {
+			currentHealth = 0;
 			heroStatus = false;
 		}
 	}
@@ -217,18 +223,13 @@ public class Hero {
 	}
 	
 	public static void main(String[] args) {
-		Hero creature = new Hero("Divine");
-		System.out.println("Creature type: " + creature.getType());
-		System.out.println(creature.getCurrentHealth());
-		System.out.println(creature.getMaxHealth());
-		creature.setStatus(true);
-		System.out.println("Creature is alive: " + creature.getStatus());
-		creature.addHealingItems("Healing Potion");
-		creature.addHealingItems("Ultra Heal");
-		Hero c1 = new Hero("Air");
-		System.out.println("Creature type: " + c1.getType());
-		System.out.println(c1.getCurrentHealth());
-		System.out.println(c1.getMaxHealth());
+		Hero testingHero = new Hero("Divine");
+		System.out.println(testingHero.getCurrentHealth());
+		System.out.println(testingHero.getMaxHealth());
+		testingHero.decreaseHealth(60);
+		testingHero.increaseHealth(100);
+		System.out.println(testingHero.getCurrentHealth());
+		
 		/*
 		System.out.println("Healing Items: " + heroHealingItems);
 		creature.addPowerUp("Power Up");

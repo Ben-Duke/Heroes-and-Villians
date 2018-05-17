@@ -9,6 +9,14 @@ public class Character {
 	 * The name of the Character
 	 */
 	private String characterName; 
+
+	/**
+	 * The constructor for the class Character that sets the name 
+	 * of the Character.
+	 */
+	Character() {
+		characterName = "Abby";
+	}
 	
 	/**
 	 * The constructor for the class Character that takes a String name that is
@@ -32,13 +40,6 @@ public class Character {
 	 */
 	public String getName() {
 		return characterName;
-	}
-	
-	public static void main(String[] args) {
-		Character charac = new Character("Abby");
-		System.out.println(charac.getName());
-		charac.setName("Marie");
-		System.out.println(charac.getName());
 	}
 	
 }
