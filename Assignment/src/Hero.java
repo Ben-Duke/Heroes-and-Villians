@@ -231,15 +231,7 @@ public class Hero {
 	}
 	
 	public static void main(String[] args) {
-<<<<<<< HEAD
-		Hero testingHero = new Hero("Divine");
-		System.out.println(testingHero.getCurrentHealth());
-		System.out.println(testingHero.getMaxHealth());
-		testingHero.decreaseHealth(60);
-		testingHero.increaseHealth(100);
-		System.out.println(testingHero.getCurrentHealth());
-		
-=======
+
 		Hero creature = new Hero("Divine", "Brighty");
 		System.out.println("Creature type: " + creature.getType());
 		System.out.println(creature.getCurrentHealth());
@@ -248,21 +240,11 @@ public class Hero {
 		System.out.println("Creature is alive: " + creature.getStatus());
 		creature.addHealingItems("Healing Potion");
 		creature.addHealingItems("Ultra Heal");
+		
 		Hero c1 = new Hero("Air", "Avian");
 		System.out.println("Creature type: " + c1.getType());
 		System.out.println(c1.getCurrentHealth());
 		System.out.println(c1.getMaxHealth());
->>>>>>> 86c84d5f5a12856dfeab4ba148df1fd13e23496a
-		/*
-		System.out.println("Healing Items: " + heroHealingItems);
-		creature.addPowerUp("Power Up");
-		System.out.println("Power-up Items: " + heroPowerUp);
-		creature.addPowerUp("Increase Max Health");
-		System.out.println("Power-up Items: " + heroPowerUp);
-		creature.addMap("City 1");
-		System.out.println("Map List: " + heroMapList);
-		creature.addMap("City 2");
-		System.out.println("Map List: " + heroMapList);
-		*/
+
 	}
 }
