@@ -50,8 +50,12 @@ public class Hero {
 	 * This is a constructor for the class Hero.
 	 * @param type A String that determines the type of the Hero created.
 	 */
-	Hero(String type) {
+	
+	private String name = "";
+	
+	Hero(String _name, String type) {
 		heroType = type;
+		name = _name;
 		setAbility();
 	}
 	
@@ -100,6 +104,10 @@ public class Hero {
 			currentHealth = 0;
 			heroStatus = false;
 		}
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	/**
@@ -223,6 +231,7 @@ public class Hero {
 	}
 	
 	public static void main(String[] args) {
+<<<<<<< HEAD
 		Hero testingHero = new Hero("Divine");
 		System.out.println(testingHero.getCurrentHealth());
 		System.out.println(testingHero.getMaxHealth());
@@ -230,6 +239,20 @@ public class Hero {
 		testingHero.increaseHealth(100);
 		System.out.println(testingHero.getCurrentHealth());
 		
+=======
+		Hero creature = new Hero("Divine", "Brighty");
+		System.out.println("Creature type: " + creature.getType());
+		System.out.println(creature.getCurrentHealth());
+		System.out.println(creature.getMaxHealth());
+		creature.setStatus(true);
+		System.out.println("Creature is alive: " + creature.getStatus());
+		creature.addHealingItems("Healing Potion");
+		creature.addHealingItems("Ultra Heal");
+		Hero c1 = new Hero("Air", "Avian");
+		System.out.println("Creature type: " + c1.getType());
+		System.out.println(c1.getCurrentHealth());
+		System.out.println(c1.getMaxHealth());
+>>>>>>> 86c84d5f5a12856dfeab4ba148df1fd13e23496a
 		/*
 		System.out.println("Healing Items: " + heroHealingItems);
 		creature.addPowerUp("Power Up");

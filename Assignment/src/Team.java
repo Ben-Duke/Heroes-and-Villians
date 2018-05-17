@@ -21,17 +21,17 @@ public class Team {
 	/**
 	 * The Array List of an Array List that contains Strings which represents the power up items found within the Team.
 	 */
-	private ArrayList<ArrayList<String>> teamPowerup = new ArrayList<ArrayList<String>>();
+	private ArrayList<PowerUpItem> teamPowerup = new ArrayList<PowerUpItem>();
 	
 	/**
 	 * The Array List of an Array List that contains Strings which represents the healing items found within the Team.
 	 */
-	private ArrayList<ArrayList<String>> teamHealingItems = new ArrayList<ArrayList<String>>();
+	private ArrayList<HealingItem> teamHealingItems = new ArrayList<HealingItem>();
 	
 	/**
 	 * The Array List of an Array List that contains Strings which represents the map items found within the Team.
 	 */
-	private ArrayList<ArrayList<String>> teamMapList = new ArrayList<ArrayList<String>>();
+	private ArrayList<String> teamMapList = new ArrayList<String>();
 	
 	/**
 	 * The overall money of the Team.
@@ -55,16 +55,38 @@ public class Team {
 	public String getTeamName() {
 		return teamName;
 	}
-
+	
+	public int getTeamMoney() {
+		return teamMoney;
+	}
+	
 	/**
 	 * A function that adds the Heroes into the Team. It takes the String parameter name which 
 	 * is added to the Array List of teamHeroes. The maximum number of Heroes a Team can have is 3.
 	 * @param name A String parameter name that represents the name of the Hero.
 	 */
-	public void addHeroes(Hero name) {
-		if(!(teamHeroes.contains(name)) && (teamHeroes.size() != 3)) { 
-			teamHeroes.add(name);
+	public String addHeroes(String name, String type) {
+		if(teamHeroes.size() != 3){ 
+			if (!checkName(name)) {
+				Hero temphero = new Hero(name, type);
+				teamHeroes.add(temphero);
+				return "Success";
+			}
+			
+			
 		}
+		return "Failed";
+	}
+	
+	public boolean checkName(String name) {
+		
+		for (Hero tempHero: teamHeroes) {
+			
+			if (tempHero.getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**
@@ -80,7 +102,7 @@ public class Team {
 	 * which is added to the Team inventory of Power up items: teamPowerup.
 	 * @param items An Array List of String that represents the power up items a Hero has.
 	 */
-	public void addPowerUpList(ArrayList<String> items) {
+	public void addPowerUpList(PowerUpItem items) {
 		teamPowerup.add(items);
 	}
 	
@@ -89,7 +111,7 @@ public class Team {
 	 * @return Returns an Array List of an Array List of String that represents 
 	 * the power up items the Team owns.
 	 */
-	public ArrayList<ArrayList<String>> getPowerUpList() {
+	public ArrayList<PowerUpItem> getPowerUpList() {
 		return teamPowerup;
 	}
 	
@@ -98,8 +120,8 @@ public class Team {
 	 * which is added to the Team inventory of Healing Items: teamHealingItems.
 	 * @param items An Array List of String that represents the healing items a Hero has.
 	 */
-	public void addHealingItemsList(ArrayList<String> items) {
-		teamHealingItems.add(items);
+	public void addHealingItemsList(HealingItem item) {
+		teamHealingItems.add(item);
 	}
 	
 	/**
@@ -107,7 +129,7 @@ public class Team {
 	 * @return Returns an Array List of an Array List of String that represents
 	 * the healing items the Team owns.
 	 */
-	public ArrayList<ArrayList<String>> getHealingItemsList() {
+	public ArrayList<HealingItem> getHealingItemsList() {
 		return teamHealingItems;
 	}
 	
@@ -116,7 +138,7 @@ public class Team {
 	 * which is added to the Team inventory of Map Items: teamMapList.
 	 * @param items An Array List of String that represents the map items a Hero has.
 	 */
-	public void addMapList(ArrayList<String> items) {
+	public void addMapList(String items) {
 		teamMapList.add(items);
 	}
 	
@@ -125,7 +147,7 @@ public class Team {
 	 * @return Returns an Array List of an Array List of String that represents
 	 * the map list the Team owns.
 	 */
-	public ArrayList<ArrayList<String>> getMapList() {
+	public ArrayList<String> getMapList() {
 		return teamMapList;
 	}
 	
@@ -158,28 +180,6 @@ public class Team {
 	}
 
 	public static void main(String[] args) {
-		Team PowerRangers = new Team();
-		PowerRangers.setTeamName("Poweranger");
-		System.out.println(PowerRangers.getTeamName());
-		
-		//Trying out by adding the inventories of each hero 
-		// to the overall inventory
-		Hero c1 = new Hero("Air");
-		c1.addHealingItems("Heal1");
-		c1.addHealingItems("Heal2");
-		PowerRangers.addHealingItemsList(c1.getHealingItems());
-		
-		Hero c2 = new Hero("Divine");
-		c2.addHealingItems("Heal3");
-		c2.addHealingItems("Heal4");
-		PowerRangers.addHealingItemsList(c2.getHealingItems());
-		System.out.println(PowerRangers.getHealingItemsList());
-		
-		PowerRangers.getMoney();
-		PowerRangers.increaseMoney(100);
-		PowerRangers.decreaseMoney(200);
-		System.out.println(PowerRangers.getMoney());
-		
 	}
 
 }

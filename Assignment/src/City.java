@@ -17,7 +17,7 @@ public class City {
 	/**
 	 * An array list of integers in which the hero knows the locations of the destinations.
 	 */
-	private ArrayList<Integer> knownDestination = new ArrayList<Integer>(Arrays.asList(null, null, null, null, null));
+	private ArrayList<Integer> knownDestination = new ArrayList<Integer>(Arrays.asList(null, null, null, null, 4));
 	
 	/**
 	 * The boolean status of the villain in which true if they are alive and false if they are dead.
@@ -29,6 +29,12 @@ public class City {
 	 */
 	private Random number;
 	
+	Villain villain;
+	
+	void setVillain() {
+		villain = new Villain("Dibs", 2, 20, "XAndOs");
+	}
+	
 	/**
 	 * A function that returns the life status of villain in the city. 
 	 * It returns a boolean value in which true is for alive and false is for dead.
@@ -39,8 +45,15 @@ public class City {
 		return villainStatus;
 	}
 	
+<<<<<<< HEAD
 	public void setVillainStatus(boolean status) {
 		villainStatus = status;
+=======
+	void setlocations(int locationindex, int direction) {
+		
+		 knownDestination.set(locationindex, direction);
+		 System.out.println(getKnownDestination());
+>>>>>>> 86c84d5f5a12856dfeab4ba148df1fd13e23496a
 	}
 	
 	/**
@@ -84,7 +97,16 @@ public class City {
 		City c1 = new City();
 		c1.setCityDestination();
 		System.out.println(c1.getCityDestination());
+<<<<<<< HEAD
 		System.out.print(c1.getvillainStatus());
 	}
 
+=======
+		System.out.println("__________");
+		c1.setlocations(0, 2);
+		System.out.println("__________");
+		System.out.println(c1.getKnownDestination());
+		
+}
+>>>>>>> 86c84d5f5a12856dfeab4ba148df1fd13e23496a
 }
