@@ -18,6 +18,7 @@ import javax.swing.DefaultListModel;
 
 import java.awt.Panel;
 import java.awt.Button;
+import javax.swing.SwingConstants;
 
 public class GameView {
 
@@ -91,24 +92,47 @@ public class GameView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		PowerUpDenPanel.setVisible(false);
-		PowerUpDenPanel.setBounds(6, 6, 571, 398);
-		frame.getContentPane().add(PowerUpDenPanel);
-		PowerUpDenPanel.setLayout(null);
 		
-		JLabel lblPowerUpDen = new JLabel("Power Up Den");
-		lblPowerUpDen.setBounds(243, 6, 98, 16);
-		PowerUpDenPanel.add(lblPowerUpDen);
-		
-		JButton btnReturnToBase = new JButton("Return to base");
-		btnReturnToBase.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MapPanel.setVisible(true);
-				PowerUpDenPanel.setVisible(false);
-			}
-		});
-		btnReturnToBase.setBounds(428, 312, 117, 29);
-		PowerUpDenPanel.add(btnReturnToBase);
+		//Power up den panel
+//		PowerUpDenPanel.setVisible(false);
+//		PowerUpDenPanel.setBounds(6, 6, 571, 398);
+//		frame.getContentPane().add(PowerUpDenPanel);
+//		PowerUpDenPanel.setLayout(null);
+//		
+//		JLabel lblPowerUpDen = new JLabel("Power Up Den");
+//		lblPowerUpDen.setBounds(243, 6, 98, 16);
+//		PowerUpDenPanel.add(lblPowerUpDen);
+//		
+//		JButton btnReturnToBase = new JButton("Return to base");
+//		btnReturnToBase.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				MapPanel.setVisible(true);
+//				PowerUpDenPanel.setVisible(false);
+//			}
+//		});
+//		btnReturnToBase.setBounds(428, 312, 117, 29);
+//		PowerUpDenPanel.add(btnReturnToBase);
+//		
+//		JList PowerUpList = new JList();
+//		PowerUpList.setBounds(28, 83, 176, 222);
+//		PowerUpDenPanel.add(PowerUpList);
+//		
+//		JLabel lblTeamPowerUps = new JLabel("Team power ups");
+//		lblTeamPowerUps.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblTeamPowerUps.setBounds(28, 53, 176, 16);
+//		PowerUpDenPanel.add(lblTeamPowerUps);
+//		
+//		JList list_3 = new JList();
+//		list_3.setBounds(340, 83, 225, 208);
+//		PowerUpDenPanel.add(list_3);
+//		
+//		JLabel lblTeamHeros = new JLabel("Team Heros");
+//		lblTeamHeros.setBounds(340, 55, 225, 16);
+//		PowerUpDenPanel.add(lblTeamHeros);
+//		
+//		JButton btnUse = new JButton("Use");
+//		btnUse.setBounds(211, 153, 117, 29);
+//		PowerUpDenPanel.add(btnUse);
 		
 		
 		
@@ -132,29 +156,41 @@ public class GameView {
 		btnShopReturnToBase.setBounds(428, 312, 117, 29);
 		ShopPanel.add(btnShopReturnToBase);
 		
+		JList list_1 = new JList();
+		list_1.setBounds(25, 75, 223, 227);
+		ShopPanel.add(list_1);
+		
+		JButton btnBuy = new JButton("Buy");
+		btnBuy.setBounds(131, 312, 117, 29);
+		ShopPanel.add(btnBuy);
+		
+		JList list_2 = new JList();
+		list_2.setBounds(335, 75, 210, 227);
+		ShopPanel.add(list_2);
+		
 		
 		
 		
 		//Hospital Panel
-		HospitalPanel.setVisible(false);
-		HospitalPanel.setBounds(6, 6, 571, 395);
-		frame.getContentPane().add(HospitalPanel);
-		HospitalPanel.setLayout(null);
-		
-		JButton btnhospitolReturnToBase = new JButton("Return to base");
-		btnhospitolReturnToBase.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				HospitalPanel.setVisible(false);
-				MapPanel.setVisible(true);
-				
-			}
-		});
-		btnhospitolReturnToBase.setBounds(386, 314, 117, 29);
-		HospitalPanel.add(btnhospitolReturnToBase);
-		
-		JLabel lblHospital = new JLabel("Hospital");
-		lblHospital.setBounds(246, 17, 61, 16);
-		HospitalPanel.add(lblHospital);
+//		HospitalPanel.setVisible(false);
+//		HospitalPanel.setBounds(6, 6, 571, 395);
+//		frame.getContentPane().add(HospitalPanel);
+//		HospitalPanel.setLayout(null);
+////		
+//		JButton btnhospitolReturnToBase = new JButton("Return to base");
+//		btnhospitolReturnToBase.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				HospitalPanel.setVisible(false);
+//				MapPanel.setVisible(true);
+////				
+//			}
+//		});
+//		btnhospitolReturnToBase.setBounds(386, 314, 117, 29);
+//		HospitalPanel.add(btnhospitolReturnToBase);
+////		
+//		JLabel lblHospital = new JLabel("Hospital");
+//		lblHospital.setBounds(246, 17, 61, 16);
+//		HospitalPanel.add(lblHospital);
 //		
 		
 		//Xandos game panel
@@ -262,52 +298,52 @@ public class GameView {
 		
 		
 		
-//		String[] types = {"Earth", "Air", "Water", "Fire", "Divine", "Demonic"}; 
-//		DefaultListModel<String> typeslist = new DefaultListModel<>();
-//		for(int i = 0; i < types.length; i++) {
-//			typeslist.addElement(types[i]);
-//		}
+		String[] types = {"Earth", "Air", "Water", "Fire", "Divine", "Demonic"}; 
+		DefaultListModel<String> typeslist = new DefaultListModel<>();
+		for(int i = 0; i < types.length; i++) {
+			typeslist.addElement(types[i]);
+		}
 		
 		//Villain fight
-		VillainLair.setVisible(false);
-		VillainLair.setBounds(6, 6, 571, 413);
-		frame.getContentPane().add(VillainLair);
-		VillainLair.setLayout(null);
-		
-		JButton btnReturnToHero = new JButton("Return to hero base");
-		btnReturnToHero.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MapPanel.setVisible(true);
-				VillainLair.setVisible(false);
-			}
-		});
-		btnReturnToHero.setBounds(73, 359, 167, 29);
-		VillainLair.add(btnReturnToHero);
-		
-		JButton BattleVillainButton = new JButton("FIGHT!!!");
-		BattleVillainButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				XandOPanel.setVisible(true);
-				VillainLair.setVisible(false);
-			}
-		});
-		BattleVillainButton.setBounds(306, 359, 187, 29);
-		VillainLair.add(BattleVillainButton);
-		
-		JLabel lblVillainLivesLeft = new JLabel("Villain Lives left: 3");
-		lblVillainLivesLeft.setBounds(317, 331, 133, 16);
-		VillainLair.add(lblVillainLivesLeft);
-		
-		JLabel VillainImage = new JLabel("Villain Image");
-		//VillainImage.setIcon(new ImageIcon("/Users/benduke/Desktop/Screen Shot 2018-05-13 at 9.38.55 PM.png"));
-		VillainImage.setBounds(74, 3, 386, 316);
-		VillainLair.add(VillainImage);
+//		VillainLair.setVisible(false);
+//		VillainLair.setBounds(6, 6, 571, 413);
+//		frame.getContentPane().add(VillainLair);
+//		VillainLair.setLayout(null);
+//		
+//		JButton btnReturnToHero = new JButton("Return to hero base");
+//		btnReturnToHero.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				MapPanel.setVisible(true);
+//				VillainLair.setVisible(false);
+//			}
+//		});
+//		btnReturnToHero.setBounds(73, 359, 167, 29);
+//		VillainLair.add(btnReturnToHero);
+//		
+//		JButton BattleVillainButton = new JButton("FIGHT!!!");
+//		BattleVillainButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				XandOPanel.setVisible(true);
+//				VillainLair.setVisible(false);
+//			}
+//		});
+//		BattleVillainButton.setBounds(306, 359, 187, 29);
+//		VillainLair.add(BattleVillainButton);
+//		
+//		JLabel lblVillainLivesLeft = new JLabel("Villain Lives left: 3");
+//		lblVillainLivesLeft.setBounds(317, 331, 133, 16);
+//		VillainLair.add(lblVillainLivesLeft);
+//		
+//		JLabel VillainImage = new JLabel("Villain Image");
+//		//VillainImage.setIcon(new ImageIcon("/Users/benduke/Desktop/Screen Shot 2018-05-13 at 9.38.55 PM.png"));
+//		VillainImage.setBounds(74, 3, 386, 316);
+//		VillainLair.add(VillainImage);
 
 
 
 
 		//MapPanel GUI
-		
+		//Add in team and inventory of team
 		MapPanel.setBounds(6, 6, 571, 419);
 		frame.getContentPane().add(MapPanel);
 		MapPanel.setVisible(true);
@@ -352,7 +388,7 @@ public class GameView {
 		JLabel lblVillainLives = new JLabel("Villain lives :");
 		lblVillainLives.setBounds(404, 6, 161, 16);
 		MapPanel.add(lblVillainLives);
-		
+//		
 		
 //		Team Panel Gui
 		
@@ -457,7 +493,7 @@ public class GameView {
 //								System.out.println(tempHero.getName());
 //							}
 //							TeamNamePanel.setVisible(false);
-//							//MapPanel.setVisible(true);
+//							MapPanel.setVisible(true);
 //						}
 //						
 //					
