@@ -1,60 +1,67 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-class HeroTest {
+public class HeroTest {
 	private Hero testingHero;
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 	}
 
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@BeforeEach
-	void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 	}
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
-	@Test
-	void testHero() {
-		testingHero = new Hero("Air");
-		assertEquals(testingHero.getType(), "Air");
+	@After
+	public void tearDown() throws Exception {
 	}
 
 	@Test
-	void testGetCurrentHealth() {
-		testingHero = new Hero("Air");
+	public void testHero() {
+		testingHero = new Hero("Wind", "Fire");
+		assertEquals(testingHero.getType(), "Fire");
+		assertEquals(testingHero.getAbility(), "Lower Price in Shops");
+		
+		testingHero = new Hero("Lion", "Demonic");
+		assertEquals(testingHero.getType(), "Demonic");
+		assertEquals(testingHero.getAbility(), "Subtracts 2 lives to a Villain per win");
+	}
+
+	@Test
+	public void testGetCurrentHealth() {
+		testingHero = new Hero("Bubbles", "Air");
 		assertEquals(testingHero.getCurrentHealth(), 100);
-		// max health must still be 100
+		
 		testingHero.decreaseHealth(30);
 		assertEquals(testingHero.getCurrentHealth(), 70);
 		
 		testingHero.increaseHealth(50);
 		assertEquals(testingHero.getCurrentHealth(), 100);
+
 	}
 
 	@Test
-	void testGetMaxHealth() {
-		testingHero = new Hero("Divine");
+	public void testGetMaxHealth() {
+		testingHero = new Hero("Angel", "Divine");
 		// result must equal to 200
 		assertEquals(testingHero.getMaxHealth(), 200);
 		// result must equal to 100
-		testingHero = new Hero("Earth");
+		testingHero = new Hero("Brown", "Earth");
 		assertEquals(testingHero.getMaxHealth(), 100);
+
 	}
 
 	@Test
-	void testIncreaseHealth() {
-		testingHero = new Hero("Divine");
+	public void testIncreaseHealth() {
+		testingHero = new Hero("Angel", "Divine");
 		//health must be 200 at this stage
 		assertEquals(testingHero.getCurrentHealth(), 200);
 
@@ -64,102 +71,85 @@ class HeroTest {
 		
 		testingHero.increaseHealth(100000);
 		assertEquals(testingHero.getCurrentHealth(), 200);
+
 	}
 
 	@Test
-	void testDecreaseHealth() {
-		testingHero = new Hero("Water");
+	public void testDecreaseHealth() {
+		testingHero = new Hero("Blue", "Water");
 		testingHero.decreaseHealth(60);
 		assertEquals(testingHero.getCurrentHealth(), 40);
 		
 		testingHero.decreaseHealth(100);
 		assertEquals(testingHero.getCurrentHealth(), 0);
-		
 	}
 
 	@Test
-	void testSetType() {
-		testingHero = new Hero("Air");
-		testingHero.setType("Fire");
-		assertEquals(testingHero.getType(), "Fire");
+	public void testGetName() {
+		testingHero = new Hero("Blue", "Water");
+		assertEquals(testingHero.getName(), "Blue");
 		
-		testingHero.setType("Demonic");
-		assertEquals(testingHero.getType(), "Demonic");
-		
-		testingHero.setType("Divine");
-		assertEquals(testingHero.getType(), "Divine");
-		
-		
+		testingHero = new Hero("Fred", "Water");
+		assertEquals(testingHero.getName(), "Blue");
 	}
 
 	@Test
-	void testGetType() {
-		testingHero = new Hero("Air");
-		assertEquals(testingHero.getType(), "Air");
-		
-		testingHero = new Hero("Demonic");
-		assertEquals(testingHero.getType(), "Demonic");
-		
-		testingHero = new Hero("Divine");
-		assertEquals(testingHero.getType(), "Divine");
-	}
-
-	@Test
-	void testSetAbility() {
-		testingHero = new Hero("Air");
-		assertEquals(testingHero.getAbility(), "Map Expertise");
-		
-		testingHero = new Hero("Earth");
-		assertEquals(testingHero.getAbility(), "Takes less Damage");
-	}
-
-	@Test
-	void testGetAbility() {
-		testingHero = new Hero("Demonic");
-		assertEquals(testingHero.getAbility(), "Subtracts 2 lives to a Villain per win");
-		
-		testingHero = new Hero("Divine");
-		assertEquals(testingHero.getAbility(), "Double Maximum Health");
-	}
-
-	@Test
-	void testAddPowerUp() {
-		testingHero = new Hero("Demonic");
-		
-	}
-
-	@Test
-	void testGetPowerUp() {
+	public void testSetType() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testAddHealingItems() {
+	public void testGetType() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetHealingItems() {
+	public void testSetAbility() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testAddMap() {
+	public void testGetAbility() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetMap() {
+	public void testAddPowerUp() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testSetStatus() {
+	public void testGetPowerUp() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetStatus() {
+	public void testAddHealingItems() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetHealingItems() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddMap() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetMap() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetStatus() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetStatus() {
 		fail("Not yet implemented");
 	}
 

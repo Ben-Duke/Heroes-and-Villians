@@ -45,15 +45,15 @@ public class City {
 		return villainStatus;
 	}
 	
-<<<<<<< HEAD
 	public void setVillainStatus(boolean status) {
 		villainStatus = status;
-=======
+	}
+	
 	void setlocations(int locationindex, int direction) {
 		
 		 knownDestination.set(locationindex, direction);
 		 System.out.println(getKnownDestination());
->>>>>>> 86c84d5f5a12856dfeab4ba148df1fd13e23496a
+
 	}
 	
 	/**
@@ -97,16 +97,13 @@ public class City {
 		City c1 = new City();
 		c1.setCityDestination();
 		System.out.println(c1.getCityDestination());
-<<<<<<< HEAD
-		System.out.print(c1.getvillainStatus());
-	}
 
-=======
+		System.out.print(c1.getvillainStatus());
+
 		System.out.println("__________");
 		c1.setlocations(0, 2);
 		System.out.println("__________");
 		System.out.println(c1.getKnownDestination());
 		
 }
->>>>>>> 86c84d5f5a12856dfeab4ba148df1fd13e23496a
 }
