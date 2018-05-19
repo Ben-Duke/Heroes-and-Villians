@@ -1,5 +1,8 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -90,42 +93,95 @@ public class HeroTest {
 		assertEquals(testingHero.getName(), "Blue");
 		
 		testingHero = new Hero("Fred", "Water");
-		assertEquals(testingHero.getName(), "Blue");
+		assertEquals(testingHero.getName(), "Fred");
 	}
 
 	@Test
 	public void testSetType() {
-		fail("Not yet implemented");
+		testingHero = new Hero("Aj", "Air");
+		testingHero.setType("Fire");
+		assertEquals(testingHero.getType(), "Fire");
+		
+		testingHero.setType("Demonic");
+		assertEquals(testingHero.getType(), "Demonic");
+		
+		testingHero.setType("Divine");
+		assertEquals(testingHero.getType(), "Divine");
 	}
 
 	@Test
 	public void testGetType() {
-		fail("Not yet implemented");
+		testingHero = new Hero("Illo", "Earth");
+		assertEquals(testingHero.getType(), "Earth");
+		
+		testingHero = new Hero("Greed", "Water");
+		assertEquals(testingHero.getType(), "Water");
+		
+		testingHero = new Hero("Blake", "Divine");
+		assertEquals(testingHero.getType(), "Divine");
+
 	}
 
 	@Test
 	public void testSetAbility() {
-		fail("Not yet implemented");
+		testingHero = new Hero("Bubbles", "Water");
+		testingHero.setAbility();
+		assertEquals(testingHero.getAbility(), "Faster Recovery Rates");
+		
+		testingHero = new Hero("Bob", "Earth");
+		testingHero.setAbility();
+		assertEquals(testingHero.getAbility(), "Takes less Damage");
+
+		testingHero = new Hero("Eva", "Divine");
+		testingHero.setAbility();
+		assertEquals(testingHero.getAbility(), "Double Maximum Health");
 	}
 
 	@Test
 	public void testGetAbility() {
-		fail("Not yet implemented");
+		testingHero = new Hero("Mos", "Demonic");
+		assertEquals(testingHero.getAbility(), "Subtracts 2 lives to a Villain per win");
+		
+		testingHero = new Hero("Plane", "Air");
+		assertEquals(testingHero.getAbility(), "Map Expertise");
 	}
 
 	@Test
 	public void testAddPowerUp() {
-		fail("Not yet implemented");
+		testingHero = new Hero("Fairy", "Air");
+		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Increase Max Health"));
+		testingHero.addPowerUp("Increase Max Health");
+		assertTrue(testingHero.getPowerUp().equals(expected));
+		
+		testingHero = new Hero("Alice", "Earth");
+		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("Damage Reduction", "Increase Max Health"));
+		testingHero.addPowerUp("Damage Reduction");
+		testingHero.addPowerUp("Increase Max Health");
+		assertTrue(testingHero.getPowerUp().equals(expected1));
 	}
 
 	@Test
 	public void testGetPowerUp() {
-		fail("Not yet implemented");
+		testingHero = new Hero("Monk", "Fire");
+		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Damage Reduction"));
+		testingHero.addPowerUp("Damage Reduction");
+		assertTrue(testingHero.getPowerUp().equals(expected));
+		
+		testingHero.addPowerUp("Increase Max Health");
+		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("Increase Max Health", "Damage Reduction"));
+		assertTrue(testingHero.getPowerUp().equals(expected1));
 	}
 
 	@Test
 	public void testAddHealingItems() {
-		fail("Not yet implemented");
+		testingHero = new Hero("Fairy", "Air");
+		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Increase Max Health"));
+		testingHero.addPowerUp("Increase Max Health");
+		assertTrue(testingHero.getPowerUp().equals(expected));
+		
+		testingHero.addPowerUp("Damage Reduction");
+		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("Increase Max Health", "Damage Reduction"));
+		assertTrue(testingHero.getPowerUp().equals(expected1));
 	}
 
 	@Test
