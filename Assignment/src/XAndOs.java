@@ -305,14 +305,15 @@ public class XAndOs {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		XAndOs game = new XAndOs();
-		int[] move = {0,1};
-		game.makeMove(move);
-		
-		move = new int[]{0,2};
-		game.makeMove(move);
-		
-		move = new int[]{0,0};
-		game.makeMove(move);
+		game.playGame();
+//		int[] move = {0,1};
+//		game.makeMove(move);
+//		
+//		move = new int[]{0,2};
+//		game.makeMove(move);
+//		
+//		move = new int[]{0,0};
+//		game.makeMove(move);
 //		for(int row = 0; row < 3; row++) {
 //			game.placeMarker("X", row, 0);
 //		}
