@@ -5,6 +5,7 @@ public class GameModel {
 	int cityCount = 1;
 	XAndOs XAndOgame;
 	City[] citylist; 
+	Shop shop = new Shop();
 	Destination[] current;
 	int currentCity = 0;
 	
@@ -17,6 +18,10 @@ public class GameModel {
 	
 	void updateCityCount(int numOfCity) {
 		cityCount = numOfCity;
+	}
+	
+	Shop getShop() {
+		return shop;
 	}
 	
 	Team getTeam() {

@@ -46,4 +46,18 @@ public class Item {
 		return itemPrice;
 	}
 
+<<<<<<< HEAD
+=======
+	public String toString() {
+		return getName() + " " + getPrice(); 
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Item thing = new Item("dib dob", 3);
+		thing.setPrice(3);
+		System.out.printf("The price is ", thing.getPrice());
+	}
+
+>>>>>>> b47b933886263cbe3b9f28c9af1ede561986ec99
 }

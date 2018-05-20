@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 public class Shop {
 	GameModel modelref;
-	ArrayList<Item> Inventory = new ArrayList<Item>();
+	ArrayList<HealingItem> HealingInventory = new ArrayList<HealingItem>();
+	ArrayList<PowerUpItem> PowerUpInventory = new ArrayList<PowerUpItem>();
 	
 	ArrayList<Item> showTeamInventory() {
 		ArrayList<Item> temp = new ArrayList<Item>();
@@ -15,10 +16,16 @@ public class Shop {
 		for (int j = 0; j < tempheal.size(); j ++) {
 			temp.add(temppower.get(j));
 		}
-		
 		return temp;
 	}
 	
+	
+	Shop(){
+		HealingItem tempItem = new HealingItem("Heal 25%", 100, 25);
+		HealingInventory.add(tempItem);
+		PowerUpItem tempPowerUpItem = new PowerUpItem("Decrease battle damage", 150);
+		PowerUpInventory.add(tempPowerUpItem);
+	}
 	int showTeamMoney() {
 		return modelref.game_team.getTeamMoney();
 	}
