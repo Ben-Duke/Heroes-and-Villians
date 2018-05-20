@@ -1,4 +1,9 @@
-
+/**
+ * The class Healing Item inherits from the class Item and contains
+ * a name, given price and healing amount
+ * @author Angelica Dela Cruz & Ben Duke
+ * @version 1.1, 20 May 18
+ */
 public class HealingItem extends Item{
 
 	int heal = 10;
