@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class PaperScissorsRock {
 	
 	private boolean win = false;
+	private int choice;
 	private String computerChoice;
 	private String userChoice;
 	
@@ -30,7 +31,16 @@ public class PaperScissorsRock {
 		System.out.println("2. Scissors");
 		System.out.println("3. Rock");
 		System.out.println("Input the number corresponding to your choice.");
-		int choice = scanner.nextInt();
+		while(!scanner.hasNextInt()) {
+			System.out.println("Invalid input.");
+			System.out.println("----------------------------------");
+			System.out.println("Choose between the three weapons:");
+			System.out.println("1. Paper");
+			System.out.println("2. Scissors");
+			System.out.println("3. Rock");
+			System.out.println("Input the number corresponding to your choice.");
+			scanner.next();
+		} choice = scanner.nextInt();
 		if(choices.contains(choice)) {
 			if(choice == 1) {
 				userChoice ="Paper";
@@ -39,11 +49,15 @@ public class PaperScissorsRock {
 			} else if(choice == 3) {
 				userChoice = "Rock";
 			}
+		} else {
+			System.out.println("Invalid input.");
+			System.out.println("----------------------------------");
+			userMove();
 		}
 	}
 	
 	public void whoWin(String compMove, String userMove) {
-		System.out.println("Computer move is: " + compMove);
+		System.out.println("Villain move is: " + compMove);
 		System.out.println("Your move is: " + userMove);
 		 
 		if(compMove.equals("Paper") && userMove.equals("Rock")) {
@@ -83,5 +97,4 @@ public class PaperScissorsRock {
 		PaperScissorsRock game = new PaperScissorsRock();
 		game.playGame();
 	}
-	
 }
