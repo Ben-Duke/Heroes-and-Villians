@@ -36,6 +36,10 @@ public class Item {
 		return itemPrice;
 	}
 
+	public String toString() {
+		return getName() + " " + getPrice(); 
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Item thing = new Item("dib dob", 3);

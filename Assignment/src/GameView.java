@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -55,6 +56,10 @@ public class GameView {
 	JButton button_8 = new JButton("-");
 	
 	JLabel WinnerLabel = new JLabel("Winner is ");
+	
+	private JList PlayerItems_list;
+	private JList<String> ShopItems_list;
+	private JList<String> PowerUpList;
 	
 	
 	/**
@@ -137,7 +142,7 @@ public class GameView {
 		
 		
 		//Shop panel
-		ShopPanel.setVisible(false);
+		ShopPanel.setVisible(true);
 		ShopPanel.setBounds(6, 6, 571, 398);
 		frame.getContentPane().add(ShopPanel);
 		ShopPanel.setLayout(null);
@@ -153,20 +158,31 @@ public class GameView {
 				ShopPanel.setVisible(false);
 			}
 		});
-		btnShopReturnToBase.setBounds(428, 312, 117, 29);
+		btnShopReturnToBase.setBounds(425, 350, 117, 29);
 		ShopPanel.add(btnShopReturnToBase);
 		
-		JList list_1 = new JList();
-		list_1.setBounds(25, 75, 223, 227);
-		ShopPanel.add(list_1);
+		ShopItems_list = new JList<String>();
+		ShopItems_list.setBounds(22, 44, 223, 115);
+		ShopPanel.add(ShopItems_list);
 		
 		JButton btnBuy = new JButton("Buy");
-		btnBuy.setBounds(131, 312, 117, 29);
+		btnBuy.setBounds(128, 171, 117, 29);
 		ShopPanel.add(btnBuy);
 		
-		JList list_2 = new JList();
-		list_2.setBounds(335, 75, 210, 227);
-		ShopPanel.add(list_2);
+		PowerUpList = new JList<String>();
+		PowerUpList.setBounds(22, 205, 223, 115);
+		ShopPanel.add(PowerUpList);
+		
+		JButton button = new JButton("Buy");
+		button.setBounds(128, 332, 117, 29);
+		ShopPanel.add(button);
+		
+		JList<String> Team_items = new JList<String>();
+		Team_items.setBounds(303, 44, 223, 276);
+		ShopPanel.add(Team_items);
+		//ShopPanel.add(PlayerItems_list);
+		//PlayerItems_list.setBounds(335, 75, 210, 227);
+		
 		
 		
 		
@@ -334,6 +350,10 @@ public class GameView {
 //		lblVillainLivesLeft.setBounds(317, 331, 133, 16);
 //		VillainLair.add(lblVillainLivesLeft);
 //		
+		
+//		JLabel lblVillainLivesLeft = new JLabel("Welcome to your doom taunt");
+//		lblVillainLivesLeft.setBounds(317, 270, 133, 16);
+//		VillainLair.add(lblVillainLivesLeft);
 //		JLabel VillainImage = new JLabel("Villain Image");
 //		//VillainImage.setIcon(new ImageIcon("/Users/benduke/Desktop/Screen Shot 2018-05-13 at 9.38.55 PM.png"));
 //		VillainImage.setBounds(74, 3, 386, 316);
@@ -344,50 +364,50 @@ public class GameView {
 
 		//MapPanel GUI
 		//Add in team and inventory of team
-		MapPanel.setBounds(6, 6, 571, 419);
-		frame.getContentPane().add(MapPanel);
-		MapPanel.setVisible(true);
-		MapPanel.setLayout(null);
-
-		JButton West_button = new JButton("West");
-		West_button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				movetoDestination(3);
-			}
-		});
-		West_button.setBounds(100, 163, 121, 73);
-		MapPanel.add(West_button);
-
-		JButton East_Button = new JButton("East");
-		East_Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				movetoDestination(1);
-			}
-		});
-		East_Button.setBounds(344, 163, 121, 73);
-		MapPanel.add(East_Button);
-
-		JButton South_Button = new JButton("South");
-		South_Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				movetoDestination(2);
-			}
-		});
-		South_Button.setBounds(219, 260, 121, 73);
-		MapPanel.add(South_Button);
-
-		JButton North_Button = new JButton("North");
-		North_Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				movetoDestination(0);
-			}
-		});
-		North_Button.setBounds(219, 62, 121, 73);
-		MapPanel.add(North_Button);
-
-		JLabel lblVillainLives = new JLabel("Villain lives :");
-		lblVillainLives.setBounds(404, 6, 161, 16);
-		MapPanel.add(lblVillainLives);
+//		MapPanel.setBounds(6, 6, 571, 419);
+//		frame.getContentPane().add(MapPanel);
+//		MapPanel.setVisible(true);
+//		MapPanel.setLayout(null);
+//
+//		JButton West_button = new JButton("West");
+//		West_button.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				movetoDestination(3);
+//			}
+//		});
+//		West_button.setBounds(100, 163, 121, 73);
+//		MapPanel.add(West_button);
+//
+//		JButton East_Button = new JButton("East");
+//		East_Button.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				movetoDestination(1);
+//			}
+//		});
+//		East_Button.setBounds(344, 163, 121, 73);
+//		MapPanel.add(East_Button);
+//
+//		JButton South_Button = new JButton("South");
+//		South_Button.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				movetoDestination(2);
+//			}
+//		});
+//		South_Button.setBounds(219, 260, 121, 73);
+//		MapPanel.add(South_Button);
+//
+//		JButton North_Button = new JButton("North");
+//		North_Button.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				movetoDestination(0);
+//			}
+//		});
+//		North_Button.setBounds(219, 62, 121, 73);
+//		MapPanel.add(North_Button);
+//
+//		JLabel lblVillainLives = new JLabel("Villain lives :");
+//		lblVillainLives.setBounds(404, 6, 161, 16);
+//		MapPanel.add(lblVillainLives);
 //		
 		
 //		Team Panel Gui
@@ -516,6 +536,8 @@ public class GameView {
 //		if (modelref.getTeam().getHeroes().size() == 3) {
 //			btnAddHero.setEnabled(false);
 //		}
+		
+		updateShopUI();
 	}
 	
 	void movetoDestination(int direction) {
@@ -566,6 +588,40 @@ public class GameView {
 		modelref.getXAndOGame().printState();
 	}
 	
+	void updateShopUI() {
+		Shop shopref = modelref.shop;
+		ArrayList<String> shopItems = new ArrayList<String>();
+		DefaultListModel<String> itemlist = new DefaultListModel<String>();
+		
+		ArrayList<String> shopPowerUpItems = new ArrayList<String>();
+		DefaultListModel<String> itemPowerUplist = new DefaultListModel<String>();
+		
+		//Load healinhitems
+		for (int i = 0; i < shopref.HealingInventory.size();i++) {
+			shopItems.add(shopref.HealingInventory.toArray()[i].toString());
+		}
+		
+		for (int j = 0; j < shopref.HealingInventory.size();j++) {
+			
+			itemlist.addElement(shopref.HealingInventory.toArray()[j].toString());
+		}
+		//Power Up item
+		for (int i = 0; i < shopref.PowerUpInventory.size();i++) {
+			shopItems.add(shopref.PowerUpInventory.toArray()[i].toString());
+		}
+		
+		for (int j = 0; j < shopref.PowerUpInventory.size();j++) {
+			
+			itemPowerUplist.addElement(shopref.PowerUpInventory.toArray()[j].toString());
+		}
+
+		ShopItems_list.setModel(itemlist);
+		
+		getPowerUpList().setModel(itemPowerUplist);
+		
+		
+	}
+	
 	void updateUI(String[][] board) {
 		ArrayList<JButton[]> boardarray = new ArrayList<JButton[]>(); 
 		JButton[] row0 = new JButton[3];
@@ -613,6 +669,15 @@ public class GameView {
 	}
 	public JList GetHeroType() {
 		return list;
+	}
+	public JList getPlayerItems_list() {
+		return PlayerItems_list;
+	}
+	public JList getShopItems_list() {
+		return ShopItems_list;
+	}
+	public JList getPowerUpList() {
+		return PowerUpList;
 	}
 }
 	
