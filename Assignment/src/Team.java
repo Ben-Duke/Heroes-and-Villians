@@ -102,8 +102,8 @@ public class Team {
 	 * which is added to the Team inventory of Power up items: teamPowerup.
 	 * @param items An Array List of String that represents the power up items a Hero has.
 	 */
-	public void addPowerUpList(PowerUpItem items) {
-		teamPowerup.add(items);
+	public void addPowerUpitem(PowerUpItem item) {
+		teamPowerup.add(item);
 	}
 	
 	/**
