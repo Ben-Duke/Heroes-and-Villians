@@ -1,5 +1,3 @@
-import java.text.DecimalFormat;
-
 /**
  * This class implements Item that sets and gets the price of the given
  * item
@@ -46,8 +44,6 @@ public class Item {
 		return itemPrice;
 	}
 
-<<<<<<< HEAD
-=======
 	public String toString() {
 		return getName() + " " + getPrice(); 
 	}
@@ -56,8 +52,7 @@ public class Item {
 		// TODO Auto-generated method stub
 		Item thing = new Item("dib dob", 3);
 		thing.setPrice(3);
-		System.out.printf("The price is ", thing.getPrice());
+		System.out.printf("The price is " + thing.getPrice() + ".00");
 	}
 
->>>>>>> b47b933886263cbe3b9f28c9af1ede561986ec99
 }
