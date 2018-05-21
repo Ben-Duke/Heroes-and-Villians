@@ -54,9 +54,4 @@ public class Item {
 		thing.setPrice(3);
 		System.out.printf("The price is " + thing.getPrice() + ".00");
 	}
-
-<<<<<<< HEAD
-=======
-
->>>>>>> ff68559a857cc47fbce4d9689e0f2a4d37212444
 }
