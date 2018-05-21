@@ -622,14 +622,14 @@ public class GameView {
 		ArrayList<String> PlayerItems = new ArrayList<String>();
 		DefaultListModel<String> Playeritemlist = new DefaultListModel<String>();
 		
-		for (int i_playeritemstring = 0; i_playeritemstring < modelref.getTeam().getHealingItemsList().size();i_playeritemstring++) {
-			PlayerItems.add(modelref.getTeam().getHealingItemsList().toArray()[i_playeritemstring].toString());
+		for (int i_playeritemstring = 0; i_playeritemstring < modelref.getTeam().getAllItems().size();i_playeritemstring++) {
+			PlayerItems.add(modelref.getTeam().getAllItems().toArray()[i_playeritemstring].toString());
 		}
 		
 		
-		for (int j_playeritemtolist = 0; j_playeritemtolist < modelref.getTeam().getHealingItemsList().size();j_playeritemtolist++) {
-			if (modelref.getTeam().getHealingItemsList().size() != 0) {
-				Playeritemlist.addElement(modelref.getTeam().getHealingItemsList().toArray()[j_playeritemtolist].toString());
+		for (int j_playeritemtolist = 0; j_playeritemtolist < PlayerItems.size();j_playeritemtolist++) {
+			if (modelref.getTeam().getAllItems().size() != 0) {
+				Playeritemlist.addElement(modelref.getTeam().getAllItems().toArray()[j_playeritemtolist].toString());
 			}else {
 				System.out.print("Less than 1 item in player items");
 			}
@@ -671,9 +671,6 @@ public class GameView {
 			itemPowerUplist.addElement(shopref.PowerUpInventory.toArray()[j_poweruptolist].toString());
 		}
 
-		
-		
-		
 		
 		ShopItems_list.setModel(itemlist);
 		

@@ -33,6 +33,19 @@ public class Team {
 	 */
 	private ArrayList<String> teamMapList = new ArrayList<String>();
 	
+	public ArrayList<Item> getAllItems(){
+		ArrayList<Item> items = new ArrayList<Item>();
+		
+		for (int i = 0; i < teamHealingItems.size();i++) {
+			items.add((Item) teamHealingItems.toArray()[i]);
+		}
+		
+		for (int j = 0; j < teamPowerup.size();j++) {
+			items.add((Item) teamPowerup.toArray()[j]);
+		}
+		
+		return items;
+	}
 	/**
 	 * The overall money of the Team.
 	 */
