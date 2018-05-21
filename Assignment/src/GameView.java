@@ -57,10 +57,11 @@ public class GameView {
 	
 	JLabel WinnerLabel = new JLabel("Winner is ");
 	
-	private JList PlayerItems_list;
+	
 	private JList<String> ShopItems_list;
 	private JList<String> PowerUpList;
-	
+	private JList<String> Team_items;
+	private JList PlayerItems_list;
 	
 	/**
 	 * Launch the application.
@@ -91,6 +92,12 @@ public class GameView {
 	 */
 	private void initialize() {
 		modelref.setCities();
+		
+		
+		//delete after!!!!!!!!!
+		modelref.createTeam("AA");
+		
+		
 		System.out.println(modelref.getCities()[0].getCityDestination());
 		frame = new JFrame();
 		frame.setBounds(100, 100, 583, 453);
@@ -161,11 +168,28 @@ public class GameView {
 		btnShopReturnToBase.setBounds(425, 350, 117, 29);
 		ShopPanel.add(btnShopReturnToBase);
 		
+		Team_items = new JList<String>();
+		Team_items.setBounds(303, 44, 223, 276);
+		ShopPanel.add(Team_items);
+		PlayerItems_list = new JList();
+		ShopPanel.add(PlayerItems_list);
+		PlayerItems_list.setBounds(335, 75, 210, 227);
+		
 		ShopItems_list = new JList<String>();
 		ShopItems_list.setBounds(22, 44, 223, 115);
 		ShopPanel.add(ShopItems_list);
 		
 		JButton btnBuy = new JButton("Buy");
+		btnBuy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HealingItem buyingitem = new HealingItem("Item", 0, 0);
+				getShopItems_list().getSelectedIndex();
+				modelref.getTeam().addHealingItemsList(buyingitem);
+				UpdatePlayeritems();
+				updateShopUI();
+				
+			}
+		});
 		btnBuy.setBounds(128, 171, 117, 29);
 		ShopPanel.add(btnBuy);
 		
@@ -173,15 +197,21 @@ public class GameView {
 		PowerUpList.setBounds(22, 205, 223, 115);
 		ShopPanel.add(PowerUpList);
 		
-		JButton button = new JButton("Buy");
-		button.setBounds(128, 332, 117, 29);
-		ShopPanel.add(button);
+		JButton buttonpowerup = new JButton("Buy");
+		buttonpowerup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PowerUpItem buyingitem = new PowerUpItem("powerup", 250);
+				getShopItems_list().getSelectedIndex();
+				modelref.getTeam().addPowerUpitem(buyingitem);
+				UpdatePlayeritems();
+				updateShopUI();
+			}
+		});
+		buttonpowerup.setBounds(128, 332, 117, 29);
+		ShopPanel.add(buttonpowerup);
+		UpdatePlayeritems();
+		updateShopUI();
 		
-		JList<String> Team_items = new JList<String>();
-		Team_items.setBounds(303, 44, 223, 276);
-		ShopPanel.add(Team_items);
-		//ShopPanel.add(PlayerItems_list);
-		//PlayerItems_list.setBounds(335, 75, 210, 227);
 		
 		
 		
@@ -319,7 +349,7 @@ public class GameView {
 		for(int i = 0; i < types.length; i++) {
 			typeslist.addElement(types[i]);
 		}
-		
+	}		
 		//Villain fight
 //		VillainLair.setVisible(false);
 //		VillainLair.setBounds(6, 6, 571, 413);
@@ -523,19 +553,19 @@ public class GameView {
 //		});
 //	}
 //	
-//	public void updateHeroes() {
-//		String[] heroNames = new String[modelref.getTeam().getHeroes().size()];
-//		int index = 0;
-//		for (Hero temp: modelref.getTeam().getHeroes()) {
-//			heroNames[index] = temp.getName() + " " + temp.getType();
-//			index +=1;
-//		}
-//		HeroList = new JList(heroNames);
-//		HeroList.setBounds(341, 167, 149, 131);
-//		TeamNamePanel.add(HeroList);
-//		if (modelref.getTeam().getHeroes().size() == 3) {
-//			btnAddHero.setEnabled(false);
-//		}
+	public void updateHeroes() {
+		String[] heroNames = new String[modelref.getTeam().getHeroes().size()];
+		int index = 0;
+		for (Hero temp: modelref.getTeam().getHeroes()) {
+			heroNames[index] = temp.getName() + " " + temp.getType();
+			index +=1;
+		}
+		HeroList = new JList(heroNames);
+		HeroList.setBounds(341, 167, 149, 131);
+		TeamNamePanel.add(HeroList);
+		if (modelref.getTeam().getHeroes().size() == 3) {
+			btnAddHero.setEnabled(false);
+		}
 		
 		updateShopUI();
 	}
@@ -588,6 +618,30 @@ public class GameView {
 		modelref.getXAndOGame().printState();
 	}
 	
+	void UpdatePlayeritems(){
+		ArrayList<String> PlayerItems = new ArrayList<String>();
+		DefaultListModel<String> Playeritemlist = new DefaultListModel<String>();
+		
+		for (int i_playeritemstring = 0; i_playeritemstring < modelref.getTeam().getAllItems().size();i_playeritemstring++) {
+			PlayerItems.add(modelref.getTeam().getAllItems().toArray()[i_playeritemstring].toString());
+		}
+		
+		
+		for (int j_playeritemtolist = 0; j_playeritemtolist < PlayerItems.size();j_playeritemtolist++) {
+			if (modelref.getTeam().getAllItems().size() != 0) {
+				Playeritemlist.addElement(modelref.getTeam().getAllItems().toArray()[j_playeritemtolist].toString());
+			}else {
+				System.out.print("Less than 1 item in player items");
+			}
+		
+		Team_items = new JList(Playeritemlist);
+		//getTeam_items().setModel(Playeritemlist);
+		ShopPanel.add(Team_items);
+	    Team_items.setBounds(303, 44, 223, 276);
+		
+		}
+	}
+	
 	void updateShopUI() {
 		Shop shopref = modelref.shop;
 		ArrayList<String> shopItems = new ArrayList<String>();
@@ -596,30 +650,35 @@ public class GameView {
 		ArrayList<String> shopPowerUpItems = new ArrayList<String>();
 		DefaultListModel<String> itemPowerUplist = new DefaultListModel<String>();
 		
+		
+		
 		//Load healinhitems
-		for (int i = 0; i < shopref.HealingInventory.size();i++) {
-			shopItems.add(shopref.HealingInventory.toArray()[i].toString());
+		for (int i_string = 0; i_string < shopref.HealingInventory.size();i_string++) {
+			shopItems.add(shopref.HealingInventory.toArray()[i_string].toString());
 		}
 		
-		for (int j = 0; j < shopref.HealingInventory.size();j++) {
+		for (int j_tolist = 0; j_tolist < shopref.HealingInventory.size();j_tolist++) {
 			
-			itemlist.addElement(shopref.HealingInventory.toArray()[j].toString());
+			itemlist.addElement(shopref.HealingInventory.toArray()[j_tolist].toString());
 		}
 		//Power Up item
-		for (int i = 0; i < shopref.PowerUpInventory.size();i++) {
-			shopItems.add(shopref.PowerUpInventory.toArray()[i].toString());
+		for (int i_powerupstring = 0; i_powerupstring < shopref.PowerUpInventory.size();i_powerupstring++) {
+			shopItems.add(shopref.PowerUpInventory.toArray()[i_powerupstring].toString());
 		}
 		
-		for (int j = 0; j < shopref.PowerUpInventory.size();j++) {
+		for (int j_poweruptolist = 0; j_poweruptolist < shopref.PowerUpInventory.size();j_poweruptolist++) {
 			
-			itemPowerUplist.addElement(shopref.PowerUpInventory.toArray()[j].toString());
+			itemPowerUplist.addElement(shopref.PowerUpInventory.toArray()[j_poweruptolist].toString());
 		}
 
+		
 		ShopItems_list.setModel(itemlist);
 		
 		getPowerUpList().setModel(itemPowerUplist);
 		
-		
+		//private JList<String> ShopItems_list;
+		//private JList<String> PowerUpList;
+	    
 	}
 	
 	void updateUI(String[][] board) {
@@ -678,6 +737,9 @@ public class GameView {
 	}
 	public JList getPowerUpList() {
 		return PowerUpList;
+	}
+	public JList getTeam_items() {
+		return Team_items;
 	}
 }
 	
