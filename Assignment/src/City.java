@@ -29,6 +29,9 @@ public class City {
 	 */
 	private Random number;
 	
+	/**
+	 * Constructor for the villain in the city.
+	 */
 	Villain villain;
 	
 	void setVillain() {
@@ -36,24 +39,31 @@ public class City {
 	}
 	
 	/**
-	 * A function that returns the life status of villain in the city. 
+	 * A function that returns the life status of the villain in the city. 
 	 * It returns a boolean value in which true is for alive and false is for dead.
 	 * @return Returns the boolean value true or false indicating whether the villain in the city is alive or not.
 	 */
-	
 	public boolean getvillainStatus() {
 		return villainStatus;
 	}
 	
+	/**
+	 * A function that sets the life status of the villain in the city.
+	 * @param status A boolean parameter that indicates true for alive and false for not.
+	 */
 	public void setVillainStatus(boolean status) {
 		villainStatus = status;
 	}
 	
+	/**
+	 * A function that sets the location of known Destinations in the Team map.
+	 * @param locationindex An integer parameter that represents the index of the array.
+	 * The indices of the Array List stands for the map directions 0 - North, 1 - South, 2 - East, 3 - West and 4 - Center
+	 * @param direction An integer parameter that indicates which destination is in the given index.
+	 * The elements in the Array List stands for the destination 0 - Shop, 1 - Power up den, 2 - Hospital, 3 - Villain's Lair and 4 - Home Base.
+	 */
 	void setlocations(int locationindex, int direction) {
-		
 		 knownDestination.set(locationindex, direction);
-		 System.out.println(getKnownDestination());
-
 	}
 	
 	/**
@@ -62,6 +72,19 @@ public class City {
 	 */
 	public ArrayList<Integer> getKnownDestination() {
 		return knownDestination;
+	}
+	
+	/**
+	 * A function that copies the location in the given direction.
+	 * @param index An integer that represents the map direction.
+	 * Map directions 0 - North, 1 - South, 2 - East, 3 - West and 4 - Center
+	 */
+	public void knowCityDestination(int index) {
+		if((index > cityDestination.size()) || (index < 0)) {
+			System.out.println("Index is out of range.");
+		} 
+		int element = cityDestination.get(index);
+		setlocations(index, element);
 	}
 	
 	/**
@@ -93,17 +116,4 @@ public class City {
 		return cityDestination;
 	}
 	
-	public static void main(String[] args) {
-		City c1 = new City();
-		c1.setCityDestination();
-		System.out.println(c1.getCityDestination());
-
-		System.out.print(c1.getvillainStatus());
-
-		System.out.println("__________");
-		c1.setlocations(0, 2);
-		System.out.println("__________");
-		System.out.println(c1.getKnownDestination());
-		
-}
 }

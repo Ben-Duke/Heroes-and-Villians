@@ -168,45 +168,84 @@ public class HeroTest {
 		assertTrue(testingHero.getPowerUp().equals(expected));
 		
 		testingHero.addPowerUp("Increase Max Health");
-		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("Increase Max Health", "Damage Reduction"));
+		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("Damage Reduction", "Increase Max Health"));
 		assertTrue(testingHero.getPowerUp().equals(expected1));
 	}
 
 	@Test
 	public void testAddHealingItems() {
 		testingHero = new Hero("Fairy", "Air");
-		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Increase Max Health"));
-		testingHero.addPowerUp("Increase Max Health");
-		assertTrue(testingHero.getPowerUp().equals(expected));
+		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("100% Health Heal"));
+		testingHero.addHealingItems("100% Health Heal");
+		assertTrue(testingHero.getHealingItems().equals(expected));
 		
-		testingHero.addPowerUp("Damage Reduction");
-		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("Increase Max Health", "Damage Reduction"));
-		assertTrue(testingHero.getPowerUp().equals(expected1));
+		testingHero = new Hero("Dora", "Earth");
+		testingHero.addHealingItems("100% Health Heal");
+		testingHero.addHealingItems("50% Health Heal");
+		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("100% Health Heal", "50% Health Heal"));
+		assertTrue(testingHero.getHealingItems().equals(expected1));
 	}
 
 	@Test
 	public void testGetHealingItems() {
-		fail("Not yet implemented");
+		testingHero = new Hero("Mola", "Divine");
+		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("100% Health Heal"));
+		testingHero.addHealingItems("100% Health Heal");
+		assertTrue(testingHero.getHealingItems().equals(expected));
+		
+		testingHero = new Hero("Monk", "Earth");
+		testingHero.addHealingItems("50% Health Heal");
+		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("50% Health Heal"));
+		assertTrue(testingHero.getHealingItems().equals(expected1));
 	}
 
 	@Test
 	public void testAddMap() {
-		fail("Not yet implemented");
+		testingHero = new Hero("Fierce", "Fire");
+		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Map1"));
+		testingHero.addMap("Map1");
+		assertTrue(testingHero.getMap().equals(expected));
+		
+		testingHero = new Hero("Dora", "Earth");
+		testingHero.addMap("Map2");
+		testingHero.addMap("Map4");
+		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("Map2", "Map4"));
+		assertTrue(testingHero.getMap().equals(expected1));
 	}
 
 	@Test
 	public void testGetMap() {
-		fail("Not yet implemented");
+		testingHero = new Hero("Pho", "Air");
+		testingHero.addMap("Map1");
+		testingHero.addMap("Map4");
+		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Map1", "Map4"));
+		assertTrue(testingHero.getMap().equals(expected));
+		
+		testingHero = new Hero("Too", "Water");
+		testingHero.addMap("Map2");
+		testingHero.addMap("Map3");
+		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("Map2", "Map3"));
+		assertTrue(testingHero.getMap().equals(expected1));
 	}
 
 	@Test
 	public void testSetStatus() {
-		fail("Not yet implemented");
+		testingHero = new Hero("Eric", "Fire");
+		testingHero.setStatus(true);
+		assertTrue(testingHero.getStatus());
+		
+		testingHero.setStatus(false);
+		assertFalse(testingHero.getStatus());
 	}
 
 	@Test
 	public void testGetStatus() {
-		fail("Not yet implemented");
+		testingHero = new Hero("Steph", "Earth");
+		testingHero.setStatus(false);
+		assertFalse(testingHero.getStatus());
+		
+		testingHero.setStatus(true);
+		assertTrue(testingHero.getStatus());
 	}
 
 }

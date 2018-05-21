@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /**
  * This class implements Item that sets and gets the price of the given
  * item
@@ -13,8 +15,8 @@ public class Item {
 	private String name;
 	
 	Item(String newName, int price){
-		name = newName;
-		itemPrice = price;
+		setName(newName);
+		setPrice(price);
 	}
 	
 	/**
@@ -22,7 +24,15 @@ public class Item {
 	 * @param givenPrice gives the price of the item
 	 */
 	public void setPrice(int givenPrice) {
-		itemPrice = givenPrice;
+		if(givenPrice < 0) {
+			itemPrice = 0;
+		} else {
+			itemPrice = givenPrice;
+		}
+	}
+	
+	public void setName(String givenName) {
+		name = givenName;
 	}
 	
 	public String getName() {
@@ -32,10 +42,12 @@ public class Item {
 	 * Returns the price of the item
 	 * @return the item price 
 	 */
-	public double getPrice() {
+	public int getPrice() {
 		return itemPrice;
 	}
 
+<<<<<<< HEAD
+=======
 	public String toString() {
 		return getName() + " " + getPrice(); 
 	}
@@ -47,4 +59,5 @@ public class Item {
 		System.out.printf("The price is ", thing.getPrice());
 	}
 
+>>>>>>> b47b933886263cbe3b9f28c9af1ede561986ec99
 }

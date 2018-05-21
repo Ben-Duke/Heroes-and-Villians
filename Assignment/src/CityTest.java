@@ -1,3 +1,4 @@
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -62,8 +63,6 @@ public class CityTest {
 		testCity.setlocations(2, 3);
 		ArrayList<Integer> expected1 = new ArrayList<Integer>(Arrays.asList(2, null, 3, null, 4));
 		assertTrue(testCity.getKnownDestination().equals(expected1));
-		
-	
 	}
 
 	@Test
@@ -76,17 +75,37 @@ public class CityTest {
 	}
 
 	@Test
+	public void testKnowCityDestination() {
+		testCity = new City();
+		testCity.setCityDestination();
+		testCity.knowCityDestination(0);
+		testCity.knowCityDestination(1);
+		testCity.knowCityDestination(2);
+		testCity.knowCityDestination(3);
+		assertEquals(testCity.getCityDestination(), testCity.getKnownDestination());
+	}
+	
+	@Test
 	public void testSetCityDestination() {
 		testCity = new City();
 		testCity.setCityDestination();
-		//need to edit this
-		assertEquals(testCity.getCityDestination(), testCity.getCityDestination());
+		testCity.knowCityDestination(0);
+		testCity.knowCityDestination(1);
+		testCity.knowCityDestination(2);
+		testCity.knowCityDestination(3);
+		assertEquals(testCity.getCityDestination(), testCity.getKnownDestination());
 		
 	}
 
-//	@Test
-//	public void testGetCityDestination() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void testGetCityDestination() {
+		testCity = new City();
+		testCity.setCityDestination();
+		testCity.knowCityDestination(0);
+		testCity.knowCityDestination(1);
+		testCity.knowCityDestination(2);
+		testCity.knowCityDestination(3);
+		assertEquals(testCity.getCityDestination(), testCity.getKnownDestination());
+	}
 
 }
