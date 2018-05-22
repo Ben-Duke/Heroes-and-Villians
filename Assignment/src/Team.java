@@ -133,8 +133,8 @@ public class Team {
 	 * which is added to the Team inventory of Healing Items: teamHealingItems.
 	 * @param items An Array List of String that represents the healing items a Hero has.
 	 */
-	public void addHealingItemsList(HealingItem item) {
-		teamHealingItems.add(item);
+	public void addHealingItems(Object object) {
+		teamHealingItems.add((HealingItem) object);
 	}
 	
 	/**
@@ -162,6 +162,10 @@ public class Team {
 	 */
 	public ArrayList<String> getMapList() {
 		return teamMapList;
+	}
+	
+	void removePowerUp(PowerUpItem item) {
+		teamPowerup.remove(item);
 	}
 	
 	/**

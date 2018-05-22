@@ -46,8 +46,12 @@ public class Item {
 		return itemPrice;
 	}
 
-	public String toString() {
+	public String toStringShop() {
 		return getName() + " " + "$"+getPrice(); 
+	}
+	
+	public String toString() {
+		return getName(); 
 	}
 	
 	public static void main(String[] args) {

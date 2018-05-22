@@ -21,15 +21,26 @@ public class Shop {
 	
 	
 	Shop(){
-		HealingItem tempItem = new HealingItem("Heal 25%", 100, 25);
-		HealingInventory.add(tempItem);
-		PowerUpItem tempPowerUpItem = new PowerUpItem("Decrease battle damage", 150);
-		PowerUpInventory.add(tempPowerUpItem);
+		
+		
+		HealingInventory.add(new HealingItem("Heal 25%", 100, 25));
+		HealingInventory.add(new HealingItem("Heal 50%", 200, 50));
+		HealingInventory.add(new HealingItem("Heal 100%", 300, 100));
+		PowerUpInventory.add(new PowerUpItem("Decrease battle damage", 150, "res", 10));
+		PowerUpInventory.add(new PowerUpItem("Increase max health", 150, "max", 100));
+		PowerUpInventory.add(new PowerUpItem("Decrease battle damage maxed", 250, "res", 30));
 	}
 	int showTeamMoney() {
 		return modelref.game_team.getTeamMoney();
 	}
 	
+	ArrayList<HealingItem> getHealingItems(){
+		return HealingInventory;
+	}
+	
+	ArrayList<PowerUpItem> getPowerUpItems(){
+		return PowerUpInventory;
+	}
 	
 	String showObjectAttributes() {
 		return "";
