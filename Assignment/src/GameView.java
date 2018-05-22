@@ -64,6 +64,7 @@ public class GameView {
 	private JList<String> teamOfHerosList;
 	private JList<String> PowerUpListDen;
 	private JLabel lblTeamMoney;
+	private JLabel lblNeedMoreMoney;
 	
 	/**
 	 * Launch the application.
@@ -218,6 +219,20 @@ public class GameView {
 				int index = getShopItems_list().getSelectedIndex();
 				getShopItems_list().clearSelection();
 				if (index > -1) {
+					if (modelref.getTeam().getMoney() - ((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice() >= 0 ) {
+						modelref.getTeam().decreaseMoney(((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice());
+						modelref.getTeam().addHealingItems((HealingItem) shopref.getHealingItems().toArray()[index]);
+		
+					}else {
+						ShowLowMoneyError().setVisible(true);
+					}
+						
+						
+					
+					UpdatePlayeritems();
+					updateShopUI();	
+					
+					
 				modelref.getTeam().addHealingItems(shopref.getHealingItems().toArray()[index]);
 				UpdatePlayeritems();
 				updateShopUI();
@@ -237,9 +252,19 @@ public class GameView {
 				int index = getPowerUpList().getSelectedIndex();
 				getShopItems_list().clearSelection();
 				if (index > -1) {
-					modelref.getTeam().addPowerUpitem((PowerUpItem) shopref.getPowerUpItems().toArray()[index]);
+					if (modelref.getTeam().getMoney() - ((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice() >= 0 ) {
+						modelref.getTeam().decreaseMoney(((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice());
+						modelref.getTeam().addPowerUpitem((PowerUpItem) shopref.getPowerUpItems().toArray()[index]);
+		
+					}else {
+						ShowLowMoneyError().setVisible(true);
+					}
+						
+						
+					
 					UpdatePlayeritems();
 					updateShopUI();
+					
 				}
 				
 			}
@@ -250,6 +275,12 @@ public class GameView {
 		lblTeamMoney = new JLabel("Team Money:");
 		lblTeamMoney.setBounds(303, 47, 223, 16);
 		ShopPanel.add(lblTeamMoney);
+		
+		lblNeedMoreMoney = new JLabel("Need More money");
+		lblNeedMoreMoney.setVisible(false);
+		lblNeedMoreMoney.setForeground(Color.RED);
+		lblNeedMoreMoney.setBounds(303, 65, 123, 16);
+		ShopPanel.add(lblNeedMoreMoney);
 		UpdatePlayeritems();
 		updateShopUI();
 		
@@ -825,6 +856,9 @@ public class GameView {
 	}
 	public JLabel getLblTeamMoney() {
 		return lblTeamMoney;
+	}
+	public JLabel ShowLowMoneyError() {
+		return lblNeedMoreMoney;
 	}
 }
 	
