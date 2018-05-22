@@ -30,10 +30,14 @@ public class City {
 	private Random number;
 	
 	/**
-	 * Constructor for the villain in the city.
+	 * The constructor for the class Villain to the class City
 	 */
 	Villain villain;
 	
+	/**
+	 * The constructor for the class Villain that sets the name, number of lives,
+	 * damage and the favourite game of the Villain in the city.
+	 */
 	void setVillain() {
 		villain = new Villain("Dibs", 2, 20, "XAndOs");
 	}

@@ -17,7 +17,7 @@ public class Item {
 	private String name;
 	
 	/**
-	 * The constructor class of class Item that sets the name and the price 
+	 * The constructor for class Item that sets the name and the price 
 	 * of the Item.
 	 * @param newName
 	 * @param price
@@ -50,32 +50,34 @@ public class Item {
 	
 	/**
 	 * A function that gets the name of the Item
-	 * @return
+	 * @return Returns a String value that represents name of the item
 	 */
 	public String getName() {
 		return name;
 	}
 	/**
 	 * Returns the price of the Item
-	 * @return the item price 
+	 * @return Returns an Integer value which represents the item price.
 	 */
 	public int getPrice() {
 		return itemPrice;
 	}
 
+	/**
+	 * A String representation for the class Item that includes the 
+	 * name and the price of the item.
+	 * @return Returns the string representation of the item.
+	 */
 	public String toStringShop() {
 		return getName() + " " + "$"+getPrice(); 
 	}
 	
+	/**
+	 * A String representation for the class Item that includes the 
+	 * name of the item.
+	 */
 	public String toString() {
 		return getName(); 
-	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Item thing = new Item("dib dob", 3);
-		thing.setPrice(3);
-		System.out.printf("The price is ", thing.getPrice());
 	}
 
 }
