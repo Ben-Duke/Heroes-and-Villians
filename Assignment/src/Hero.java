@@ -1,5 +1,9 @@
+import java.awt.event.ActionEvent;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 /**
  * This class implements a Hero that has a health, type, special ability and 
  * different types of inventories
@@ -48,10 +52,46 @@ public class Hero {
 	
 	private int resistance = 0;
 	
+	int orignalhealcount = 30;
+	int timer = 30;
+	final Timer heroTimer = new Timer();
+			//new Timer(1000, this::HealTimer);
 	/**
 	 * This is a constructor for the class Hero.
 	 * @param type A String that determines the type of the Hero created.
 	 */
+	
+	public void givenUsingTimer_whenSchedulingTaskOnce_thenCorrect() {
+	    TimerTask task = new TimerTask() {
+	        public void run() {
+	            System.out.println("Task performed on: " + "n" +
+	              "Thread's name: " + Thread.currentThread().getName());
+	        }
+	    };
+	    Timer timer = new Timer("Timer");
+	     
+	    long delay = 1000L;
+	    timer.schedule(task, delay);
+	}
+	
+	public void HealTimer(ActionEvent e)
+	  {
+	    // do something exciting
+		//;
+		System.out.println("has been 1 seconds");
+		timer--;
+		//timer -=1;
+		if (timer == 0) {
+			//timerOne.stop();
+			System.out.println("timer hit zero");
+			  // .setText("Yay healed up");
+			//timer.stop();
+		}
+		else{
+			System.out.println();
+			//getTimerlb().setText(""+timeremaining);
+		}
+	  }
 	
 	private String name = "";
 	
@@ -248,6 +288,8 @@ public class Hero {
 		return heroStatus;
 	}
 	
+	
+	
 	public static void main(String[] args) {
 
 		Hero creature = new Hero("Divine", "Brighty");
@@ -264,6 +306,8 @@ public class Hero {
 		System.out.println("Creature type: " + c1.getType());
 		System.out.println(c1.getCurrentHealth());
 		System.out.println(c1.getMaxHealth());
-
+		System.out.println("Start");
+		c1.givenUsingTimer_whenSchedulingTaskOnce_thenCorrect();
+		System.out.println("End");
 	}
 }

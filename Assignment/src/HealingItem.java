@@ -17,6 +17,10 @@ public class HealingItem extends Item{
 		return heal;
 	}
 
+	public void useOn(Hero hero, int amount) {
+		//hero
+		hero.increaseHealth(amount);
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

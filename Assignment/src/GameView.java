@@ -65,6 +65,8 @@ public class GameView {
 	private JList<String> PowerUpListDen;
 	private JLabel lblTeamMoney;
 	private JLabel lblNeedMoreMoney;
+	private JList HospitalHeroList;
+	private JList healingItemsList;
 	
 	/**
 	 * Launch the application.
@@ -99,7 +101,7 @@ public class GameView {
 		
 		//delete after!!!!!!!!!
 		modelref.createTeam("AA");
-		modelref.getTeam().addPowerUpitem(new PowerUpItem("increase res", 345, "res", 100));
+		modelref.getTeam().addHealingItems(new HealingItem("Add 50", 50, 50));
 		modelref.getTeam().addHeroes("DDD", "Demonic");
 		///
 		
@@ -185,131 +187,178 @@ public class GameView {
 		
 		
 		//Shop panel
-		ShopPanel.setVisible(true);
-		ShopPanel.setBounds(6, 6, 571, 398);
-		frame.getContentPane().add(ShopPanel);
-		ShopPanel.setLayout(null);
-		Shop shopref = modelref.getShop();
-		
-		JLabel lblShopPanel = new JLabel("Shop");
-		lblShopPanel.setBounds(243, 6, 98, 16);
-		ShopPanel.add(lblShopPanel);
-		
-		JButton btnShopReturnToBase = new JButton("Return to base");
-		btnShopReturnToBase.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MapPanel.setVisible(true);
-				ShopPanel.setVisible(false);
-			}
-		});
-		btnShopReturnToBase.setBounds(425, 350, 117, 29);
-		ShopPanel.add(btnShopReturnToBase);
-		
-		Team_items = new JList<String>();
-		Team_items.setBounds(303, 93, 223, 245);
-		ShopPanel.add(Team_items);
-		
-		ShopItems_list = new JList<String>();
-		ShopItems_list.setBounds(22, 44, 223, 115);
-		ShopPanel.add(ShopItems_list);
-		
-		JButton btnBuy = new JButton("Buy");
-		btnBuy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int index = getShopItems_list().getSelectedIndex();
-				getShopItems_list().clearSelection();
-				if (index > -1) {
-					if (modelref.getTeam().getMoney() - ((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice() >= 0 ) {
-						modelref.getTeam().decreaseMoney(((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice());
-						modelref.getTeam().addHealingItems((HealingItem) shopref.getHealingItems().toArray()[index]);
-		
-					}else {
-						ShowLowMoneyError().setVisible(true);
-					}
-						
-						
-					
-					UpdatePlayeritems();
-					updateShopUI();	
-					
-					
-				modelref.getTeam().addHealingItems(shopref.getHealingItems().toArray()[index]);
-				UpdatePlayeritems();
-				updateShopUI();
-				}
-			}
-		});
-		btnBuy.setBounds(128, 171, 117, 29);
-		ShopPanel.add(btnBuy);
-		
-		PowerUpList = new JList<String>();
-		PowerUpList.setBounds(22, 205, 223, 115);
-		ShopPanel.add(PowerUpList);
-		
-		JButton buttonpowerup = new JButton("Buy");
-		buttonpowerup.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int index = getPowerUpList().getSelectedIndex();
-				getShopItems_list().clearSelection();
-				if (index > -1) {
-					if (modelref.getTeam().getMoney() - ((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice() >= 0 ) {
-						modelref.getTeam().decreaseMoney(((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice());
-						modelref.getTeam().addPowerUpitem((PowerUpItem) shopref.getPowerUpItems().toArray()[index]);
-		
-					}else {
-						ShowLowMoneyError().setVisible(true);
-					}
-						
-						
-					
-					UpdatePlayeritems();
-					updateShopUI();
-					
-				}
-				
-			}
-		});
-		buttonpowerup.setBounds(128, 332, 117, 29);
-		ShopPanel.add(buttonpowerup);
-		
-		lblTeamMoney = new JLabel("Team Money:");
-		lblTeamMoney.setBounds(303, 47, 223, 16);
-		ShopPanel.add(lblTeamMoney);
-		
-		lblNeedMoreMoney = new JLabel("Need More money");
-		lblNeedMoreMoney.setVisible(false);
-		lblNeedMoreMoney.setForeground(Color.RED);
-		lblNeedMoreMoney.setBounds(303, 65, 123, 16);
-		ShopPanel.add(lblNeedMoreMoney);
-		UpdatePlayeritems();
-		updateShopUI();
-		
+//		ShopPanel.setVisible(true);
+//		ShopPanel.setBounds(6, 6, 571, 398);
+//		frame.getContentPane().add(ShopPanel);
+//		ShopPanel.setLayout(null);
+//		Shop shopref = modelref.getShop();
+//		
+//		JLabel lblShopPanel = new JLabel("Shop");
+//		lblShopPanel.setBounds(243, 6, 98, 16);
+//		ShopPanel.add(lblShopPanel);
+//		
+//		JButton btnShopReturnToBase = new JButton("Return to base");
+//		btnShopReturnToBase.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				ShowLowMoneyError().setVisible(false);
+//				MapPanel.setVisible(true);
+//				ShopPanel.setVisible(false);
+//			}
+//		});
+//		btnShopReturnToBase.setBounds(425, 350, 117, 29);
+//		ShopPanel.add(btnShopReturnToBase);
+//		
+//		Team_items = new JList<String>();
+//		Team_items.setBounds(303, 93, 223, 245);
+//		ShopPanel.add(Team_items);
+//		
+//		ShopItems_list = new JList<String>();
+//		ShopItems_list.setBounds(22, 44, 223, 115);
+//		ShopPanel.add(ShopItems_list);
+//		
+//		JButton btnBuy = new JButton("Buy");
+//		btnBuy.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				ShowLowMoneyError().setVisible(false);
+//				int index = getShopItems_list().getSelectedIndex();
+//				getShopItems_list().clearSelection();
+//				if (index > -1) {
+//					if (modelref.getTeam().getMoney() - ((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice() >= 0 ) {
+//						modelref.getTeam().decreaseMoney(((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice());
+//						modelref.getTeam().addHealingItems((HealingItem) shopref.getHealingItems().toArray()[index]);
+//		
+//					}else {
+//						ShowLowMoneyError().setVisible(true);
+//					}
+//						
+//					UpdatePlayeritems();
+//					updateShopUI();	
+//					
+//					
+//				//modelref.getTeam().addHealingItems(shopref.getHealingItems().toArray()[index]);
+//				UpdatePlayeritems();
+//				updateShopUI();
+//				}
+//			}
+//		});
+//		btnBuy.setBounds(128, 171, 117, 29);
+//		ShopPanel.add(btnBuy);
+//		
+//		PowerUpList = new JList<String>();
+//		PowerUpList.setBounds(22, 205, 223, 115);
+//		ShopPanel.add(PowerUpList);
+//		
+//		JButton buttonpowerup = new JButton("Buy");
+//		buttonpowerup.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				ShowLowMoneyError().setVisible(false);
+//				int index = getPowerUpList().getSelectedIndex();
+//				getShopItems_list().clearSelection();
+//				if (index > -1) {
+//					if (modelref.getTeam().getMoney() - ((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice() >= 0 ) {
+//						modelref.getTeam().decreaseMoney(((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice());
+//						modelref.getTeam().addPowerUpitem((PowerUpItem) shopref.getPowerUpItems().toArray()[index]);
+//		
+//					}else {
+//						ShowLowMoneyError().setVisible(true);
+//					}
+//										
+//					UpdatePlayeritems();
+//					updateShopUI();
+//					
+//				}
+//				
+//			}
+//		});
+//		buttonpowerup.setBounds(128, 332, 117, 29);
+//		ShopPanel.add(buttonpowerup);
+//		
+//		lblTeamMoney = new JLabel("Team Money:");
+//		lblTeamMoney.setBounds(303, 47, 223, 16);
+//		ShopPanel.add(lblTeamMoney);
+//		
+//		lblNeedMoreMoney = new JLabel("Need More money");
+//		lblNeedMoreMoney.setVisible(false);
+//		lblNeedMoreMoney.setForeground(Color.RED);
+//		lblNeedMoreMoney.setBounds(303, 65, 123, 16);
+//		ShopPanel.add(lblNeedMoreMoney);
+//		UpdatePlayeritems();
+//		updateShopUI();
+//		
 		
 		
 		
 		
 		
 		//Hospital Panel
-//		HospitalPanel.setVisible(false);
-//		HospitalPanel.setBounds(6, 6, 571, 395);
-//		frame.getContentPane().add(HospitalPanel);
-//		HospitalPanel.setLayout(null);
-////		
-//		JButton btnhospitolReturnToBase = new JButton("Return to base");
-//		btnhospitolReturnToBase.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				HospitalPanel.setVisible(false);
-//				MapPanel.setVisible(true);
-////				
-//			}
-//		});
-//		btnhospitolReturnToBase.setBounds(386, 314, 117, 29);
-//		HospitalPanel.add(btnhospitolReturnToBase);
-////		
-//		JLabel lblHospital = new JLabel("Hospital");
-//		lblHospital.setBounds(246, 17, 61, 16);
-//		HospitalPanel.add(lblHospital);
+		HospitalPanel.setVisible(true);
+		HospitalPanel.setBounds(6, 6, 571, 395);
+		frame.getContentPane().add(HospitalPanel);
+		HospitalPanel.setLayout(null);
 //		
+		JButton btnhospitolReturnToBase = new JButton("Return to base");
+		btnhospitolReturnToBase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HospitalPanel.setVisible(false);
+				MapPanel.setVisible(true);
+//				
+			}
+		});
+		btnhospitolReturnToBase.setBounds(386, 314, 117, 29);
+		HospitalPanel.add(btnhospitolReturnToBase);
+//		
+		JLabel lblHospital = new JLabel("Hospital");
+		lblHospital.setBounds(246, 17, 61, 16);
+		HospitalPanel.add(lblHospital);
+		
+		HospitalHeroList = new JList<String>();
+		HospitalHeroList.setBounds(45, 104, 176, 188);
+		HospitalPanel.add(HospitalHeroList);
+		
+		JLabel Timerlabel = new JLabel("New label");
+		Timerlabel.setBounds(354, 50, 149, 16);
+		HospitalPanel.add(Timerlabel);
+		
+		healingItemsList = new JList<String>();
+		healingItemsList.setBounds(315, 104, 188, 188);
+		HospitalPanel.add(healingItemsList);
+		
+		JButton btnUseHealing = new JButton("Use");
+		btnUseHealing.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<HealingItem> healingitems = modelref.getTeam().getHealingItemsList();
+				
+				if (!getHealingItemsList().isSelectionEmpty() && !getHospitalHeroList().isSelectionEmpty()) {
+					System.out.println(healingitems.size());
+					
+					if ( healingitems.size() > 0) {
+						HealingItem item = (HealingItem) healingitems.toArray()[getHealingItemsList().getSelectedIndex()];
+						item.useOn((Hero) modelref.getTeam().getHeroes().toArray()[getHospitalHeroList().getSelectedIndex()], 0);
+						int index = getHealingItemsList().getSelectedIndex();
+						getHealingItemsList().clearSelection();
+						getHospitalHeroList().clearSelection();
+						UpdateHospitalUI();
+						
+						System.out.println("Index is "+index);
+						System.out.println(healingitems.toArray()[index].toString());
+						//modelref.getTeam().removeHealingItem(item);
+						modelref.getTeam().removeHealingItem((HealingItem) healingitems.toArray()[index]);
+						//System.out.println("Size is " + modelref.getTeam().getHealingItemsList().size());
+						UpdateHospitalUI();
+					}
+					else {
+						System.out.println("No Items");
+				
+			}
+		}
+		}
+		});
+		btnUseHealing.setBounds(225, 167, 82, 29);
+		HospitalPanel.add(btnUseHealing);
+		UpdateHospitalUI();
+		
+		
+		
 		
 		//Xandos game panel
 //		XandOPanel.setVisible(false);
@@ -639,7 +688,7 @@ public class GameView {
 		if (modelref.getTeam().getHeroes().size() == 3) {
 			btnAddHero.setEnabled(false);
 		}
-		
+		//Crashes without/ misses items
 		updateShopUI();
 	}
 	
@@ -690,6 +739,34 @@ public class GameView {
 		updateUI(modelref.getXAndOGame().getGameState());
 		modelref.getXAndOGame().printState();
 	}
+	/*
+	 * Updates the hospital UI 
+	 */
+	void UpdateHospitalUI(){
+		//ArrayList<String> PlayerItems = new ArrayList<String>();
+		DefaultListModel<String> Playeritemlist = new DefaultListModel<String>();
+		DefaultListModel<String> Team = new DefaultListModel<String>();
+		
+		for (int i_playeritemstring = 0; i_playeritemstring < modelref.getTeam().getHealingItemsList().size();i_playeritemstring++) {
+			Playeritemlist.addElement(modelref.getTeam().getHealingItemsList().toArray()[i_playeritemstring].toString());
+			
+		}
+		
+		
+		for (int heroindex = 0; heroindex < modelref.getTeam().getHeroes().size(); heroindex++) {
+			if (modelref.getTeam().getHeroes().size() != 0) {
+					//System.out.println(modelref.getTeam().getPowerUpList().toArray()[heroindex].toString());
+				Team.addElement(modelref.getTeam().getHeroes().toArray()[heroindex].toString());
+				}else {
+					System.out.print("Less than 1 item in player items");
+				}
+//			}	
+			
+		getHealingItemsList().setModel(Playeritemlist);
+		getHospitalHeroList().setModel(Team);
+		}
+	}
+	
 	
 	void UpdatePlayeritems(){
 		ArrayList<String> PlayerItems = new ArrayList<String>();
@@ -752,7 +829,9 @@ public class GameView {
 		//private JList<String> PowerUpList;
 	    
 	}
-	
+	/*
+	 * Updates the XAndOs game board
+	 */
 	void updateUI(String[][] board) {
 		ArrayList<JButton[]> boardarray = new ArrayList<JButton[]>(); 
 		JButton[] row0 = new JButton[3];
@@ -859,6 +938,19 @@ public class GameView {
 	}
 	public JLabel ShowLowMoneyError() {
 		return lblNeedMoreMoney;
+	}
+	/*
+	 * Returns the Hero list for the hospital
+	 */
+	public JList getHospitalHeroList() {
+		return HospitalHeroList;
+	}
+	
+	/*
+	 * Returns the healing list for the hospital
+	 */
+	public JList getHealingItemsList() {
+		return healingItemsList;
 	}
 }
 	

@@ -45,18 +45,6 @@ public class Shop {
 	String showObjectAttributes() {
 		return "";
 	}
-	
-	void purchasePowerUps() {
-		
-	}
-	
-	void purchaseMaps(){
-		
-	}
-	
-	void purchaseHealingItems(){
-		
-	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

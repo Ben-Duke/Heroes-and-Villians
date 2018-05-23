@@ -168,6 +168,10 @@ public class Team {
 		teamPowerup.remove(item);
 	}
 	
+	void removeHealingItem(HealingItem item) {
+		teamHealingItems.remove(item);
+	}
+	
 	/**
 	 * A function that increases the money of the Team by the given parameter money.
 	 * @param money An integer parameter that is used to increase the money of the Team.
