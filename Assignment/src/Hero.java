@@ -1,5 +1,9 @@
+import java.awt.event.ActionEvent;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 /**
  * This class implements a Hero that has a health, type, special ability and 
  * different types of inventories
@@ -52,10 +56,17 @@ public class Hero {
 	 * The added damage reduction in battle for Hero
 	 */
 	private int resistance = 0;
+
+	
+	int orignalhealcount = 30;
+	int timer = 30;
+	final Timer heroTimer = new Timer();
+			//new Timer(1000, this::HealTimer);
 	/**
 	 * The added increase max health by a power-up item
 	 */
 	private int increaseMaxHealthBy = 0;
+	
 	
 	/**
 	 * This is a constructor for the class Hero that sets the name and the type of Hero.
@@ -67,6 +78,38 @@ public class Hero {
 		name = _name;
 		setAbility();
 	}
+
+	public void givenUsingTimer_whenSchedulingTaskOnce_thenCorrect() {
+	    TimerTask task = new TimerTask() {
+	        public void run() {
+	            System.out.println("Task performed on: " + "n" +
+	              "Thread's name: " + Thread.currentThread().getName());
+	        }
+	    };
+	    Timer timer = new Timer("Timer");
+	     
+	    long delay = 1000L;
+	    timer.schedule(task, delay);
+	}
+	
+	public void HealTimer(ActionEvent e)
+	  {
+	    // do something exciting
+		//;
+		System.out.println("has been 1 seconds");
+		timer--;
+		//timer -=1;
+		if (timer == 0) {
+			//timerOne.stop();
+			System.out.println("timer hit zero");
+			  // .setText("Yay healed up");
+			//timer.stop();
+		}
+		else{
+			System.out.println();
+			//getTimerlb().setText(""+timeremaining);
+		}
+	  }
 	
 	/**
 	 * This function applies the added damage reduction in battles to the health of the Hero.
@@ -282,9 +325,24 @@ public class Hero {
 		return "Hero: " + name + " Health: " + currentHealth + "/" + maxHealth + " Res: " + resistance;
 	}
 	
-//	public static void main(String[] args) {
-//		Hero testingHero = new Hero("Fate", "Divine");
-//		System.out.println(testingHero);
-//
-//	}
+	public static void main(String[] args) {
+
+		Hero creature = new Hero("Divine", "Brighty");
+		System.out.println("Creature type: " + creature.getType());
+		System.out.println(creature.getCurrentHealth());
+		System.out.println(creature.getMaxHealth());
+		creature.setStatus(true);
+		System.out.println("Creature is alive: " + creature.getStatus());
+		creature.addHealingItems("Healing Potion");
+		creature.addHealingItems("Ultra Heal");
+		
+		Hero c1 = new Hero("Avian", "Air");
+		System.out.println(c1.toString());
+		System.out.println("Creature type: " + c1.getType());
+		System.out.println(c1.getCurrentHealth());
+		System.out.println(c1.getMaxHealth());
+		System.out.println("Start");
+		c1.givenUsingTimer_whenSchedulingTaskOnce_thenCorrect();
+		System.out.println("End");
+	}
 }
