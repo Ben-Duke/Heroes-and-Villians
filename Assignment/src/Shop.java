@@ -21,8 +21,6 @@ public class Shop {
 	
 	
 	Shop(){
-		
-		
 		HealingInventory.add(new HealingItem("Heal 25%", 100, 25));
 		HealingInventory.add(new HealingItem("Heal 50%", 200, 50));
 		HealingInventory.add(new HealingItem("Heal 100%", 300, 100));
