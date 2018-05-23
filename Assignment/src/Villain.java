@@ -1,15 +1,35 @@
 /**
+ * This class implements a Villain that is evil and will kill innocent people.
+ * These villain are dangerous.
  * 
- * @author BenDuke
- *
+ * @author Ben Duke & Angelica Dela Cruz
+ * @version 1.2, May 2018.
  */
 public class Villain {
-	private String name;
-	private int villainLives;
-	private int villainDamage;
-	private String villainFaveGame;
-	private boolean alive = true;
 	/**
+	 * The name of the Villain
+	 */
+	private String name;
+	/**
+	 * The remaining lives of the Villain
+	 */
+	private int villainLives;
+	/**
+	 * The damage of the Villain to the Heroes
+	 */
+	private int villainDamage;
+	/**
+	 * The favorite game of the Villain
+	 */
+	private String villainFaveGame;
+	/**
+	 * The boolean representation of the condition of the Villain
+	 * (whether they are alive (true) or dead (false))
+	 */
+	private boolean alive = true;
+	
+	/**
+	 * The constructor for the Villain which sets its name, lives, damage and favourite game.
 	 * 
 	 * @param newName A String that is used to set the name of the Villain.
 	 * @param newLives A Integer used to set the number of lives.
@@ -23,15 +43,17 @@ public class Villain {
 		villainFaveGame = faveGame;
 	}
 	/**
-	 * Decreases the lives of the Villain and checks if they are dead after subtracting.
+	 * A function that decrease the lives of the Villain and checks if 
+	 * they are dead after subtracting.
 	 */
 	public void decreaseLives() {
 		villainLives -= 1;
+		isAlive();
 	}
 	
 	/**
-	 * A function to see if the Villain is dead, true if dead and false if alive.
-	 * @return Returns true or false
+	 * A function to see if the Villain is dead, true if alive and false if not.
+	 * @return Returns true or false depending on the condition of the villain.
 	 */
 	public boolean isAlive() {
 		if (villainLives <= 0) {
@@ -41,8 +63,9 @@ public class Villain {
 	}
 	
 	/**
-	 * A function to check how many lives the Villain has.
-	 * @return Returns the Lives of the Villain and is an Integer.
+	 * A function to check how many lives the Villain has remaining.
+	 * @return Returns an Integer value representing the remaining lives of 
+	 * the Villain.
 	 */
 	public int lifeCount() {
 		return villainLives;
@@ -50,22 +73,24 @@ public class Villain {
 	
 	/**
 	 * This function is used to check what the Villains favorite game.
-	 * @return Returns the Villains favorite game.
+	 * @return Returns the String representation of the Villain's favorite game.
 	 */
 	public String favGame() {
 		return villainFaveGame;
 	}
 	
 	/**
-	 * Used to change the value of alive.
+	 * This is a function that is used to kill the Villain. 
+	 * Sets the Villain lives to 0.
 	 */
 	public void killVillain() {
 		alive = false;
+		villainLives = 0;
 	}
 	
 	/**
-	 * Gets the name of the Villain.
-	 * @return
+	 * This is a function that returns the name of the Villain.
+	 * @return Returns a String representation of the Villain's name.
 	 */
 	public String getName() {
 		return name;
@@ -73,7 +98,7 @@ public class Villain {
 	
 	/**
 	 * This function is used to get how much damage is taken when losing
-	 * @return Returns an integer of how much damage a Villain will deal when they win.
+	 * @return Returns an Integer value of how much damage a Villain will deal when they win.
 	 */
 	public int getDamage() {
 		return villainDamage;

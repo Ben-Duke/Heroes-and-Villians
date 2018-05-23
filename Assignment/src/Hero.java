@@ -9,7 +9,11 @@ import java.util.Arrays;
  */
 public class Hero {
 	/**
-	 * 
+	 * The name of the Hero
+	 */
+	private String name = "";
+	/**
+	 * The types of Heroes
 	 */
 	private ArrayList<String> heroTypes = new ArrayList<String>(Arrays.asList("Earth", "Air", "Water", "Fire", "Divine", "Demonic"));
 	/**
@@ -41,35 +45,46 @@ public class Hero {
 	 */
 	private ArrayList<String> heroMapList = new ArrayList<String>();
 	/**
-	 * The status of the hero; if they are alive (true)
-	 * and if they are dead (false)
+	 * The status of the hero; if they are alive (true) and if they are dead (false)
 	 */
 	private boolean heroStatus = true;
-	
+	/**
+	 * The added damage reduction in battle for Hero
+	 */
 	private int resistance = 0;
+	/**
+	 * The added increase max health by a power-up item
+	 */
+	private int increaseMaxHealthBy = 0;
 	
 	/**
-	 * This is a constructor for the class Hero.
-	 * @param type A String that determines the type of the Hero created.
+	 * This is a constructor for the class Hero that sets the name and the type of Hero.
+	 * @param _name A String value that is used as the name of the Hero.
+	 * @param type A String value that determines the type of the Hero created.
 	 */
-	
-	private String name = "";
-	
-	public String toString() {
-		return "Hero: " + name + " Health: " + currentHealth + "/" + maxHealth + " Res: " + resistance;
-	}
-	
-	int getResistance() {
-		return resistance;
-	}
-	void applyResistance(int amount) {
-		resistance += amount;
-	}
-	
 	Hero(String _name, String type) {
 		heroType = type;
 		name = _name;
 		setAbility();
+	}
+	
+	/**
+	 * This function applies the added damage reduction in battles to the health of the Hero.
+	 * @param amount An Integer value that reduces the damage of the Villain to the Hero's health.
+	 */
+	public void applyResistance(int amount) {
+		if(amount > 0) {
+			resistance += amount;
+		}
+	}
+	
+	/**
+	 * This function returns the added damage reduction in battles to the health of the Hero.
+	 * @return Returns an Integer value that represents the reduction in the damage 
+	 * of the Villain to the Hero's health.
+	 */
+	public int getResistance() {
+		return resistance;
 	}
 	
 	/**
@@ -94,7 +109,7 @@ public class Hero {
 	 * @param health The given health to increase the health of a Hero from its current health.
 	 */
 	public void increaseHealth(int health) {
-		if(currentHealth <= maxHealth) {
+		if(currentHealth < maxHealth) {
 			currentHealth += health;
 			if(currentHealth > maxHealth) {
 				currentHealth = maxHealth;
@@ -107,23 +122,37 @@ public class Hero {
 	 * @param damage The given damage that decreases the health of a Hero from its current health.
 	 */
 	public void decreaseHealth(int damage) {
-		if(currentHealth <= maxHealth) {
+		if(damage > 0) {
 			currentHealth -= damage;
 			if(currentHealth < 0) {
 				currentHealth = 0;
+				heroStatus = false;
 			}
-		}
-		if(currentHealth < 1) {
-			currentHealth = 0;
-			heroStatus = false;
 		}
 	}
 	
+	/**
+	 * This function increases the overall health of the Hero by the given amount.
+	 * @param amount An Integer value that represents the health boost given by special items.
+	 */
 	public void increaseMax(int amount) {
+		increaseMaxHealthBy = amount;
 		maxHealth += amount;
 		currentHealth += amount;
 	}
 	
+	/**
+	 * This function returns the increase maximum health resulted by special items.
+	 * @return Returns an Integer value that represents the health boost given by special items.
+	 */
+	public int getIncreaseMax() {
+		return increaseMaxHealthBy;
+	}
+	
+	/**
+	 * This function returns the name of the Hero
+	 * @return Returns a String that represents name of the Hero.
+	 */
 	public String getName() {
 		return name;
 	}
@@ -140,7 +169,7 @@ public class Hero {
 	}
 	
 	/**
-	 * A function that returns the type of the Hero.
+	 * This function returns the type of the Hero.
 	 * @return Returns the Hero's type.
 	 */
 	public String getType() {
@@ -148,7 +177,7 @@ public class Hero {
 	}
 	
 	/**
-	 * A function that sets the ability of the Hero based on its type.
+	 * This function sets the ability of the Hero based on its type.
 	 */
 	public void setAbility() {
 		if(heroType == "Air") {
@@ -171,12 +200,10 @@ public class Hero {
 		if(heroType == "Demonic") {
 			heroAbility = "Subtracts 2 lives to a Villain per win";
 		}
-		
-		
 	}
 	
 	/**
-	 * A function that gets the ability of the Hero based on its type.
+	 * This function gets the ability of the Hero based on its type.
 	 * @return Returns the ability of Hero.
 	 */
 	public String getAbility() {
@@ -184,7 +211,7 @@ public class Hero {
 	}
 	
 	/**
-	 * A function that adds the power-up item in an Array List.
+	 * This function adds the power-up item in an Array List.
 	 * @param item A String that names the power-up item.
 	 */
 	public void addPowerUp(String item) {
@@ -192,7 +219,7 @@ public class Hero {
 	}
 	
 	/**
-	 * A function that returns the power up items in the Array List of heroPowerUp.
+	 * This function returns the power-up items in the Array List of heroPowerUp.
 	 * @return Returns an ArrayList of the power up items of the Hero.
 	 */
 	public ArrayList<String> getPowerUp() {
@@ -200,7 +227,7 @@ public class Hero {
 	}
 	
 	/**
-	 * A function that adds the healing item in an Array List.
+	 * This function adds the healing item in an Array List.
 	 * @param item A String that names the healing item.
 	 */
 	public void addHealingItems(String item) {
@@ -209,7 +236,7 @@ public class Hero {
 	}
 	
 	/**
-	 * A function that returns the healing items in the Array List of heroHealingItems.
+	 * This function returns the healing items in the Array List of heroHealingItems.
 	 * @return Returns an ArrayList of the healing items of the Hero.
 	 */
 	public ArrayList<String> getHealingItems() {
@@ -217,7 +244,7 @@ public class Hero {
 	}
 	
 	/**
-	 * A function that adds the map of a city in an Array List.
+	 * This function adds the map of a city in an Array List.
 	 * @param item A String that names the map of a given city.
 	 */
 	public void addMap(String item) {
@@ -225,7 +252,7 @@ public class Hero {
 	}
 	
 	/**
-	 * A function that returns the maps in the Array List of heroMapList.
+	 * This function returns the maps in the Array List of heroMapList.
 	 * @return Returns an ArrayList of the map items of the Hero.
 	 */
 	public ArrayList<String> getMap() {
@@ -248,22 +275,16 @@ public class Hero {
 		return heroStatus;
 	}
 	
-	public static void main(String[] args) {
-
-		Hero creature = new Hero("Divine", "Brighty");
-		System.out.println("Creature type: " + creature.getType());
-		System.out.println(creature.getCurrentHealth());
-		System.out.println(creature.getMaxHealth());
-		creature.setStatus(true);
-		System.out.println("Creature is alive: " + creature.getStatus());
-		creature.addHealingItems("Healing Potion");
-		creature.addHealingItems("Ultra Heal");
-		
-		Hero c1 = new Hero("Avian", "Air");
-		System.out.println(c1.toString());
-		System.out.println("Creature type: " + c1.getType());
-		System.out.println(c1.getCurrentHealth());
-		System.out.println(c1.getMaxHealth());
-
+	/**
+	 * The string representation of a Hero
+	 */
+	public String toString() {
+		return "Hero: " + name + " Health: " + currentHealth + "/" + maxHealth + " Res: " + resistance;
 	}
+	
+//	public static void main(String[] args) {
+//		Hero testingHero = new Hero("Fate", "Divine");
+//		System.out.println(testingHero);
+//
+//	}
 }

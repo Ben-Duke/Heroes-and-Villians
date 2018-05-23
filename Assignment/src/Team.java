@@ -1,55 +1,53 @@
 import java.util.ArrayList;
-
 /**
- * This class implements Team where it consists of a team name, a list of heroes, 
- * inventories of the whole team and their money.
- * @author Angelica Dela Cruz & Ben Duke
+ * This class implements a Team of super heroes that will save the world. 
+ * This team of Super Heroes are super strong and determined to kill all the villains.
  *
+ * @author Angelica Dela Cruz & Ben Duke
+ * @version 1.2, May 2018.
  */
 public class Team {
-	
 	/**
 	 * The name of the Team
 	 */
 	private String teamName;
-	
 	/**
-	 * The Array List of Strings that contains the heroes in the Team
+	 * The Heroes in the Team
 	 */
 	private ArrayList<Hero> teamHeroes = new ArrayList<Hero>();
-	
 	/**
-	 * The Array List of an Array List that contains Strings which represents the power up items found within the Team.
+	 * The Power-up items of the Team
 	 */
 	private ArrayList<PowerUpItem> teamPowerup = new ArrayList<PowerUpItem>();
-	
 	/**
-	 * The Array List of an Array List that contains Strings which represents the healing items found within the Team.
+	 * The Healing items of the Team
 	 */
 	private ArrayList<HealingItem> teamHealingItems = new ArrayList<HealingItem>();
 	
 	/**
-	 * The Array List of an Array List that contains Strings which represents the map items found within the Team.
+	 * The Map items of the Team
 	 */
 	private ArrayList<String> teamMapList = new ArrayList<String>();
+	/**
+	 * The total money of the Team
+	 */
+	private int teamMoney = 600;
 	
+	/**
+	 * A function that acts like an inventory for whole Team.
+	 * @return Returns an Array List of all the items the Team has.
+	 */
 	public ArrayList<Item> getAllItems(){
 		ArrayList<Item> items = new ArrayList<Item>();
 		
 		for (int i = 0; i < teamHealingItems.size();i++) {
 			items.add((Item) teamHealingItems.toArray()[i]);
 		}
-		
 		for (int j = 0; j < teamPowerup.size();j++) {
 			items.add((Item) teamPowerup.toArray()[j]);
 		}
-		
 		return items;
 	}
-	/**
-	 * The overall money of the Team.
-	 */
-	private int teamMoney = 300;
 	
 	/**
 	 * A function that takes a String name that is used to set the name of the Team made.
@@ -63,18 +61,22 @@ public class Team {
 	
 	/**
 	 * A function that returns the name of the Team created.
-	 * @return Returns a String representation of the name of the Team.
+	 * @return Returns a String representation of the Team name.
 	 */
 	public String getTeamName() {
 		return teamName;
 	}
 	
+	/**
+	 * A function that returns the remaining money of the Team.
+	 * @return Returns an Integer value of the total Team money.
+	 */
 	public int getTeamMoney() {
 		return teamMoney;
 	}
 	
 	/**
-	 * A function that adds the Heroes into the Team. It takes the String parameter name which 
+	 * A function that adds the Hero into the Team. It takes the String parameter name which 
 	 * is added to the Array List of teamHeroes. The maximum number of Heroes a Team can have is 3.
 	 * @param name A String parameter name that represents the name of the Hero.
 	 */
@@ -85,12 +87,16 @@ public class Team {
 				teamHeroes.add(temphero);
 				return "Success";
 			}
-			
-			
 		}
 		return "Failed";
 	}
 	
+	/**
+	 * A function that checks the name of the Hero if it is already in the Team
+	 * of Heroes.
+	 * @param name The String representation of the name of the Hero
+	 * @return Returns true or false depending if the Hero is already in the Team.
+	 */
 	public boolean checkName(String name) {
 		
 		for (Hero tempHero: teamHeroes) {
@@ -103,67 +109,65 @@ public class Team {
 	}
 	
 	/**
-	 * A function that returns the list of Heroes in the team.
-	 * @return Returns an Array List of String that represents the names of the Hero that is part of the Team.
+	 * A function that returns the Heroes in the Team.
+	 * @return Returns an Array List of Hero that contains the names of the Hero that is part of the Team.
 	 */
 	public ArrayList<Hero> getHeroes() {
 		return teamHeroes;
 	}
 	
 	/**
-	 * A function that adds the power up items into the Team inventory. It takes an Array List of String items
-	 * which is added to the Team inventory of Power up items: teamPowerup.
-	 * @param items An Array List of String that represents the power up items a Hero has.
+	 * A function that adds the power-up items into the Team inventory. 
+	 * @param item A power-up item
 	 */
 	public void addPowerUpitem(PowerUpItem item) {
 		teamPowerup.add(item);
 	}
 	
 	/**
-	 * A function that returns the power up items the Team has overall.
-	 * @return Returns an Array List of an Array List of String that represents 
-	 * the power up items the Team owns.
+	 * A function that returns the power-up items the Team have.
+	 * @return Returns an Array List of power-up items of the Team.
 	 */
 	public ArrayList<PowerUpItem> getPowerUpList() {
 		return teamPowerup;
 	}
 	
 	/**
-	 * A function that adds the healing items into the Team inventory. It takes an Array List of String items
-	 * which is added to the Team inventory of Healing Items: teamHealingItems.
-	 * @param items An Array List of String that represents the healing items a Hero has.
+	 * A function that adds the healing items into the Team inventory.
+	 * @param object A healing item
 	 */
 	public void addHealingItems(Object object) {
 		teamHealingItems.add((HealingItem) object);
 	}
 	
 	/**
-	 * A function that returns the healing items the Team has overall.
-	 * @return Returns an Array List of an Array List of String that represents
-	 * the healing items the Team owns.
+	 * A function that returns the healing items the Team have.
+	 * @return Returns an Array List of the healing items of the Team.
 	 */
 	public ArrayList<HealingItem> getHealingItemsList() {
 		return teamHealingItems;
 	}
 	
 	/**
-	 * A function that adds the map list into the Team inventory. It takes an Array List of String items
-	 * which is added to the Team inventory of Map Items: teamMapList.
-	 * @param items An Array List of String that represents the map items a Hero has.
+	 * A function that adds the map items into the Team inventory. 
+	 * @param items A map of a city
 	 */
 	public void addMapList(String items) {
 		teamMapList.add(items);
 	}
 	
 	/**
-	 * A function that returns the map list the Team has overall.
-	 * @return Returns an Array List of an Array List of String that represents
-	 * the map list the Team owns.
+	 * A function that returns the maps the Team have.
+	 * @return Returns an Array List of the maps of the Team.
 	 */
 	public ArrayList<String> getMapList() {
 		return teamMapList;
 	}
 	
+	/**
+	 * Once the power-up item is consumed, it gets remove from the inventory.
+	 * @param item A power-up item
+	 */
 	void removePowerUp(PowerUpItem item) {
 		teamPowerup.remove(item);
 	}
@@ -173,30 +177,37 @@ public class Team {
 	 * @param money An integer parameter that is used to increase the money of the Team.
 	 */
 	public void increaseMoney(int money) {
-		teamMoney += money;	
-	}
-	
-	/**
-	 * A function that decreases the money of the Team by the given parameter money.
-	 * @param money An integer parameter that is used to decrease the money of the Team.
-	 */
-	public void decreaseMoney(int money) {
-		if(teamMoney > 0) {
-			teamMoney -= money;
-		} if((teamMoney == 0) || (teamMoney < 1)) {
-			teamMoney = 0;
+		if(money > 0) {
+			teamMoney += money;	
 		}
 	}
 	
 	/**
-	 * A function that returns the money of the Team at the time.
-	 * @return Returns an integer which represents the remaining money the Team has currently.
+	 * A function that decreases the money of the Team by the given parameter money.
+	 * @param money An Integer value that is used to decrease the Team money.
 	 */
-	public int getMoney() {
-		return teamMoney;
+	public void decreaseMoney(int money) {
+		if(money > 0) {
+			teamMoney -= money;
+			if(teamMoney <= 0) {
+				teamMoney = 0;
+		}
+		} if(teamMoney <= 0) {
+			teamMoney = 0;
+		}
 	}
 
-	public static void main(String[] args) {
-	}
+//	public static void main(String[] args) {
+//		Team testingTeam = new Team();
+//		testingTeam.addHeroes("Bob", "Fire");
+//		testingTeam.addHeroes("Aj", "Divine");
+//		System.out.println(testingTeam.getHeroes());
+//		
+//		Hero heroBob = new Hero("Bob", "Fire");
+//		Hero heroAj = new Hero("Aj", "Divine");
+//		ArrayList<Hero> heroes = new ArrayList<Hero>(Arrays.asList(heroBob, heroAj));
+//		System.out.println(heroes);
+//	}
+} 
 
-}
+
