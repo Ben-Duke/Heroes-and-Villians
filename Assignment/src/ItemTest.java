@@ -77,16 +77,15 @@ public class ItemTest {
 
 	}
 
-	@Test
-	public void testToStringShop() {
-		fail("Not yet implemented");
-	}
-
+////	@Test
+////	public void testToStringShop() {
+////		fail("Not yet implemented");
+////	}
+//
 //	@Test
 //	void testToString() {
-		//testingItem = new Item("Party up", -35);
-		//how to?
-		//assertEquals(System.out.println(testingItem), "Party-up");
+//		testingItem = new Item("Party up", -35);
+//		assertEquals(System.out.println(testingItem), "Party-up");
 //	}
 
 

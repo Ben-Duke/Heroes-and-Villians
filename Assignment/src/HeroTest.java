@@ -39,42 +39,63 @@ public class HeroTest {
 	}
 
 	@Test
+	public void testApplyResistance() {
+		testingHero = new Hero("Bob", "Earth");
+		testingHero.applyResistance(20);
+		assertEquals(testingHero.getResistance(), 20);
+		
+		testingHero = new Hero("Eva", "Divine");
+		testingHero.applyResistance(-20);
+		assertEquals(testingHero.getResistance(), 0);
+	}
+	
+	@Test
+	public void testGetResistance() {
+		testingHero = new Hero("Ilo", "Wind");
+		testingHero.applyResistance(120);
+		assertEquals(testingHero.getResistance(), 120);
+		
+		testingHero = new Hero("Ruby", "Fire");
+		testingHero.applyResistance(-100);
+		assertEquals(testingHero.getResistance(), 0);
+	}
+
+	@Test
 	public void testGetCurrentHealth() {
 		testingHero = new Hero("Bubbles", "Air");
+		testingHero.decreaseHealth(60);
+		testingHero.increaseHealth(100);
 		assertEquals(testingHero.getCurrentHealth(), 100);
 		
 		testingHero.decreaseHealth(30);
 		assertEquals(testingHero.getCurrentHealth(), 70);
 		
-		testingHero.increaseHealth(50);
-		assertEquals(testingHero.getCurrentHealth(), 100);
-
+		testingHero = new Hero("Soil", "Earth");
+		testingHero.decreaseHealth(50);
+		testingHero.increaseHealth(30);
+		assertEquals(testingHero.getCurrentHealth(), 80);
 	}
 
 	@Test
 	public void testGetMaxHealth() {
-		testingHero = new Hero("Angel", "Divine");
-		// result must equal to 200
-		assertEquals(testingHero.getMaxHealth(), 200);
-		// result must equal to 100
-		testingHero = new Hero("Brown", "Earth");
+		testingHero = new Hero("Crystal", "Air");
 		assertEquals(testingHero.getMaxHealth(), 100);
-
+		
+		testingHero = new Hero("Rock", "Divine");
+		assertEquals(testingHero.getMaxHealth(), 200);
 	}
 
 	@Test
 	public void testIncreaseHealth() {
-		testingHero = new Hero("Angel", "Divine");
-		//health must be 200 at this stage
+		testingHero = new Hero("Luigi", "Divine");
 		assertEquals(testingHero.getCurrentHealth(), 200);
-
-		//max health must only be 200
 		testingHero.increaseHealth(100);
 		assertEquals(testingHero.getCurrentHealth(), 200);
 		
-		testingHero.increaseHealth(100000);
-		assertEquals(testingHero.getCurrentHealth(), 200);
-
+		testingHero = new Hero("Maya", "Earth");
+		testingHero.decreaseHealth(-60);
+		testingHero.increaseHealth(100);
+		assertEquals(testingHero.getCurrentHealth(), 100);
 	}
 
 	@Test
@@ -85,15 +106,38 @@ public class HeroTest {
 		
 		testingHero.decreaseHealth(100);
 		assertEquals(testingHero.getCurrentHealth(), 0);
+		
+		testingHero = new Hero("Red", "Fire");
+		testingHero.decreaseHealth(30);
+		testingHero.increaseHealth(10);
+		testingHero.decreaseHealth(30);
+		assertEquals(testingHero.getCurrentHealth(), 50);
+		
+		
+	}
+
+	@Test
+	public void testIncreaseMax() {
+		testingHero = new Hero("Luigi", "Divine");
+		testingHero.increaseMax(25);
+		assertEquals(testingHero.getIncreaseMax(), 25);
+	}
+
+	@Test
+	public void testGetIncreaseMax() {
+		testingHero = new Hero("Brownie", "Earth");
+		testingHero.increaseMax(50);
+		assertEquals(testingHero.getIncreaseMax(), 50);
 	}
 
 	@Test
 	public void testGetName() {
-		testingHero = new Hero("Blue", "Water");
-		assertEquals(testingHero.getName(), "Blue");
+		testingHero = new Hero("Ruby", "Fire");
+		assertEquals(testingHero.getName(), "Ruby");
 		
 		testingHero = new Hero("Fred", "Water");
 		assertEquals(testingHero.getName(), "Fred");
+
 	}
 
 	@Test
@@ -102,88 +146,57 @@ public class HeroTest {
 		testingHero.setType("Fire");
 		assertEquals(testingHero.getType(), "Fire");
 		
-		testingHero.setType("Demonic");
-		assertEquals(testingHero.getType(), "Demonic");
-		
-		testingHero.setType("Divine");
+		testingHero = new Hero("Fate", "Divine");
+		testingHero.setType("Mocha");
 		assertEquals(testingHero.getType(), "Divine");
 	}
 
 	@Test
 	public void testGetType() {
-		testingHero = new Hero("Illo", "Earth");
+		testingHero = new Hero("Eva", "Earth");
 		assertEquals(testingHero.getType(), "Earth");
-		
-		testingHero = new Hero("Greed", "Water");
-		assertEquals(testingHero.getType(), "Water");
-		
-		testingHero = new Hero("Blake", "Divine");
-		assertEquals(testingHero.getType(), "Divine");
 
 	}
 
 	@Test
 	public void testSetAbility() {
 		testingHero = new Hero("Bubbles", "Water");
-		testingHero.setAbility();
-		assertEquals(testingHero.getAbility(), "Faster Recovery Rates");
-		
-		testingHero = new Hero("Bob", "Earth");
+		testingHero.setType("Earth");
 		testingHero.setAbility();
 		assertEquals(testingHero.getAbility(), "Takes less Damage");
-
-		testingHero = new Hero("Eva", "Divine");
-		testingHero.setAbility();
-		assertEquals(testingHero.getAbility(), "Double Maximum Health");
 	}
 
 	@Test
 	public void testGetAbility() {
-		testingHero = new Hero("Mos", "Demonic");
-		assertEquals(testingHero.getAbility(), "Subtracts 2 lives to a Villain per win");
-		
-		testingHero = new Hero("Plane", "Air");
+		testingHero = new Hero("Tranquility", "Air");
 		assertEquals(testingHero.getAbility(), "Map Expertise");
+
 	}
 
 	@Test
 	public void testAddPowerUp() {
-		testingHero = new Hero("Fairy", "Air");
-		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Increase Max Health"));
-		testingHero.addPowerUp("Increase Max Health");
-		assertTrue(testingHero.getPowerUp().equals(expected));
-		
 		testingHero = new Hero("Alice", "Earth");
-		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("Damage Reduction", "Increase Max Health"));
+		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Damage Reduction", "Increase Max Health"));
 		testingHero.addPowerUp("Damage Reduction");
 		testingHero.addPowerUp("Increase Max Health");
-		assertTrue(testingHero.getPowerUp().equals(expected1));
+		assertTrue(testingHero.getPowerUp().equals(expected));
+
 	}
 
 	@Test
 	public void testGetPowerUp() {
-		testingHero = new Hero("Monk", "Fire");
+		testingHero = new Hero("Rage", "Fire");
 		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Damage Reduction"));
 		testingHero.addPowerUp("Damage Reduction");
 		assertTrue(testingHero.getPowerUp().equals(expected));
-		
-		testingHero.addPowerUp("Increase Max Health");
-		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("Damage Reduction", "Increase Max Health"));
-		assertTrue(testingHero.getPowerUp().equals(expected1));
 	}
 
 	@Test
 	public void testAddHealingItems() {
-		testingHero = new Hero("Fairy", "Air");
+		testingHero = new Hero("Fair", "Air");
 		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("100% Health Heal"));
 		testingHero.addHealingItems("100% Health Heal");
 		assertTrue(testingHero.getHealingItems().equals(expected));
-		
-		testingHero = new Hero("Dora", "Earth");
-		testingHero.addHealingItems("100% Health Heal");
-		testingHero.addHealingItems("50% Health Heal");
-		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("100% Health Heal", "50% Health Heal"));
-		assertTrue(testingHero.getHealingItems().equals(expected1));
 	}
 
 	@Test
@@ -192,45 +205,29 @@ public class HeroTest {
 		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("100% Health Heal"));
 		testingHero.addHealingItems("100% Health Heal");
 		assertTrue(testingHero.getHealingItems().equals(expected));
-		
-		testingHero = new Hero("Monk", "Earth");
-		testingHero.addHealingItems("50% Health Heal");
-		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("50% Health Heal"));
-		assertTrue(testingHero.getHealingItems().equals(expected1));
 	}
 
 	@Test
 	public void testAddMap() {
-		testingHero = new Hero("Fierce", "Fire");
-		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Map1"));
-		testingHero.addMap("Map1");
-		assertTrue(testingHero.getMap().equals(expected));
-		
-		testingHero = new Hero("Dora", "Earth");
+		testingHero = new Hero("Explorer", "Earth");
 		testingHero.addMap("Map2");
 		testingHero.addMap("Map4");
-		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("Map2", "Map4"));
-		assertTrue(testingHero.getMap().equals(expected1));
+		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Map2", "Map4"));
+		assertTrue(testingHero.getMap().equals(expected));
 	}
 
 	@Test
 	public void testGetMap() {
-		testingHero = new Hero("Pho", "Air");
-		testingHero.addMap("Map1");
-		testingHero.addMap("Map4");
-		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Map1", "Map4"));
-		assertTrue(testingHero.getMap().equals(expected));
-		
-		testingHero = new Hero("Too", "Water");
+		testingHero = new Hero("Surf", "Water");
 		testingHero.addMap("Map2");
 		testingHero.addMap("Map3");
-		ArrayList<String> expected1 = new ArrayList<String>(Arrays.asList("Map2", "Map3"));
-		assertTrue(testingHero.getMap().equals(expected1));
+		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Map2", "Map3"));
+		assertTrue(testingHero.getMap().equals(expected));
 	}
 
 	@Test
 	public void testSetStatus() {
-		testingHero = new Hero("Eric", "Fire");
+		testingHero = new Hero("Flare", "Fire");
 		testingHero.setStatus(true);
 		assertTrue(testingHero.getStatus());
 		
@@ -240,12 +237,15 @@ public class HeroTest {
 
 	@Test
 	public void testGetStatus() {
-		testingHero = new Hero("Steph", "Earth");
+		testingHero = new Hero("Anger", "Earth");
 		testingHero.setStatus(false);
 		assertFalse(testingHero.getStatus());
-		
-		testingHero.setStatus(true);
-		assertTrue(testingHero.getStatus());
+	}
+
+	@Test
+	public void testToString() {
+		testingHero = new Hero("Tranquility", "Air");
+		assertEquals(testingHero.toString(), "Hero: Tranquility Health: 100/100 Res: 0");
 	}
 
 }
