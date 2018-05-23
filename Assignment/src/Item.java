@@ -19,12 +19,16 @@ public class Item {
 	/**
 	 * The constructor for class Item that sets the name and the price 
 	 * of the Item.
-	 * @param newName
-	 * @param price
+	 * @param newName A String value that is used to set the name of the item.
+	 * @param price An Integer value that is used to set the price of the item.
 	 */
 	Item(String newName, int price){
-		setName(newName);
-		setPrice(price);
+		name = newName;
+		if(price < 0) {
+			itemPrice = 0;
+		} else {
+			itemPrice = price;
+		}
 	}
 	
 	/**
@@ -42,7 +46,7 @@ public class Item {
 	/**
 	 * A function that takes a String givenName that is used to set the
 	 * name of the Item
-	 * @param givenName
+	 * @param givenName A String value that is used to set the item's name
 	 */
 	public void setName(String givenName) {
 		name = givenName;
