@@ -49,6 +49,7 @@ public class Team {
 		return items;
 	}
 	
+	
 	/**
 	 * A function that takes a String name that is used to set the name of the Team made.
 	 * @param name A String that is used to set the teamName.
