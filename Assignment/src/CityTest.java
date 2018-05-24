@@ -48,14 +48,20 @@ public class CityTest {
 	public void testGetCityVillain() {
 		testingCity = new City("City 1");
 		testingCity.setVillain();
-		testingCity.getCityVillain();
+		assertEquals(testingCity.getCityVillain().getName(), "Dibs");
+		assertEquals(testingCity.getCityVillain().lifeCount(), 2);
+		assertEquals(testingCity.getCityVillain().getDamage(), 20);
+		assertEquals(testingCity.getCityVillain().favGame(), "XAndOs");
 	}
 
 	@Test
 	public void testGetvillainStatus() {
 		testingCity = new City("City 2");
-		testingCity.villain.killVillain();
+		testingCity.setVillain();
+		testingCity.getCityVillain().killVillain();
 		testingCity.setVillainStatus();
+		assertFalse(testingCity.getVillainStatus());
+		
 		
 	}
 
