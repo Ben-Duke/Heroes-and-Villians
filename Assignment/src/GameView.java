@@ -16,10 +16,11 @@ import javax.swing.JRadioButton;
 import java.awt.Choice;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
-
+import javax.swing.Timer;
 import java.awt.Panel;
 import java.awt.Button;
 import javax.swing.SwingConstants;
+import javax.swing.JTable;
 
 public class GameView {
 
@@ -67,6 +68,7 @@ public class GameView {
 	private JLabel lblNeedMoreMoney;
 	private JList HospitalHeroList;
 	private JList healingItemsList;
+	private JList<String> currenthealingheroes;
 	
 	/**
 	 * Launch the application.
@@ -101,6 +103,7 @@ public class GameView {
 		
 		//delete after!!!!!!!!!
 		modelref.createTeam("AA");
+		modelref.getTeam().addHealingItems(new HealingItem("Add 50", 50, 50));
 		modelref.getTeam().addHealingItems(new HealingItem("Add 50", 50, 50));
 		modelref.getTeam().addHeroes("DDD", "Demonic");
 		modelref.getTeam().getHeroes().get(0).decreaseHealth(60);;
@@ -296,7 +299,7 @@ public class GameView {
 		HospitalPanel.setBounds(6, 6, 571, 395);
 		frame.getContentPane().add(HospitalPanel);
 		HospitalPanel.setLayout(null);
-//		
+		final Timer hospitalrefresh = new Timer(1000, this::refreshheros);
 		JButton btnhospitolReturnToBase = new JButton("Return to base");
 		btnhospitolReturnToBase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -313,7 +316,7 @@ public class GameView {
 		HospitalPanel.add(lblHospital);
 		
 		HospitalHeroList = new JList<String>();
-		HospitalHeroList.setBounds(45, 104, 176, 188);
+		HospitalHeroList.setBounds(214, 78, 351, 95);
 		HospitalPanel.add(HospitalHeroList);
 		
 		JLabel Timerlabel = new JLabel("New label");
@@ -321,7 +324,7 @@ public class GameView {
 		HospitalPanel.add(Timerlabel);
 		
 		healingItemsList = new JList<String>();
-		healingItemsList.setBounds(315, 104, 188, 188);
+		healingItemsList.setBounds(6, 78, 188, 188);
 		HospitalPanel.add(healingItemsList);
 		
 		JButton btnUseHealing = new JButton("Use");
@@ -343,6 +346,7 @@ public class GameView {
 						modelref.getTeam().removeHealingItem((HealingItem) healingitems.toArray()[index]);
 						System.out.println(modelref.getTeam().getHeroes().get(0).getCurrentHealth());
 						UpdateHospitalUI();
+						hospitalrefresh.start();
 					}
 					else {
 						System.out.println("No Items");
@@ -351,10 +355,15 @@ public class GameView {
 		}
 		}
 		});
-		btnUseHealing.setBounds(225, 167, 82, 29);
+		btnUseHealing.setBounds(56, 278, 82, 29);
 		HospitalPanel.add(btnUseHealing);
-		UpdateHospitalUI();
 		
+		currenthealingheroes = new JList<String>();
+		currenthealingheroes.setBounds(214, 185, 351, 95);
+		HospitalPanel.add(currenthealingheroes);
+		
+		UpdateHospitalUI();
+		//
 		
 		
 		
@@ -680,7 +689,7 @@ public class GameView {
 			heroNames[index] = temp.getName() + " " + temp.getType();
 			index +=1;
 		}
-		HeroList = new JList(heroNames);
+		HeroList = new JList<Object>(heroNames);
 		HeroList.setBounds(341, 167, 149, 131);
 		TeamNamePanel.add(HeroList);
 		if (modelref.getTeam().getHeroes().size() == 3) {
@@ -743,29 +752,46 @@ public class GameView {
 	void UpdateHospitalUI(){
 		//ArrayList<String> PlayerItems = new ArrayList<String>();
 		DefaultListModel<String> Playeritemlist = new DefaultListModel<String>();
-		DefaultListModel<String> Team = new DefaultListModel<String>();
-		
 		for (int i_playeritemstring = 0; i_playeritemstring < modelref.getTeam().getHealingItemsList().size();i_playeritemstring++) {
 			Playeritemlist.addElement(modelref.getTeam().getHealingItemsList().toArray()[i_playeritemstring].toString());
 			
 		}
 		
+		getHealingItemsList().setModel(Playeritemlist);
+		UpdateHospitalHerosUI();
+		UpdateHospitalHealingHerosUI();
+		}
+	
+	
+	
+	void UpdateHospitalHerosUI(){		
+		DefaultListModel<String> Team = new DefaultListModel<String>();
+		
 		
 		for (int heroindex = 0; heroindex < modelref.getTeam().getHeroes().size(); heroindex++) {
 			if (modelref.getTeam().getHeroes().size() != 0) {
-					//System.out.println(modelref.getTeam().getPowerUpList().toArray()[heroindex].toString());
-				Team.addElement(modelref.getTeam().getHeroes().toArray()[heroindex].toString());
+				Team.addElement(modelref.getTeam().getHeroes().get(heroindex).toString());
 				}else {
 					System.out.print("Less than 1 item in player items");
 				}
-//			}	
-			
-		getHealingItemsList().setModel(Playeritemlist);
 		getHospitalHeroList().setModel(Team);
 		}
 	}
 	
 	
+	void UpdateHospitalHealingHerosUI(){		
+		DefaultListModel<String> Team = new DefaultListModel<String>();
+		
+		
+		for (int heroindex = 0; heroindex < modelref.getTeam().getHeroes().size(); heroindex++) {
+			if (modelref.getTeam().getHeroes().size() != 0) {
+				Team.addElement(modelref.getTeam().getHeroes().get(heroindex).toStringHospitalTimer());
+				}else {
+					System.out.print("Less than 1 item in player items");
+				}
+		getCurrenthealingheroes().setModel(Team);
+		}
+	}
 	void UpdatePlayeritems(){
 		ArrayList<String> PlayerItems = new ArrayList<String>();
 		DefaultListModel<String> Playeritemlist = new DefaultListModel<String>();
@@ -795,7 +821,6 @@ public class GameView {
 		ArrayList<String> shopItems = new ArrayList<String>();
 		DefaultListModel<String> itemlist = new DefaultListModel<String>();
 		
-		ArrayList<String> shopPowerUpItems = new ArrayList<String>();
 		DefaultListModel<String> itemPowerUplist = new DefaultListModel<String>();
 		
 		getLblTeamMoney().setText("Team Money: $" + modelref.getTeam().getTeamMoney());
@@ -859,7 +884,6 @@ public class GameView {
 			String[] boardrow = board[i];
 			//System.out.println(i);
 			JButton[] row = (JButton[]) boardarray.toArray()[i];
-			int index = 0;
 			for (int k = 0; k < row.length; k++) {
 				//System.out.println(boardrow[k]);
 				row[k].setText(boardrow[k]) ;
@@ -910,25 +934,25 @@ public class GameView {
 	public JTextField getHeroName() {
 		return HeroName;
 	}
-	public JList GetHeroType() {
+	public JList<String> GetHeroType() {
 		return list;
 	}
 //	public JList getPlayerItems_list() {
 //		return PlayerItems_list;
 //	}
-	public JList getShopItems_list() {
+	public JList<String> getShopItems_list() {
 		return ShopItems_list;
 	}
 	public JList<String> getPowerUpList() {
 		return PowerUpList;
 	}
-	public JList getTeam_items() {
+	public JList<String> getTeam_items() {
 		return Team_items;
 	}
-	public JList getTeamOfHeros() {
+	public JList<String> getTeamOfHeros() {
 		return teamOfHerosList;
 	}
-	public JList getPowerUpListDen() {
+	public JList<String> getPowerUpListDen() {
 		return PowerUpListDen;
 	}
 	public JLabel getLblTeamMoney() {
@@ -944,16 +968,24 @@ public class GameView {
 	/** 
 	 * @return the Hero list for the hospital
 	 */
-	public JList getHospitalHeroList() {
+	public JList<String> getHospitalHeroList() {
 		return HospitalHeroList;
 	}
 	
+	public void refreshheros(ActionEvent e)
+	  {
+		UpdateHospitalHealingHerosUI();
+	  }
 	/**
 	 * Returns the healing list for the hospital
 	 * @return
 	 */
-	public JList getHealingItemsList() {
+	public JList<String> getHealingItemsList() {
 		return healingItemsList;
+	}
+	
+	public JList getCurrenthealingheroes() {
+		return currenthealingheroes;
 	}
 }
 	

@@ -49,6 +49,15 @@ public class Team {
 		return items;
 	}
 	
+	public ArrayList<Hero> getHealingHeroes(){
+		ArrayList<Hero> healing = new ArrayList<Hero>();
+		for (int i = 0; i < teamHeroes.size(); i++) {
+			if ((teamHeroes.get(i)).herohealingflag()) {
+				healing.add(teamHeroes.get(i));
+			}
+		}
+		return healing;
+	}
 	
 	/**
 	 * A function that takes a String name that is used to set the name of the Team made.

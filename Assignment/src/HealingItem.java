@@ -48,7 +48,8 @@ public class HealingItem extends Item{
 >>>>>>> f0e28a8f1d8f5cfc8b93439b9043719930c60efa
 	public void useOn(Hero hero, int amount) {
 		//hero
-		hero.increaseHealth(amount);
+		hero.startHealTimer();
+		//hero.increaseHealth(amount);
 	}
 <<<<<<< HEAD
 	
