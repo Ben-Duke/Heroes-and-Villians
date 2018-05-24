@@ -47,6 +47,10 @@ public class City {
 		villain = new Villain("Dibs", 2, 20, "XAndOs");
 	}
 	
+	public void setSuperVillain() {
+		villain = new SuperVillain("Lord of death Reaper", 3, 80, "XAndOs");
+	}
+	
 	public String getName() {
 		return cityName;
 	}

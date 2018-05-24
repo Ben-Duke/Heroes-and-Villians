@@ -54,10 +54,13 @@ public class GameModel {
 			City tempcity = new City("City "+i);
 			
 			tempcity.setCityDestination();
-			if (i == numberOfCities) {
-				System.out.print("Would add in Super villain");
+			if (i+1 == numberOfCities) {
+				tempcity.setSuperVillain();
+				System.out.print("Added Super villain");
+			}else {
+				tempcity.setVillain();
 			}
-			tempcity.setVillain();
+			
 			templist.add(tempcity);
 		}
 		
