@@ -22,6 +22,7 @@ import java.awt.Button;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.AbstractListModel;
+import javax.swing.JTextPane;
 
 public class GameView {
 
@@ -142,6 +143,7 @@ public class GameView {
 		JButton btnReturnToBase = new JButton("Return to base");
      	btnReturnToBase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				refreshUIs();
 				MapPanel.setVisible(true);
 				PowerUpDenPanel.setVisible(false);
 			}
@@ -220,8 +222,10 @@ public class GameView {
 				updateDenUI();
 				UpdateHospitalUI();
 				UpdatePlayeritems();
+				refreshUIs();
 				MapPanel.setVisible(true);
 				ShopPanel.setVisible(false);
+				
 			}
 		});
 		btnShopReturnToBase.setBounds(425, 350, 117, 29);
@@ -319,6 +323,7 @@ public class GameView {
 			public void actionPerformed(ActionEvent e) {
 				HospitalPanel.setVisible(false);
 				MapPanel.setVisible(true);
+				refreshUIs();
 //				
 			}
 		});
@@ -358,7 +363,7 @@ public class GameView {
 							getHealingItemsList().clearSelection();
 							getHospitalHeroList().clearSelection();
 							UpdateHospitalUI();
-							
+							refreshUIs();
 							modelref.getTeam().removeHealingItem((HealingItem) healingitems.toArray()[index]);
 							System.out.println(modelref.getTeam().getHeroes().get(0).getCurrentHealth());
 							UpdateHospitalUI();
@@ -479,6 +484,7 @@ public class GameView {
 				modelref.createXAndOGame();
 				updateXandOsUI(modelref.XAndOgame.getGameState());
 				WinnerLabel.setText("Winner is ");
+				refreshUIs();
 				XandOPanel.setVisible(false);
 				
 			}
@@ -619,7 +625,7 @@ public class GameView {
 		battleOutComePanel.add(btnOk);
 		
 		OutComeLabel = new JLabel("Congrats!!");
-		OutComeLabel.setBounds(95, 84, 333, 63);
+		OutComeLabel.setBounds(26, 84, 522, 180);
 		battleOutComePanel.add(OutComeLabel);
 		battleOutComePanel.setVisible(false);
 		
@@ -737,12 +743,13 @@ public class GameView {
 							}
 							
 							modelref.setCities(Integer.parseInt(cities[getCityCountList().getSelectedIndex()]));
-							UpdateHospitalUI();
-							UpdatePlayeritems();
-							updateShopUI();
-							updateDenUI();
-							updateMapUI();
-							UpdateLairUI();
+//							UpdateHospitalUI();
+//							UpdatePlayeritems();
+//							updateShopUI();
+//							updateDenUI();
+//							updateMapUI();
+//							UpdateLairUI();
+							refreshUIs();
 							TeamNamePanel.setVisible(false);
 							MapPanel.setVisible(true);
 						}
@@ -769,6 +776,7 @@ public class GameView {
 		}
 		//Crashes without/ misses items
 		updateShopUI();
+		
 	}
 	
 	void movetoDestination(int direction) {
@@ -834,7 +842,18 @@ public class GameView {
 		UpdateHospitalHealingHerosUI();
 		}
 	
-
+	
+	void UpdateLairHerosUI(){		
+		DefaultListModel<String> Team = new DefaultListModel<String>();
+		
+		for (int heroindex = 0; heroindex < modelref.getTeam().getHeroes().size(); heroindex++) {
+			if (modelref.getTeam().getHeroes().size() != 0) {
+				Team.addElement(modelref.getTeam().getHeroes().get(heroindex).toString());
+			}
+		getVillainLairHeroselect().setModel(Team);
+		}
+	}
+	
 	public void openbattleoutcomescreen (String marker){
 		System.out.println("Opening");
 		if (marker == "X" | marker == "O") { 
@@ -847,14 +866,14 @@ public class GameView {
 						getOutComeLabel().setText("You won the Game the world is safe for now");
 					}
 					else {
-						getOutComeLabel().setText("Yay you defeated the Villain, Time for the next city");
+						getOutComeLabel().setText("<html>Yay you defeated the Villain,<br> Time for the next city</html>");
 						modelref.moveCity();
 						UpdateLairUI();
 					}			
 					
 				}
 				else {
-					getOutComeLabel().setText("Congratulations but the Villain \n is still kicking get back in there");
+					getOutComeLabel().setText("<html>Congratulations but the Villain <br> is still kicking get back in there</html>");
 					UpdateLairUI();
 				}
 				
@@ -1010,6 +1029,22 @@ public class GameView {
 		getLblVillainLives().setText("Villains Lifes : "+ modelref.getCities().get(modelref.currentCity).getCityVillain().lifeCount());
 		getMapHeroList();
 	}
+	
+	void refreshUIs() {
+		UpdateLairHerosUI();
+		updateDenUI();
+		UpdateLairUI();
+		updateXandOsUI(modelref.XAndOgame.getGameState());
+		updateShopUI();
+		updateMapUI();
+		UpdatePlayeritems();
+		UpdateHospitalHealingHerosUI();
+		UpdateHospitalHerosUI();
+		UpdateHospitalUI();
+		
+		
+	}
+	
 	
 	void updateDenUI() {
 		
