@@ -60,16 +60,10 @@ public class Hero {
 	 * The added damage reduction in battle for Hero
 	 */
 	private int resistance = 0;
-
 	/**
-<<<<<<< HEAD
 	 * Reference to bring the counter back to the original Count
-=======
-	 * Used for a reference to rest the 
->>>>>>> 475018e809ded7492f2244dcb107d0916ac9b337
 	 */
 	int orignalhealcount = 30;
-	
 	/**
 	 * Count-down of the Timer
 	 */
@@ -77,13 +71,14 @@ public class Hero {
 	/**
 	 * Timer of the Hero
 	 */
-	final Timer herotimer = new Timer(1000, this::HealTimer);
-			//new Timer(1000, this::HealTimer);
+	private final Timer herotimer = new Timer(1000, this::HealTimer);
 	/**
 	 * The added increase max health by a power-up item
 	 */
 	private int increaseMaxHealthBy = 0;
-	
+	/**
+	 * The amount the Hero is healed by
+	 */
 	private int healingAmount = 0;
 	
 	/**
@@ -104,18 +99,28 @@ public class Hero {
 	public int currentTime() {
 		return healtimer;
 	}
-	
-<<<<<<< HEAD
+
 	/**
-	 * This function starts the healing time for the Hero.
+	 * This function sets the healing amount by the specified amount.
+	 * @param amount An Integer value that represents the health boost that is 
+	 * given to the Hero.
 	 */
-=======
-	
-	void setHealingAmount(int amount) {
+	public void setHealingAmount(int amount) {
 		healingAmount = amount;
 	}
 	
->>>>>>> 475018e809ded7492f2244dcb107d0916ac9b337
+	/**
+	 * This function returns the healing amount 
+	 * @return Returns an Integer value that represents the health boost given to
+	 * the Hero.
+	 */
+	public int getHealingAmount() {
+		return healingAmount;
+	}
+	
+	/**
+	 * This function starts the healing time for the Hero.
+	 */
 	public void startHealTimer() {
 		herotimer.start();
 		healingflag = true;
@@ -135,11 +140,8 @@ public class Hero {
 	 */
 	public void HealTimer(ActionEvent e)
 	  {
-<<<<<<< HEAD
 	    // do something exciting
 		//;
-=======
->>>>>>> 475018e809ded7492f2244dcb107d0916ac9b337
 		System.out.println("has been 1 seconds");
 		healtimer--;
 		if (healtimer == 0) {

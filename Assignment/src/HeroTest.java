@@ -45,6 +45,13 @@ public class HeroTest {
 	}
 	
 	@Test
+	public void testSetHealingAmount() {
+		testingHero = new Hero("Polly", "Earth");
+		testingHero.setHealingAmount(30);
+		assertEquals(testingHero.getHealingAmount(), 30);
+	}
+	
+	@Test
 	public void testHeroHealingFlag() {
 		testingHero = new Hero("Ruby", "Fire");
 		assertFalse(testingHero.herohealingflag());
@@ -266,7 +273,7 @@ public class HeroTest {
 	@Test
 	public void testToStringHospitalTimer() {
 		testingHero = new Hero("Evil", "Demonic");
-		assertEquals(testingHero.toStringHospitalTimer(), "Hero: Evil Health: 100/100 Res: 0 Time to heal 30");
+		assertEquals(testingHero.toStringHospitalTimer(), "Hero: Evil Health: 100/100 Time to heal: 30 Seconds");
 	}
 
 }
