@@ -35,6 +35,9 @@ public class City {
 	 */
 	Villain villain;
 	
+	/**
+	 * The constructor for the City that sets its name.
+	 */
 	public City(String string) {
 		cityName = string;
 	}
@@ -47,10 +50,18 @@ public class City {
 		villain = new Villain("Dibs", 2, 20, "XAndOs");
 	}
 	
+	/**
+	 * This function returns the name of the City
+	 * @return Returns String representation of the City's name.
+	 */
 	public String getName() {
 		return cityName;
 	}
 	
+	/**
+	 * This function returns the Villain of the City
+	 * @return Returns the City's Villain.
+	 */
 	Villain getCityVillain() {
 		return villain;
 	}

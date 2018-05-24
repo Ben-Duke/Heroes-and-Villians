@@ -39,7 +39,7 @@ public class GuessingGame {
 	/**
 	 * This function determines if the Computer or the Player won.
 	 */
-	public void WhoWin() {
+	public void whoWin() {
 		if(guess == answer) {
 			win = true;
 			gameStatus = "correct";
@@ -72,7 +72,7 @@ public class GuessingGame {
 			scanner.next();
 		} guess = scanner.nextInt();
 		if(possibles.contains(guess)) {
-			validInput();
+			whoWin();
 		} else {
 			System.out.println("---------------------------------");
 			System.out.println("Integer is out of range.");
@@ -93,11 +93,11 @@ public class GuessingGame {
 		}
 	}
 
-//	public static void main(String[] args) {
-//		GuessingGame g1 = new GuessingGame();
-//		g1.PlayGame();
-//		// TODO Auto-generated method stub
-//
-//	}
+	public static void main(String[] args) {
+		GuessingGame g1 = new GuessingGame();
+		g1.PlayGame();
+		// TODO Auto-generated method stub
+
+	}
 
 }

@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class CityTest {
-	private City testCity;
+	private City testingCity;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -29,18 +29,24 @@ public class CityTest {
 	}
 
 	@Test
+	public void testCity() {
+		testingCity = new City("City 1");
+		assertEquals(testingCity.getName(), "City 1");
+	}
+	
+	@Test
 	public void testSetVillain() {
-		testCity = new City();
-		testCity.setVillain();
-		assertEquals(testCity.villain.getName(), "Dibs");
-		assertEquals(testCity.villain.lifeCount(), 2);
-		assertEquals(testCity.villain.getDamage(), 20);
-		assertEquals(testCity.villain.favGame(), "XAndOs");
+		testingCity = new City("City 1");
+		testingCity.setVillain();
+		assertEquals(testingCity.villain.getName(), "Dibs");
+		assertEquals(testingCity.villain.lifeCount(), 2);
+		assertEquals(testingCity.villain.getDamage(), 20);
+		assertEquals(testingCity.villain.favGame(), "XAndOs");
 	}
 
 	@Test
 	public void testGetvillainStatus() {
-		testCity = new City();
+		testCity = new City("City 2");
 		assertEquals(testCity.getvillainStatus(), true);
 		
 		testCity.setVillainStatus(false);

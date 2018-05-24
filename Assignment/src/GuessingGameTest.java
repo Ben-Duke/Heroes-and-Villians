@@ -7,7 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class GuessingGameTest {
-	private Guessing
+	private GuessingGame game;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -25,18 +25,19 @@ public class GuessingGameTest {
 	}
 
 	@Test
-	public void testValidInput() {
-		fail("Not yet implemented");
+	public void testWhoWin() {
+		game = new GuessingGame();
+		game.whoWin();
 	}
 
 	@Test
 	public void testUserInput() {
-		fail("Not yet implemented");
+		game = new GuessingGame();
 	}
 
 	@Test
 	public void testPlayGame() {
-		fail("Not yet implemented");
+		game = new GuessingGame();
 	}
 
 }
