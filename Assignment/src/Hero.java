@@ -62,7 +62,11 @@ public class Hero {
 	private int resistance = 0;
 
 	/**
+<<<<<<< HEAD
 	 * Reference to bring the counter back to the original Count
+=======
+	 * Used for a reference to rest the 
+>>>>>>> 475018e809ded7492f2244dcb107d0916ac9b337
 	 */
 	int orignalhealcount = 30;
 	
@@ -80,6 +84,7 @@ public class Hero {
 	 */
 	private int increaseMaxHealthBy = 0;
 	
+	private int healingAmount = 0;
 	
 	/**
 	 * This is a constructor for the class Hero that sets the name and the type of Hero.
@@ -100,9 +105,17 @@ public class Hero {
 		return healtimer;
 	}
 	
+<<<<<<< HEAD
 	/**
 	 * This function starts the healing time for the Hero.
 	 */
+=======
+	
+	void setHealingAmount(int amount) {
+		healingAmount = amount;
+	}
+	
+>>>>>>> 475018e809ded7492f2244dcb107d0916ac9b337
 	public void startHealTimer() {
 		herotimer.start();
 		healingflag = true;
@@ -122,14 +135,17 @@ public class Hero {
 	 */
 	public void HealTimer(ActionEvent e)
 	  {
+<<<<<<< HEAD
 	    // do something exciting
 		//;
+=======
+>>>>>>> 475018e809ded7492f2244dcb107d0916ac9b337
 		System.out.println("has been 1 seconds");
 		healtimer--;
 		if (healtimer == 0) {
 			herotimer.stop();
 			healingflag = false;
-			increaseHealth(10);
+			increaseHealth(healingAmount);
 			System.out.println("timer hit zero");
 			healtimer = orignalhealcount;
 		}
@@ -137,6 +153,7 @@ public class Hero {
 			System.out.println();
 		}
 	  }
+	
 	
 	/**
 	 * This function applies the added damage reduction in battles to the health of the Hero.
@@ -352,11 +369,12 @@ public class Hero {
 		return "Hero: " + name + " Health: " + currentHealth + "/" + maxHealth + " Res: " + resistance;
 	}
 	
+	
 	/**
 	 * The string representation of a Hero
 	 */
 	public String toStringHospitalTimer() {
-		return "Hero: " + name + " Health: " + currentHealth + "/" + maxHealth + " Res: " + resistance + " Time to heal " +  healtimer;
+		return "Hero: " + name + " Health: " + currentHealth + "/" + maxHealth + " Time to heal: " +  healtimer + " Seconds";
 	}
 	
 //	public static void main(String[] args) {

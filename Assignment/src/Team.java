@@ -52,7 +52,7 @@ public class Team {
 	public ArrayList<Hero> getHealingHeroes(){
 		ArrayList<Hero> healing = new ArrayList<Hero>();
 		for (int i = 0; i < teamHeroes.size(); i++) {
-			if ((teamHeroes.get(i)).herohealingflag()) {
+			if ((teamHeroes.get(i)).herohealingflag() == true) {
 				healing.add(teamHeroes.get(i));
 			}
 		}

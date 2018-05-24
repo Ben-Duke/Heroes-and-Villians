@@ -106,7 +106,9 @@ public class GameView {
 		modelref.getTeam().addHealingItems(new HealingItem("Add 50", 50, 50));
 		modelref.getTeam().addHealingItems(new HealingItem("Add 50", 50, 50));
 		modelref.getTeam().addHeroes("DDD", "Demonic");
-		modelref.getTeam().getHeroes().get(0).decreaseHealth(60);;
+		modelref.getTeam().getHeroes().get(0).decreaseHealth(60);
+		modelref.getTeam().addHeroes("Alice", "Divine");
+		modelref.getTeam().getHeroes().get(1).decreaseHealth(60);
 		///
 		
 		
@@ -335,18 +337,22 @@ public class GameView {
 				if (!getHealingItemsList().isSelectionEmpty() && !getHospitalHeroList().isSelectionEmpty()) {
 					
 					if ( healingitems.size() > 0) {
-						HealingItem item = (HealingItem) healingitems.toArray()[getHealingItemsList().getSelectedIndex()];
-						item.useOn(modelref.getTeam().getHeroes().get(getHospitalHeroList().getSelectedIndex()), item.healAmount());
 						
-						int index = getHealingItemsList().getSelectedIndex();
-						getHealingItemsList().clearSelection();
-						getHospitalHeroList().clearSelection();
-						UpdateHospitalUI();
+						if(modelref.getTeam().getHeroes().get(getHospitalHeroList().getSelectedIndex()).herohealingflag() != true) {
+							HealingItem item = (HealingItem) healingitems.toArray()[getHealingItemsList().getSelectedIndex()];
+							item.useOn(modelref.getTeam().getHeroes().get(getHospitalHeroList().getSelectedIndex()), item.healAmount());
+							
+							int index = getHealingItemsList().getSelectedIndex();
+							getHealingItemsList().clearSelection();
+							getHospitalHeroList().clearSelection();
+							UpdateHospitalUI();
+							
+							modelref.getTeam().removeHealingItem((HealingItem) healingitems.toArray()[index]);
+							System.out.println(modelref.getTeam().getHeroes().get(0).getCurrentHealth());
+							UpdateHospitalUI();
+							hospitalrefresh.start();
+						}
 						
-						modelref.getTeam().removeHealingItem((HealingItem) healingitems.toArray()[index]);
-						System.out.println(modelref.getTeam().getHeroes().get(0).getCurrentHealth());
-						UpdateHospitalUI();
-						hospitalrefresh.start();
 					}
 					else {
 						System.out.println("No Items");
@@ -756,7 +762,6 @@ public class GameView {
 			Playeritemlist.addElement(modelref.getTeam().getHealingItemsList().toArray()[i_playeritemstring].toString());
 			
 		}
-		
 		getHealingItemsList().setModel(Playeritemlist);
 		UpdateHospitalHerosUI();
 		UpdateHospitalHealingHerosUI();
@@ -767,13 +772,10 @@ public class GameView {
 	void UpdateHospitalHerosUI(){		
 		DefaultListModel<String> Team = new DefaultListModel<String>();
 		
-		
 		for (int heroindex = 0; heroindex < modelref.getTeam().getHeroes().size(); heroindex++) {
 			if (modelref.getTeam().getHeroes().size() != 0) {
-				Team.addElement(modelref.getTeam().getHeroes().get(heroindex).toString());
-				}else {
-					System.out.print("Less than 1 item in player items");
-				}
+				Team.addElement(modelref.getTeam().getHeroes().get(heroindex).getName());
+			}
 		getHospitalHeroList().setModel(Team);
 		}
 	}
@@ -781,17 +783,23 @@ public class GameView {
 	
 	void UpdateHospitalHealingHerosUI(){		
 		DefaultListModel<String> Team = new DefaultListModel<String>();
-		
-		
 		for (int heroindex = 0; heroindex < modelref.getTeam().getHeroes().size(); heroindex++) {
 			if (modelref.getTeam().getHeroes().size() != 0) {
 				Team.addElement(modelref.getTeam().getHeroes().get(heroindex).toStringHospitalTimer());
 				}else {
 					System.out.print("Less than 1 item in player items");
 				}
+			
+		if (Team.size() < 1) {
+			Team = new DefaultListModel<String>();
+			System.out.println("Should be empty");
+		}
 		getCurrenthealingheroes().setModel(Team);
 		}
 	}
+	/**
+	 * Updates player items in the power up den
+	 */
 	void UpdatePlayeritems(){
 		ArrayList<String> PlayerItems = new ArrayList<String>();
 		DefaultListModel<String> Playeritemlist = new DefaultListModel<String>();
@@ -808,11 +816,8 @@ public class GameView {
 				System.out.print("Less than 1 item in player items");
 			}
 		
-		Team_items.setModel(Playeritemlist); //= new JList(Playeritemlist);
-		//getTeam_items().setModel(Playeritemlist);
-		//ShopPanel.add(Team_items);
-	    //Team_items.setBounds(303, 44, 223, 276);
-		
+		Team_items.setModel(Playeritemlist); 
+	
 		}
 	}
 	
