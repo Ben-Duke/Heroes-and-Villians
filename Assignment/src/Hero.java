@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
  * different types of inventories
  * @author Angelica Dela Cruz & Ben Duke
  *
- * @version 1.1, 11 Apr 2018
+ * @version 1.1, Apr 2018.
  */
 public class Hero {
 	/**
@@ -60,17 +60,19 @@ public class Hero {
 	 * The added damage reduction in battle for Hero
 	 */
 	private int resistance = 0;
-<<<<<<< HEAD
-	/**
-	 * The healing 
-=======
 
 	/**
-	 * Used for a refrence to rest the 
->>>>>>> 0d20bc53bd64ba0df356071eaeebb7df08c76411
+	 * Reference to bring the counter back to the original Count
 	 */
 	int orignalhealcount = 30;
+	
+	/**
+	 * Count-down of the Timer
+	 */
 	int healtimer = 30;
+	/**
+	 * Timer of the Hero
+	 */
 	final Timer herotimer = new Timer(1000, this::HealTimer);
 			//new Timer(1000, this::HealTimer);
 	/**
@@ -90,24 +92,38 @@ public class Hero {
 		setAbility();
 	}
 
+	/**
+	 * This function gives the current time on the Timer.
+	 * @return Returns the time of the Timer.
+	 */
 	public int currentTime() {
 		return healtimer;
 	}
 	
+	/**
+	 * This function starts the healing time for the Hero.
+	 */
 	public void startHealTimer() {
 		herotimer.start();
 		healingflag = true;
 	}
 	
+	/**
+	 * This function tags the Hero as healing so they can be added to the list later on.
+	 * @return Returns a boolean value, true if Hero's healing, otherwise false.
+	 */
 	public boolean herohealingflag() {
 		return healingflag;
 	}
 	
+	/**
+	 * This function times the Healing for the Hero.
+	 * @param e An action event
+	 */
 	public void HealTimer(ActionEvent e)
 	  {
 	    // do something exciting
 		//;
-		
 		System.out.println("has been 1 seconds");
 		healtimer--;
 		if (healtimer == 0) {
@@ -119,7 +135,6 @@ public class Hero {
 		}
 		else{
 			System.out.println();
-			
 		}
 	  }
 	
@@ -344,24 +359,26 @@ public class Hero {
 		return "Hero: " + name + " Health: " + currentHealth + "/" + maxHealth + " Res: " + resistance + " Time to heal " +  healtimer;
 	}
 	
-	public static void main(String[] args) {
-
-		Hero creature = new Hero("Divine", "Brighty");
-		System.out.println("Creature type: " + creature.getType());
-		System.out.println(creature.getCurrentHealth());
-		System.out.println(creature.getMaxHealth());
-		creature.setStatus(true);
-		System.out.println("Creature is alive: " + creature.getStatus());
-		creature.addHealingItems("Healing Potion");
-		creature.addHealingItems("Ultra Heal");
-		
-		Hero c1 = new Hero("Avian", "Air");
-		System.out.println(c1.toString());
-		System.out.println("Creature type: " + c1.getType());
-		System.out.println(c1.getCurrentHealth());
-		System.out.println(c1.getMaxHealth());
-		System.out.println("Start");
-		//c1.givenUsingTimer_whenSchedulingTaskOnce_thenCorrect();
-		System.out.println("End");
-	}
+//	public static void main(String[] args) {
+//		Hero testingHero = new Hero("Evil", "Demonic");
+//		System.out.println(testingHero.toStringHospitalTimer());
+//		
+////		Hero creature = new Hero("Divine", "Brighty");
+////		System.out.println("Creature type: " + creature.getType());
+////		System.out.println(creature.getCurrentHealth());
+////		System.out.println(creature.getMaxHealth());
+////		creature.setStatus(true);
+////		System.out.println("Creature is alive: " + creature.getStatus());
+////		creature.addHealingItems("Healing Potion");
+////		creature.addHealingItems("Ultra Heal");
+////		
+////		Hero c1 = new Hero("Avian", "Air");
+////		System.out.println(c1.toString());
+////		System.out.println("Creature type: " + c1.getType());
+////		System.out.println(c1.getCurrentHealth());
+////		System.out.println(c1.getMaxHealth());
+////		System.out.println("Start");
+////		//c1.givenUsingTimer_whenSchedulingTaskOnce_thenCorrect();
+////		System.out.println("End");
+//	}
 }

@@ -39,6 +39,21 @@ public class HeroTest {
 	}
 
 	@Test
+	public void testCurrentTime() {
+		testingHero = new Hero("Angelic", "Divine");
+		assertEquals(testingHero.currentTime(), 30);
+	}
+	
+	@Test
+	public void testHeroHealingFlag() {
+		testingHero = new Hero("Ruby", "Fire");
+		assertFalse(testingHero.herohealingflag());
+		
+		testingHero.startHealTimer();
+		assertTrue(testingHero.herohealingflag());
+	}
+	
+	@Test
 	public void testApplyResistance() {
 		testingHero = new Hero("Bob", "Earth");
 		testingHero.applyResistance(20);
@@ -246,6 +261,12 @@ public class HeroTest {
 	public void testToString() {
 		testingHero = new Hero("Tranquility", "Air");
 		assertEquals(testingHero.toString(), "Hero: Tranquility Health: 100/100 Res: 0");
+	}
+	
+	@Test
+	public void testToStringHospitalTimer() {
+		testingHero = new Hero("Evil", "Demonic");
+		assertEquals(testingHero.toStringHospitalTimer(), "Hero: Evil Health: 100/100 Res: 0 Time to heal 30");
 	}
 
 }
