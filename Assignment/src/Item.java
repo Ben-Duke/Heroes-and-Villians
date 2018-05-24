@@ -36,11 +36,9 @@ public class Item {
 	 * @param givenPrice gives the price of the item
 	 */
 	public void setPrice(int givenPrice) {
-		if(givenPrice < 0) {
-			itemPrice = 0;
-		} else {
+		if(givenPrice > 0) {
 			itemPrice = givenPrice;
-		}
+		} 
 	}
 	
 	/**

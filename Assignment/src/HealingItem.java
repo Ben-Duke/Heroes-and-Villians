@@ -31,20 +31,20 @@ public class HealingItem extends Item{
 		return heal;
 	}
 
-<<<<<<< HEAD
-//	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
-//
-//	}
-=======
+	/**
+	 * This function uses the item to increase the health of the Hero by an amount based on the
+	 * item
+	 * @param hero The Hero character that the item will be use on
+	 * @param amount An Integer value that represents the increase in health
+	 */
 	public void useOn(Hero hero, int amount) {
 		//hero
 		hero.increaseHealth(amount);
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
->>>>>>> 7430519688f5b397254e823ae3619fdc5df11d69
+	
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//
+//	}
 
 }
