@@ -43,57 +43,69 @@ public class CityTest {
 		assertEquals(testingCity.villain.getDamage(), 20);
 		assertEquals(testingCity.villain.favGame(), "XAndOs");
 	}
+	
+	@Test 
+	public void testGetCityVillain() {
+		testingCity = new City("City 1");
+		testingCity.setVillain();
+		testingCity.getCityVillain();
+	}
 
 	@Test
 	public void testGetvillainStatus() {
-		testCity = new City("City 2");
-		assertEquals(testCity.getvillainStatus(), true);
+		testingCity = new City("City 2");
+		testingCity.villain.killVillain();
+		testingCity.setVillainStatus();
 		
-		testCity.setVillainStatus(false);
-		assertEquals(testCity.getvillainStatus(), false);
 	}
 
 	@Test
 	public void testSetVillainStatus() {
-		testCity = new City();
-		testCity.setVillainStatus(false);
-		assertEquals(testCity.getvillainStatus(), false);
+		testingCity = new City("City 3");
+		testingCity.setVillainStatus();
+		assertTrue(testingCity.getvillainStatus());
 		
-		testCity = new City();
-		testCity.setVillainStatus(true);
-		assertTrue(testCity.getvillainStatus() == true);
+		testingCity = new City("City 4");
+		testingCity.setVillainStatus(true);
+		assertTrue(testingCity.getvillainStatus() == true);
 	}
 
 	@Test
 	public void testSetlocations() {
-		testCity = new City();
-		testCity.setlocations(0, 2);
+		testingCity = new City("City 5");
+		testingCity.setlocations(0, 2);
 		ArrayList<Integer> expected = new ArrayList<Integer>(Arrays.asList(2, null, null, null, 4));
-		assertTrue(testCity.getKnownDestination().equals(expected));
+		assertTrue(testingCity.getKnownDestination().equals(expected));
 		
-		testCity.setlocations(2, 3);
+		testingCity.setlocations(2, 3);
 		ArrayList<Integer> expected1 = new ArrayList<Integer>(Arrays.asList(2, null, 3, null, 4));
-		assertTrue(testCity.getKnownDestination().equals(expected1));
+		assertTrue(testingCity.getKnownDestination().equals(expected1));
 	}
 
 	@Test
 	public void testGetKnownDestination() {
-		testCity = new City();
-		testCity.setlocations(0, 1);
-		testCity.setlocations(1, 3);
+		testingCity = new City("City 6");
+		testingCity.setlocations(0, 1);
+		testingCity.setlocations(1, 3);
 		ArrayList<Integer> expected = new ArrayList<Integer>(Arrays.asList(1, 3, null, null, 4));
-		assertTrue(testCity.getKnownDestination().equals(expected));
+		assertTrue(testingCity.getKnownDestination().equals(expected));
+	}
+	
+	@Test
+	public void testSetVillainStatus() {
+		testingCity = new City("City 1");
+		
 	}
 
 	@Test
 	public void testKnowCityDestination() {
-		testCity = new City();
-		testCity.setCityDestination();
-		testCity.knowCityDestination(0);
-		testCity.knowCityDestination(1);
-		testCity.knowCityDestination(2);
-		testCity.knowCityDestination(3);
-		assertEquals(testCity.getCityDestination(), testCity.getKnownDestination());
+		testingCity = new City("City 1");
+		testingCity.setCityDestination();
+		testingCity.knowCityDestination(0);
+		testingCity.knowCityDestination(1);
+		testingCity.knowCityDestination(2);
+		testingCity.knowCityDestination(3);
+		assertEquals(testingCity.getCityDestination(), testingCity.getKnownDestination());
 		
 		testCity = new City();
 		testCity.setCityDestination();

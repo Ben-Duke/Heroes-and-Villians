@@ -23,6 +23,9 @@ public class City {
 	 * The boolean status of the villain in which true if they are alive and false if they are dead.
 	 */
 	private boolean villainStatus = true;
+	/**
+	 * The name of the City
+	 */
 	private String cityName;
 	
 	/**
@@ -65,6 +68,14 @@ public class City {
 	Villain getCityVillain() {
 		return villain;
 	}
+	
+	/**
+	 * A function that sets the life status of the villain in the city.
+	 */
+	public void setVillainStatus () {
+		villainStatus = villain.isAlive();
+	}
+	
 	/**
 	 * A function that returns the life status of the villain in the city. 
 	 * It returns a boolean value in which true is for alive and false is for dead.
@@ -72,14 +83,6 @@ public class City {
 	 */
 	public boolean getvillainStatus() {
 		return villainStatus;
-	}
-	
-	/**
-	 * A function that sets the life status of the villain in the city.
-	 * @param status A boolean parameter that indicates true for alive and false for not.
-	 */
-	public void setVillainStatus(boolean status) {
-		villainStatus = status;
 	}
 	
 	/**
@@ -100,11 +103,6 @@ public class City {
 	public ArrayList<Integer> getKnownDestination() {
 		return knownDestination;
 	}
-	
-	public void setVilainStatus () {
-		villainStatus = villain.isAlive();
-	}
-	
 	
 	/**
 	 * A function that copies the location in the given direction.
@@ -148,6 +146,13 @@ public class City {
 	 */
 	public ArrayList<Integer> getCityDestination() {
 		return cityDestination;
+	}
+	
+	public void main(String[] args) {
+		City testingCity = new City("City 2");
+		testingCity.villain.killVillain();
+		testingCity.setVillainStatus();
+		System.out.println(testingCity.getvillainStatus());
 	}
 	
 }
