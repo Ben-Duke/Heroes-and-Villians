@@ -45,6 +45,25 @@ public class TeamTest {
 	}
 
 	@Test
+	public void testGetHealingHeroes() {
+		ArrayList<Hero> healing = new ArrayList<Hero>();
+		Hero hero1 = new Hero("Ruby", "Fire");
+		Hero hero2 = new Hero("Wave", "Water");
+		testingTeam = new Team();
+		testingTeam.addHeroes("Ruby", "Fire");
+		testingTeam.addHeroes("Wave", "Water");
+		assertEquals(testingTeam.getHealingHeroes(), healing);
+		
+		for (int i = 0; i < testingTeam.getHeroes().size(); i++) {
+			testingTeam.getHeroes().get(i).startHealTimer();
+		}
+		ArrayList<Hero> healing1 = new ArrayList<Hero>();
+		healing1.add(hero1);
+		healing1.add(hero2);
+		assertEquals(testingTeam.getHealingHeroes().size(), healing1.size());
+	}
+	
+	@Test
 	public void testSetTeamName() {
 		testingTeam = new Team();
 		testingTeam.setTeamName("P-Rangers");
@@ -69,13 +88,13 @@ public class TeamTest {
 	@Test
 	public void testGetTeamMoney() {
 		testingTeam = new Team();
-		assertEquals(testingTeam.getTeamMoney(), 600);
+		assertEquals(testingTeam.getTeamMoney(), 500);
 		
 		testingTeam.decreaseMoney(200);
-		assertEquals(testingTeam.getTeamMoney(), 400);
+		assertEquals(testingTeam.getTeamMoney(), 300);
 		
 		testingTeam.increaseMoney(400);
-		assertEquals(testingTeam.getTeamMoney(), 800);
+		assertEquals(testingTeam.getTeamMoney(), 700);
 	}
 
 	@Test
@@ -87,10 +106,10 @@ public class TeamTest {
 		testingTeam.addHeroes("Ila", "Water");
 		testingTeam.addHeroes("Fairy", "Divine");
 		Hero hero1 = new Hero("Rob", "Devil");
-		Hero hero2 = new Hero("Ila", "Water");
-		Hero hero3 = new Hero("Ace", "Air");
+		Hero hero2 = new Hero("Ace", "Air");
+		Hero hero3 = new Hero("Ila", "Water");
 		ArrayList<Hero> superheroes = new ArrayList<Hero>(Arrays.asList(hero1, hero2, hero3));
-		assertEquals(superheroes, testingTeam.getHeroes());
+		assertEquals(superheroes.size(), testingTeam.getHeroes().size());
 	}
 
 	@Test
@@ -111,7 +130,7 @@ public class TeamTest {
 		Hero hero1 = new Hero("Eva", "Divine");
 		Hero hero2 = new Hero("Shrek", "Earth");
 		ArrayList<Hero> superhero = new ArrayList<Hero>(Arrays.asList(hero1, hero2));
-		assertEquals(testingTeam.getHeroes(), superhero);
+		assertEquals(testingTeam.getHeroes().size(), superhero.size());
 	}
 
 	@Test
@@ -192,34 +211,46 @@ public class TeamTest {
 		ArrayList<PowerUpItem> powerUps = new ArrayList<PowerUpItem>(Arrays.asList(powerUp10, powerUp100));
 		assertEquals(testingTeam.getPowerUpList(), powerUps);
 	}
+	
+	@Test
+	public void testRemoveHealingItem() {
+		testingTeam = new Team();
+		HealingItem healUp40 = new HealingItem("Heal 50%", 200, 50);
+		HealingItem healUp50 = new HealingItem("Heal 100%", 300, 100);
+		ArrayList<HealingItem> healUps = new ArrayList<HealingItem>(Arrays.asList(healUp50));
+		testingTeam.addHealingItems(healUp40);
+		testingTeam.addHealingItems(healUp50);
+		testingTeam.removeHealingItem(healUp40);
+		assertEquals(testingTeam.getHealingItemsList(), healUps);
+	}
 
 	@Test
 	public void testIncreaseMoney() {
 		testingTeam = new Team();
 		testingTeam.increaseMoney(100);
-		assertEquals(testingTeam.getTeamMoney(), 700);
+		assertEquals(testingTeam.getTeamMoney(), 600);
 		
 		testingTeam.increaseMoney(1000);
-		assertEquals(testingTeam.getTeamMoney(), 1700);
+		assertEquals(testingTeam.getTeamMoney(), 1600);
 		
 		testingTeam.increaseMoney(-1000);
-		assertEquals(testingTeam.getTeamMoney(), 1700);
+		assertEquals(testingTeam.getTeamMoney(), 1600);
 	}
 
 	@Test
 	public void testDecreaseMoney() {
 		testingTeam = new Team();
 		testingTeam.decreaseMoney(100);
-		assertEquals(testingTeam.getTeamMoney(), 500);
+		assertEquals(testingTeam.getTeamMoney(), 400);
 		
 		testingTeam.decreaseMoney(-500);
-		assertEquals(testingTeam.getTeamMoney(), 500);
+		assertEquals(testingTeam.getTeamMoney(), 400);
 		
 		testingTeam.decreaseMoney(1000);
 		assertEquals(testingTeam.getTeamMoney(), 0);
 		
 		testingTeam = new Team();
-		testingTeam.decreaseMoney(600);
+		testingTeam.decreaseMoney(500);
 		assertEquals(testingTeam.getTeamMoney(), 0);
 	}
 

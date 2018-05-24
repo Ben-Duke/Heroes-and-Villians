@@ -31,7 +31,7 @@ public class Team {
 	/**
 	 * The total money of the Team
 	 */
-	private int teamMoney = 600;
+	private int teamMoney = 500;
 	
 	/**
 	 * A function that acts like an inventory for whole Team.
@@ -178,11 +178,11 @@ public class Team {
 	 * Once the power-up item is consumed, it gets remove from the inventory.
 	 * @param item A power-up item
 	 */
-	void removePowerUp(PowerUpItem item) {
+	public void removePowerUp(PowerUpItem item) {
 		teamPowerup.remove(item);
 	}
 	
-	void removeHealingItem(HealingItem item) {
+	public void removeHealingItem(HealingItem item) {
 		teamHealingItems.remove(item);
 	}
 	
@@ -213,14 +213,10 @@ public class Team {
 
 //	public static void main(String[] args) {
 //		Team testingTeam = new Team();
-//		testingTeam.addHeroes("Bob", "Fire");
-//		testingTeam.addHeroes("Aj", "Divine");
+//		testingTeam.addHeroes("Ruby", "Fire");
+//		testingTeam.addHeroes("Wave", "Water");
 //		System.out.println(testingTeam.getHeroes());
-//		
-//		Hero heroBob = new Hero("Bob", "Fire");
-//		Hero heroAj = new Hero("Aj", "Divine");
-//		ArrayList<Hero> heroes = new ArrayList<Hero>(Arrays.asList(heroBob, heroAj));
-//		System.out.println(heroes);
+//		System.out.println(testingTeam.getHealingHeroes());	
 //	}
 } 
 
