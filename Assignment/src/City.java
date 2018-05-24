@@ -4,7 +4,7 @@ import java.util.Random;
 /**
  * This class implements City that has 5 different destinations that heroes can go to.
  * @author Angelica Dela Cruz & Ben Duke
- * @version 1.1, 16 Apr 2018
+ * @version 1.1, Apr 2018.
  */
 public class City {
 	/**
@@ -36,9 +36,9 @@ public class City {
 	
 	/**
 	 * The constructor for the class Villain that sets the name, number of lives,
-	 * damage and the favourite game of the Villain in the city.
+	 * damage and the favorite game of the Villain in the city.
 	 */
-	void setVillain() {
+	public void setVillain() {
 		villain = new Villain("Dibs", 2, 20, "XAndOs");
 	}
 	
@@ -83,12 +83,14 @@ public class City {
 	 * @param index An integer that represents the map direction.
 	 * Map directions 0 - North, 1 - South, 2 - East, 3 - West and 4 - Center
 	 */
-	public void knowCityDestination(int index) {
+	public boolean knowCityDestination(int index) {
 		if((index > cityDestination.size()) || (index < 0)) {
 			System.out.println("Index is out of range.");
+			return false;
 		} 
 		int element = cityDestination.get(index);
 		setlocations(index, element);
+		return true;
 	}
 	
 	/**

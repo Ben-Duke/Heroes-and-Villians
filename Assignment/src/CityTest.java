@@ -28,10 +28,15 @@ public class CityTest {
 	public void tearDown() throws Exception {
 	}
 
-//	@Test
-//	public void testSetVillain() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void testSetVillain() {
+		testCity = new City();
+		testCity.setVillain();
+		assertEquals(testCity.villain.getName(), "Dibs");
+		assertEquals(testCity.villain.lifeCount(), 2);
+		assertEquals(testCity.villain.getDamage(), 20);
+		assertEquals(testCity.villain.favGame(), "XAndOs");
+	}
 
 	@Test
 	public void testGetvillainStatus() {
@@ -83,6 +88,15 @@ public class CityTest {
 		testCity.knowCityDestination(2);
 		testCity.knowCityDestination(3);
 		assertEquals(testCity.getCityDestination(), testCity.getKnownDestination());
+		
+		testCity = new City();
+		testCity.setCityDestination();
+		assertFalse(testCity.knowCityDestination(-1));
+		assertFalse(testCity.knowCityDestination(6));
+		
+		testCity = new City();
+		testCity.setCityDestination();
+		assertTrue(testCity.knowCityDestination(0));
 	}
 	
 	@Test

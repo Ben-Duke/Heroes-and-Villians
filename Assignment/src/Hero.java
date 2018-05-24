@@ -56,8 +56,9 @@ public class Hero {
 	 * The added damage reduction in battle for Hero
 	 */
 	private int resistance = 0;
-
-	
+	/**
+	 * The healing 
+	 */
 	int orignalhealcount = 30;
 	int timer = 30;
 	final Timer heroTimer = new Timer();
