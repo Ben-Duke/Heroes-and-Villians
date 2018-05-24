@@ -44,6 +44,16 @@ public class CityTest {
 		assertEquals(testingCity.villain.favGame(), "XAndOs");
 	}
 	
+	@Test
+	public void testSetSuperVillain() {
+		testingCity = new City("City 6");
+		testingCity.setSuperVillain();
+		assertEquals(testingCity.getCityVillain().getName(), "Lord of death Reaper");
+		assertEquals(testingCity.getCityVillain().lifeCount(), 6);
+		assertEquals(testingCity.getCityVillain().getDamage(), 80);
+		assertEquals(testingCity.getCityVillain().favGame(), "XAndOs");
+	}
+	
 	@Test 
 	public void testGetCityVillain() {
 		testingCity = new City("City 1");
@@ -62,18 +72,22 @@ public class CityTest {
 		testingCity.setVillainStatus();
 		assertFalse(testingCity.getVillainStatus());
 		
-		
+		testingCity = new City("City 3");
+		testingCity.setVillain();
+		assertTrue(testingCity.getVillainStatus());
 	}
 
 	@Test
-	public void testSetVillainStatus() {
-		testingCity = new City("City 3");
-		testingCity.setVillainStatus();
-		assertTrue(testingCity.getvillainStatus());
+	public void testSetVillainStatus1() {
+		testingCity = new City("City 4");
+		testingCity.setVillain();
+		assertTrue(testingCity.getVillainStatus());
 		
 		testingCity = new City("City 4");
-		testingCity.setVillainStatus(true);
-		assertTrue(testingCity.getvillainStatus() == true);
+		testingCity.setVillain();
+		testingCity.getCityVillain().killVillain();
+		testingCity.setVillainStatus();
+		assertFalse(testingCity.getVillainStatus());
 	}
 
 	@Test
@@ -96,12 +110,7 @@ public class CityTest {
 		ArrayList<Integer> expected = new ArrayList<Integer>(Arrays.asList(1, 3, null, null, 4));
 		assertTrue(testingCity.getKnownDestination().equals(expected));
 	}
-	
-	@Test
-	public void testSetVillainStatus() {
-		testingCity = new City("City 1");
-		
-	}
+
 
 	@Test
 	public void testKnowCityDestination() {
@@ -113,37 +122,36 @@ public class CityTest {
 		testingCity.knowCityDestination(3);
 		assertEquals(testingCity.getCityDestination(), testingCity.getKnownDestination());
 		
-		testCity = new City();
-		testCity.setCityDestination();
-		assertFalse(testCity.knowCityDestination(-1));
-		assertFalse(testCity.knowCityDestination(6));
+		testingCity = new City("City 2");
+		testingCity.setCityDestination();
+		assertFalse(testingCity.knowCityDestination(-1));
+		assertFalse(testingCity.knowCityDestination(6));
 		
-		testCity = new City();
-		testCity.setCityDestination();
-		assertTrue(testCity.knowCityDestination(0));
+		testingCity = new City("City 3");
+		testingCity.setCityDestination();
+		assertTrue(testingCity.knowCityDestination(0));
 	}
 	
 	@Test
 	public void testSetCityDestination() {
-		testCity = new City();
-		testCity.setCityDestination();
-		testCity.knowCityDestination(0);
-		testCity.knowCityDestination(1);
-		testCity.knowCityDestination(2);
-		testCity.knowCityDestination(3);
-		assertEquals(testCity.getCityDestination(), testCity.getKnownDestination());
-		
+		testingCity = new City("City 4");
+		testingCity.setCityDestination();
+		testingCity.knowCityDestination(0);
+		testingCity.knowCityDestination(1);
+		testingCity.knowCityDestination(2);
+		testingCity.knowCityDestination(3);
+		assertEquals(testingCity.getCityDestination(), testingCity.getKnownDestination());
 	}
 
 	@Test
 	public void testGetCityDestination() {
-		testCity = new City();
-		testCity.setCityDestination();
-		testCity.knowCityDestination(0);
-		testCity.knowCityDestination(1);
-		testCity.knowCityDestination(2);
-		testCity.knowCityDestination(3);
-		assertEquals(testCity.getCityDestination(), testCity.getKnownDestination());
+		testingCity = new City("City 5");
+		testingCity.setCityDestination();
+		testingCity.knowCityDestination(0);
+		testingCity.knowCityDestination(1);
+		testingCity.knowCityDestination(2);
+		testingCity.knowCityDestination(3);
+		assertEquals(testingCity.getCityDestination(), testingCity.getKnownDestination());
 	}
 
 }

@@ -153,11 +153,4 @@ public class City {
 	public ArrayList<Integer> getCityDestination() {
 		return cityDestination;
 	}
-	
-	public void main(String[] args) {
-		City testingCity = new City("City 2");
-		testingCity.setVillain();
-		System.out.println(testingCity.getCityVillain());
-	}
-	
 }
