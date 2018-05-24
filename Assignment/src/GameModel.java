@@ -1,14 +1,18 @@
+import java.util.ArrayList;
 
 public class GameModel {
 	
 	Team game_team = null;
 	int cityCount = 1;
 	XAndOs XAndOgame;
-	City[] citylist; 
+	ArrayList<City> citylist; 
 	Shop shop = new Shop();
 	Destination[] current;
 	int currentCity = 0;
 	
+	void moveCity() {
+		currentCity ++;
+	}
 	
 	boolean createTeam(String name) {
 		game_team = new Team();
@@ -36,18 +40,28 @@ public class GameModel {
 		return XAndOgame;
 	}
 	
-	City[] getCities() {
+	ArrayList<City> getCities() {
 		return citylist;
 	}
 	
 	int getCurrentCity() {
 		return currentCity;
 	}
-	void setCities() {
-		City city1 = new City();
-		city1.setCityDestination();
-	
-		citylist = new City[]{city1};
+	void setCities(int numberOfCities) {
+		ArrayList<City> templist = new ArrayList<City>();
+		
+		for (int i =0;i< numberOfCities; i ++ ) {
+			City tempcity = new City("City "+i);
+			
+			tempcity.setCityDestination();
+			if (i == numberOfCities) {
+				System.out.print("Would add in Super villain");
+			}
+			tempcity.setVillain();
+			templist.add(tempcity);
+		}
+		
+		citylist = templist;
 	}
 	
 	

@@ -23,6 +23,7 @@ public class City {
 	 * The boolean status of the villain in which true if they are alive and false if they are dead.
 	 */
 	private boolean villainStatus = true;
+	private String cityName;
 	
 	/**
 	 * A random generated integer to generate the array list of cityDestination.
@@ -34,6 +35,10 @@ public class City {
 	 */
 	Villain villain;
 	
+	public City(String string) {
+		cityName = string;
+	}
+
 	/**
 	 * The constructor for the class Villain that sets the name, number of lives,
 	 * damage and the favourite game of the Villain in the city.
@@ -42,6 +47,13 @@ public class City {
 		villain = new Villain("Dibs", 2, 20, "XAndOs");
 	}
 	
+	public String getName() {
+		return cityName;
+	}
+	
+	Villain getCityVillain() {
+		return villain;
+	}
 	/**
 	 * A function that returns the life status of the villain in the city. 
 	 * It returns a boolean value in which true is for alive and false is for dead.
@@ -77,6 +89,11 @@ public class City {
 	public ArrayList<Integer> getKnownDestination() {
 		return knownDestination;
 	}
+	
+	public void setVilainStatus () {
+		villainStatus = villain.isAlive();
+	}
+	
 	
 	/**
 	 * A function that copies the location in the given direction.

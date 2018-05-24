@@ -245,6 +245,7 @@ public class Hero {
 		}
 		if(heroType == "Earth") {
 			heroAbility = "Takes less Damage";
+			applyResistance(50);
 		}
 		if(heroType == "Divine") {
 			heroAbility = "Double Maximum Health";

@@ -9,6 +9,7 @@ import java.util.Scanner;
  */
 public class XAndOs {
 	private String sep = "*";
+	private GameView gameviewref = null;
 	private String[][] game = { 
 			{"-","-","-"},
 			{"-","-","-"},
@@ -22,6 +23,10 @@ public class XAndOs {
 	
 	public String[][] getGameState(){
 		return game;
+	}
+
+	void setViewRef(GameView ref) {
+		gameviewref = ref;
 	}
 	
 	public void playGame() {
@@ -273,6 +278,7 @@ public class XAndOs {
 		}
 		if (marker == "X" || marker == "O") {
 			winner = marker;
+			
 		}
 		winner = marker;
 		return marker;

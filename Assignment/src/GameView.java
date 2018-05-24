@@ -21,15 +21,16 @@ import java.awt.Panel;
 import java.awt.Button;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
+import javax.swing.AbstractListModel;
 
 public class GameView {
 
 	private JFrame frame;
 	private JTextField textField;
-	public GameModel modelref = new GameModel();
+	private GameModel modelref = new GameModel();
 	private JLabel lblNewLabel;
 	private JLabel lblErrormessage;
-	private JLayeredPane TeamNamePanel;
+	//private JLayeredPane TeamNamePanel;
 	
 	private JTextField HeroName;
 	private JButton btnAddHero;
@@ -38,12 +39,14 @@ public class GameView {
 	private JList cityCount;
 	
 	//Panel refs
+	JLayeredPane TeamNamePanel = new JLayeredPane();
 	JPanel VillainLair = new JPanel();
 	JPanel HospitalPanel = new JPanel();
 	JPanel PowerUpDenPanel = new JPanel();
 	JPanel ShopPanel = new JPanel();
 	JPanel MapPanel = new JPanel();
 	JPanel XandOPanel = new JPanel();
+	JPanel battleOutComePanel = new JPanel();
 		
 	//button refrences
 	JButton button_0 = new JButton("-");
@@ -69,7 +72,13 @@ public class GameView {
 	private JList HospitalHeroList;
 	private JList healingItemsList;
 	private JList<String> currenthealingheroes;
+	private JLabel OutComeLabel;
+	private JLabel lblVillainLives;
+	private JList<String> MapHeroList;
+	private JList VillainLairHeroselect;
+	private JLabel lblVillainLivesLeft;
 	
+	String[] cities= {"3","4","5","6" };
 	/**
 	 * Launch the application.
 	 */
@@ -98,22 +107,22 @@ public class GameView {
 	 * @wbp.parser.entryPoint
 	 */
 	private void initialize() {
-		modelref.setCities();
+		//modelref.setCities();
 		
 		
 		//delete after!!!!!!!!!
-		modelref.createTeam("AA");
-		modelref.getTeam().addHealingItems(new HealingItem("Add 50", 50, 50));
-		modelref.getTeam().addHealingItems(new HealingItem("Add 50", 50, 50));
-		modelref.getTeam().addHeroes("DDD", "Demonic");
-		modelref.getTeam().getHeroes().get(0).decreaseHealth(60);
-		modelref.getTeam().addHeroes("Alice", "Divine");
-		modelref.getTeam().getHeroes().get(1).decreaseHealth(60);
+//		modelref.createTeam("AA");
+//		modelref.getTeam().addHealingItems(new HealingItem("Add 50", 50, 50));
+//		modelref.getTeam().addHealingItems(new HealingItem("Add 50", 50, 50));
+//		modelref.getTeam().addHeroes("DDD", "Demonic");
+//		modelref.getTeam().getHeroes().get(0).decreaseHealth(60);
+//		modelref.getTeam().addHeroes("Alice", "Divine");
+//		modelref.getTeam().getHeroes().get(1).decreaseHealth(60);
 		///
 		
 		
 		
-		System.out.println(modelref.getCities()[0].getCityDestination());
+		//System.out.println(modelref.getCities().get(0).getCityDestination());
 		frame = new JFrame();
 		frame.setBounds(100, 100, 583, 453);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -121,175 +130,178 @@ public class GameView {
 		
 		
 		//Power up den panel
-//		PowerUpDenPanel.setVisible(true);
-//		PowerUpDenPanel.setBounds(6, 6, 571, 398);
-//		frame.getContentPane().add(PowerUpDenPanel);
-//		PowerUpDenPanel.setLayout(null);
+	PowerUpDenPanel.setVisible(false);
+	PowerUpDenPanel.setBounds(6, 6, 571, 398);
+	frame.getContentPane().add(PowerUpDenPanel);
+	PowerUpDenPanel.setLayout(null);
 ////		
-//		JLabel lblPowerUpDen = new JLabel("Power Up Den");
-//		lblPowerUpDen.setBounds(243, 6, 98, 16);
-//		PowerUpDenPanel.add(lblPowerUpDen);
+	JLabel lblPowerUpDen = new JLabel("Power Up Den");
+		lblPowerUpDen.setBounds(243, 6, 98, 16);
+		PowerUpDenPanel.add(lblPowerUpDen);
 ////		
-//		JButton btnReturnToBase = new JButton("Return to base");
-//     	btnReturnToBase.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				MapPanel.setVisible(true);
-//				PowerUpDenPanel.setVisible(false);
-//			}
-//		});
-//		btnReturnToBase.setBounds(428, 312, 117, 29);
-//		PowerUpDenPanel.add(btnReturnToBase);
+		JButton btnReturnToBase = new JButton("Return to base");
+     	btnReturnToBase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MapPanel.setVisible(true);
+				PowerUpDenPanel.setVisible(false);
+			}
+		});
+		btnReturnToBase.setBounds(428, 312, 117, 29);
+		PowerUpDenPanel.add(btnReturnToBase);
 ////		
-//		PowerUpListDen = new JList();
-//		PowerUpListDen.setBounds(28, 83, 176, 222);
-//		PowerUpDenPanel.add(PowerUpListDen);
+		PowerUpListDen = new JList();
+		PowerUpListDen.setBounds(28, 83, 176, 222);
+		PowerUpDenPanel.add(PowerUpListDen);
 ////		
-//		JLabel lblTeamPowerUps = new JLabel("Team power ups");
-//		lblTeamPowerUps.setHorizontalAlignment(SwingConstants.CENTER);
-//		lblTeamPowerUps.setBounds(28, 53, 176, 16);
-//		PowerUpDenPanel.add(lblTeamPowerUps);
+	JLabel lblTeamPowerUps = new JLabel("Team power ups");
+		lblTeamPowerUps.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTeamPowerUps.setBounds(28, 53, 176, 16);
+		PowerUpDenPanel.add(lblTeamPowerUps);
 ////		
-//		teamOfHerosList = new JList();
-//		teamOfHerosList.setBounds(261, 83, 284, 77);
-//		PowerUpDenPanel.add(teamOfHerosList);
+		teamOfHerosList = new JList();
+		teamOfHerosList.setBounds(261, 83, 284, 77);
+		PowerUpDenPanel.add(teamOfHerosList);
 ////		
-//		JLabel lblTeamHeros = new JLabel("Team Heros");
-//		lblTeamHeros.setBounds(340, 55, 225, 16);
+		JLabel lblTeamHeros = new JLabel("Team Heros");
+		lblTeamHeros.setBounds(340, 55, 225, 16);
 //		PowerUpDenPanel.add(lblTeamHeros);
 ////		
-//		JButton btnUse = new JButton("Use");
-//		btnUse.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
+	JButton btnUse = new JButton("Use");
+	btnUse.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
 //				
-//				ArrayList<PowerUpItem> powerUps = modelref.getTeam().getPowerUpList();
+				ArrayList<PowerUpItem> powerUps = modelref.getTeam().getPowerUpList();
 //				
 //					
-//				if (!getPowerUpListDen().isSelectionEmpty() && !getTeamOfHeros().isSelectionEmpty()) {
-//					System.out.println(powerUps.size());
+				if (!getPowerUpListDen().isSelectionEmpty() && !getTeamOfHeros().isSelectionEmpty()) {
+					System.out.println(powerUps.size());
 //					
-//					if ( powerUps.size() > 0) {
-//						PowerUpItem item = (PowerUpItem) powerUps.toArray()[getPowerUpListDen().getSelectedIndex()];
-//						item.useOn((Hero) modelref.getTeam().getHeroes().toArray()[getTeamOfHeros().getSelectedIndex()]);
-//						int index = getPowerUpListDen().getSelectedIndex();
-//						getPowerUpListDen().clearSelection();
-//						getTeamOfHeros().clearSelection();
-//						updateDenUI();
-//						
-//						System.out.println(index);
-//						modelref.getTeam().removePowerUp((PowerUpItem) powerUps.toArray()[index]);
-//						updateDenUI();
-//					}
-//					else {
-//						System.out.println("No Items");
-//					}
+					if ( powerUps.size() > 0) {
+						PowerUpItem item = (PowerUpItem) powerUps.toArray()[getPowerUpListDen().getSelectedIndex()];
+						item.useOn((Hero) modelref.getTeam().getHeroes().toArray()[getTeamOfHeros().getSelectedIndex()]);
+						int index = getPowerUpListDen().getSelectedIndex();
+						getPowerUpListDen().clearSelection();
+						getTeamOfHeros().clearSelection();
+						
+						System.out.println(index);
+						modelref.getTeam().removePowerUp((PowerUpItem) powerUps.toArray()[index]);
+						updateDenUI();
+						updateShopUI();
+						UpdatePlayeritems();
+					}
+					else {
+						System.out.println("No Items");
+					}
 //					
-//				}
+				}
 //				
-//			}
-//		});
-//		btnUse.setBounds(340, 169, 117, 29);
-//		PowerUpDenPanel.add(btnUse);
+			}
+		});
+		btnUse.setBounds(340, 169, 117, 29);
+		PowerUpDenPanel.add(btnUse);
 		
 		
 		
 		//Shop panel
-//		ShopPanel.setVisible(true);
-//		ShopPanel.setBounds(6, 6, 571, 398);
-//		frame.getContentPane().add(ShopPanel);
-//		ShopPanel.setLayout(null);
-//		Shop shopref = modelref.getShop();
+		ShopPanel.setVisible(false);
+		ShopPanel.setBounds(6, 6, 571, 398);
+		frame.getContentPane().add(ShopPanel);
+		ShopPanel.setLayout(null);
+		Shop shopref = modelref.getShop();
+		
+		JLabel lblShopPanel = new JLabel("Shop");
+		lblShopPanel.setBounds(243, 6, 98, 16);
+		ShopPanel.add(lblShopPanel);
+		
+		JButton btnShopReturnToBase = new JButton("Return to base");
+		btnShopReturnToBase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ShowLowMoneyError().setVisible(false);
+				updateDenUI();
+				UpdateHospitalUI();
+				UpdatePlayeritems();
+				MapPanel.setVisible(true);
+				ShopPanel.setVisible(false);
+			}
+		});
+		btnShopReturnToBase.setBounds(425, 350, 117, 29);
+		ShopPanel.add(btnShopReturnToBase);
 //		
-//		JLabel lblShopPanel = new JLabel("Shop");
-//		lblShopPanel.setBounds(243, 6, 98, 16);
-//		ShopPanel.add(lblShopPanel);
+		Team_items = new JList<String>();
+		Team_items.setBounds(303, 93, 223, 245);
+		ShopPanel.add(Team_items);
 //		
-//		JButton btnShopReturnToBase = new JButton("Return to base");
-//		btnShopReturnToBase.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				ShowLowMoneyError().setVisible(false);
-//				MapPanel.setVisible(true);
-//				ShopPanel.setVisible(false);
-//			}
-//		});
-//		btnShopReturnToBase.setBounds(425, 350, 117, 29);
-//		ShopPanel.add(btnShopReturnToBase);
+		ShopItems_list = new JList<String>();
+		ShopItems_list.setBounds(22, 44, 223, 115);
+		ShopPanel.add(ShopItems_list);
 //		
-//		Team_items = new JList<String>();
-//		Team_items.setBounds(303, 93, 223, 245);
-//		ShopPanel.add(Team_items);
-//		
-//		ShopItems_list = new JList<String>();
-//		ShopItems_list.setBounds(22, 44, 223, 115);
-//		ShopPanel.add(ShopItems_list);
-//		
-//		JButton btnBuy = new JButton("Buy");
-//		btnBuy.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				ShowLowMoneyError().setVisible(false);
-//				int index = getShopItems_list().getSelectedIndex();
-//				getShopItems_list().clearSelection();
-//				if (index > -1) {
-//					if (modelref.getTeam().getMoney() - ((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice() >= 0 ) {
-//						modelref.getTeam().decreaseMoney(((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice());
-//						modelref.getTeam().addHealingItems((HealingItem) shopref.getHealingItems().toArray()[index]);
-//		
-//					}else {
-//						ShowLowMoneyError().setVisible(true);
-//					}
+		JButton btnBuy = new JButton("Buy");
+		btnBuy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ShowLowMoneyError().setVisible(false);
+				int index = getShopItems_list().getSelectedIndex();
+				getShopItems_list().clearSelection();
+				if (index > -1) {
+					if (modelref.getTeam().getTeamMoney() - ((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice() >= 0 ) {
+						modelref.getTeam().decreaseMoney(((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice());
+						modelref.getTeam().addHealingItems((HealingItem) shopref.getHealingItems().toArray()[index]);
+					}else {
+						ShowLowMoneyError().setVisible(true);
+					}
 //						
-//					UpdatePlayeritems();
-//					updateShopUI();	
-//					
-//					
-//				//modelref.getTeam().addHealingItems(shopref.getHealingItems().toArray()[index]);
-//				UpdatePlayeritems();
-//				updateShopUI();
-//				}
-//			}
-//		});
-//		btnBuy.setBounds(128, 171, 117, 29);
-//		ShopPanel.add(btnBuy);
+					UpdatePlayeritems();
+					updateShopUI();	
+					
+					
+				//modelref.getTeam().addHealingItems(shopref.getHealingItems().toArray()[index]);
+				UpdatePlayeritems();
+				updateShopUI();
+				}
+			}
+		});
+		btnBuy.setBounds(128, 171, 117, 29);
+		ShopPanel.add(btnBuy);
 //		
-//		PowerUpList = new JList<String>();
-//		PowerUpList.setBounds(22, 205, 223, 115);
-//		ShopPanel.add(PowerUpList);
+		PowerUpList = new JList<String>();
+		PowerUpList.setBounds(22, 205, 223, 115);
+		ShopPanel.add(PowerUpList);
+		
+		JButton buttonpowerup = new JButton("Buy");
+		buttonpowerup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ShowLowMoneyError().setVisible(false);
+				int index = getPowerUpList().getSelectedIndex();
+				getShopItems_list().clearSelection();
+				if (index > -1) {
+					if (modelref.getTeam().getTeamMoney() - ((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice() >= 0 ) {
+						modelref.getTeam().decreaseMoney(((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice());
+						modelref.getTeam().addPowerUpitem((PowerUpItem) shopref.getPowerUpItems().toArray()[index]);
+		
+					}else {
+						ShowLowMoneyError().setVisible(true);
+					}
+										
+					UpdatePlayeritems();
+					updateShopUI();
+					
+				}
+				
+			}
+		});
+		buttonpowerup.setBounds(128, 332, 117, 29);
+		ShopPanel.add(buttonpowerup);
 //		
-//		JButton buttonpowerup = new JButton("Buy");
-//		buttonpowerup.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				ShowLowMoneyError().setVisible(false);
-//				int index = getPowerUpList().getSelectedIndex();
-//				getShopItems_list().clearSelection();
-//				if (index > -1) {
-//					if (modelref.getTeam().getMoney() - ((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice() >= 0 ) {
-//						modelref.getTeam().decreaseMoney(((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice());
-//						modelref.getTeam().addPowerUpitem((PowerUpItem) shopref.getPowerUpItems().toArray()[index]);
-//		
-//					}else {
-//						ShowLowMoneyError().setVisible(true);
-//					}
-//										
-//					UpdatePlayeritems();
-//					updateShopUI();
-//					
-//				}
-//				
-//			}
-//		});
-//		buttonpowerup.setBounds(128, 332, 117, 29);
-//		ShopPanel.add(buttonpowerup);
-//		
-//		lblTeamMoney = new JLabel("Team Money:");
-//		lblTeamMoney.setBounds(303, 47, 223, 16);
-//		ShopPanel.add(lblTeamMoney);
-//		
-//		lblNeedMoreMoney = new JLabel("Need More money");
-//		lblNeedMoreMoney.setVisible(false);
-//		lblNeedMoreMoney.setForeground(Color.RED);
-//		lblNeedMoreMoney.setBounds(303, 65, 123, 16);
-//		ShopPanel.add(lblNeedMoreMoney);
-//		UpdatePlayeritems();
-//		updateShopUI();
+		lblTeamMoney = new JLabel("Team Money:");
+		lblTeamMoney.setBounds(303, 47, 223, 16);
+		ShopPanel.add(lblTeamMoney);
+		
+		lblNeedMoreMoney = new JLabel("Need More money");
+		lblNeedMoreMoney.setVisible(false);
+		lblNeedMoreMoney.setForeground(Color.RED);
+		lblNeedMoreMoney.setBounds(303, 65, 123, 16);
+		ShopPanel.add(lblNeedMoreMoney);
+		//UpdatePlayeritems();
+		//updateShopUI();
 //		
 		
 		
@@ -297,7 +309,7 @@ public class GameView {
 		
 		
 		//Hospital Panel
-		HospitalPanel.setVisible(true);
+		HospitalPanel.setVisible(false);
 		HospitalPanel.setBounds(6, 6, 571, 395);
 		frame.getContentPane().add(HospitalPanel);
 		HospitalPanel.setLayout(null);
@@ -368,112 +380,112 @@ public class GameView {
 		currenthealingheroes.setBounds(214, 185, 351, 95);
 		HospitalPanel.add(currenthealingheroes);
 		
-		UpdateHospitalUI();
+		///UpdateHospitalUI();
 		//
 		
 		
 		
 		//Xandos game panel
-//		XandOPanel.setVisible(false);
-//		XandOPanel.setBounds(6, 6, 571, 390);
-//		frame.getContentPane().add(XandOPanel);
-//		XandOPanel.setLayout(null);
-//		modelref.createXAndOGame();
-//		
-//		button_0.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				XandOButtonfunction(0, 0);
-//			}
-//		});
-//		button_0.setBounds(26, 40, 144, 81);
-//		XandOPanel.add(button_0);
-//		
-//		button_1.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				XandOButtonfunction(0, 1);
-//			}
-//		});
-//		button_1.setBounds(200, 40, 144, 81);
-//		XandOPanel.add(button_1);
-//		
-//		button_2.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				XandOButtonfunction(0, 2);
-//			}
-//		});
-//		button_2.setBounds(367, 40, 144, 81);
-//		XandOPanel.add(button_2);
-//		
-//		button_3.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				XandOButtonfunction(1, 0);
-//			}
-//		});
-//		button_3.setBounds(26, 133, 144, 81);
-//		XandOPanel.add(button_3);
-//		
-//		button_4.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				XandOButtonfunction(1, 1);
-//			}
-//		});
-//		button_4.setBounds(200, 140, 144, 81);
-//		XandOPanel.add(button_4);
-//		
-//		button_5.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				XandOButtonfunction(1, 2);
-//			}
-//		});
-//		button_5.setBounds(367, 133, 144, 81);
-//		XandOPanel.add(button_5);
-//		
-//		button_6.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				XandOButtonfunction(2, 0);
-//			}
-//		});
-//		button_6.setBounds(26, 226, 144, 81);
-//		XandOPanel.add(button_6);
-//		
-//		button_7.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				XandOButtonfunction(2, 1);
-//			}
-//		});
-//		button_7.setBounds(199, 230, 144, 81);
-//		XandOPanel.add(button_7);
-//		
-//		button_8.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				XandOButtonfunction(2, 2);
-//			}
-//		});
-//		button_8.setBounds(367, 226, 144, 81);
-//		XandOPanel.add(button_8);
-//		
-//		JLabel lblYouAreX = new JLabel("You are X, you need to get 3 in a row to win");
-//		lblYouAreX.setBounds(28, 8, 294, 16);
-//		XandOPanel.add(lblYouAreX);
-//		
-//		
-//		WinnerLabel.setBounds(167, 334, 188, 39);
-//		XandOPanel.add(WinnerLabel);
-//		
-//		JButton btnReturnToHomebase = new JButton("Return to homebase");
-//		btnReturnToHomebase.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				MapPanel.setVisible(true);
-//				modelref.createXAndOGame();
-//				updateUI(modelref.XAndOgame.getGameState());
-//				WinnerLabel.setText("Winner is ");
-//				XandOPanel.setVisible(false);
-//				
-//			}
-//		});
-//		btnReturnToHomebase.setBounds(392, 340, 152, 29);
-//		XandOPanel.add(btnReturnToHomebase);
-//		modelref.createTeam("Team 1");
+		XandOPanel.setVisible(false);
+		XandOPanel.setBounds(6, 6, 571, 390);
+		frame.getContentPane().add(XandOPanel);
+		XandOPanel.setLayout(null);
+		modelref.createXAndOGame();
+		
+		button_0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(0, 0);
+			}
+		});
+		button_0.setBounds(26, 40, 144, 81);
+		XandOPanel.add(button_0);
+		
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(0, 1);
+			}
+		});
+		button_1.setBounds(200, 40, 144, 81);
+		XandOPanel.add(button_1);
+		
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(0, 2);
+			}
+		});
+		button_2.setBounds(367, 40, 144, 81);
+		XandOPanel.add(button_2);
+		
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(1, 0);
+			}
+		});
+		button_3.setBounds(26, 133, 144, 81);
+		XandOPanel.add(button_3);
+		
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(1, 1);
+			}
+		});
+		button_4.setBounds(200, 140, 144, 81);
+		XandOPanel.add(button_4);
+		
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(1, 2);
+			}
+		});
+		button_5.setBounds(367, 133, 144, 81);
+		XandOPanel.add(button_5);
+		
+		button_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(2, 0);
+			}
+		});
+		button_6.setBounds(26, 226, 144, 81);
+		XandOPanel.add(button_6);
+		
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(2, 1);
+			}
+		});
+		button_7.setBounds(199, 230, 144, 81);
+		XandOPanel.add(button_7);
+		
+		button_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOButtonfunction(2, 2);
+			}
+		});
+		button_8.setBounds(367, 226, 144, 81);
+		XandOPanel.add(button_8);
+		
+		JLabel lblYouAreX = new JLabel("You are X, you need to get 3 in a row to win");
+		lblYouAreX.setBounds(28, 8, 294, 16);
+		XandOPanel.add(lblYouAreX);
+		
+		
+		WinnerLabel.setBounds(167, 334, 188, 39);
+		XandOPanel.add(WinnerLabel);
+		
+		JButton btnReturnToHomebase = new JButton("Return to homebase");
+		btnReturnToHomebase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MapPanel.setVisible(true);
+				modelref.createXAndOGame();
+				updateXandOsUI(modelref.XAndOgame.getGameState());
+				WinnerLabel.setText("Winner is ");
+				XandOPanel.setVisible(false);
+				
+			}
+		});
+		btnReturnToHomebase.setBounds(392, 340, 152, 29);
+		XandOPanel.add(btnReturnToHomebase);
+		modelref.createTeam("Team 1");
 		//Panel end
 		
 		
@@ -483,211 +495,265 @@ public class GameView {
 		for(int i = 0; i < types.length; i++) {
 			typeslist.addElement(types[i]);
 		}
-		//updateDenUI();
-	}		
+		updateDenUI();
+			
 		//Villain fight
-//		VillainLair.setVisible(false);
-//		VillainLair.setBounds(6, 6, 571, 413);
-//		frame.getContentPane().add(VillainLair);
-//		VillainLair.setLayout(null);
+		VillainLair.setVisible(false);
+		VillainLair.setBounds(6, 6, 571, 413);
+		frame.getContentPane().add(VillainLair);
+		VillainLair.setLayout(null);
 //		
-//		JButton btnReturnToHero = new JButton("Return to hero base");
-//		btnReturnToHero.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				MapPanel.setVisible(true);
-//				VillainLair.setVisible(false);
-//			}
-//		});
-//		btnReturnToHero.setBounds(73, 359, 167, 29);
-//		VillainLair.add(btnReturnToHero);
+		JButton btnReturnToHero = new JButton("Return to hero base");
+		btnReturnToHero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MapPanel.setVisible(true);
+				VillainLair.setVisible(false);
+			}
+		});
+		btnReturnToHero.setBounds(73, 359, 167, 29);
+		VillainLair.add(btnReturnToHero);
 //		
-//		JButton BattleVillainButton = new JButton("FIGHT!!!");
-//		BattleVillainButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				XandOPanel.setVisible(true);
-//				VillainLair.setVisible(false);
-//			}
-//		});
-//		BattleVillainButton.setBounds(306, 359, 187, 29);
-//		VillainLair.add(BattleVillainButton);
+		JButton BattleVillainButton = new JButton("FIGHT!!!");
+		BattleVillainButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XandOPanel.setVisible(true);
+				VillainLair.setVisible(false);
+			}
+		});
+		BattleVillainButton.setBounds(306, 359, 187, 29);
+		VillainLair.add(BattleVillainButton);
 //		
-//		JLabel lblVillainLivesLeft = new JLabel("Villain Lives left: 3");
-//		lblVillainLivesLeft.setBounds(317, 331, 133, 16);
-//		VillainLair.add(lblVillainLivesLeft);
-//		
+		lblVillainLivesLeft = new JLabel("Villain Lives left: 3");
+		lblVillainLivesLeft.setBounds(317, 331, 133, 16);
+		VillainLair.add(lblVillainLivesLeft);
 		
-//		JLabel lblVillainLivesLeft = new JLabel("Welcome to your doom taunt");
-//		lblVillainLivesLeft.setBounds(317, 270, 133, 16);
-//		VillainLair.add(lblVillainLivesLeft);
-//		JLabel VillainImage = new JLabel("Villain Image");
-//		//VillainImage.setIcon(new ImageIcon("/Users/benduke/Desktop/Screen Shot 2018-05-13 at 9.38.55 PM.png"));
-//		VillainImage.setBounds(74, 3, 386, 316);
-//		VillainLair.add(VillainImage);
+		JLabel lblVillainTaunt = new JLabel("Welcome to your doom!!!");
+		lblVillainTaunt.setBounds(41, 331, 233, 16);
+		VillainLair.add(lblVillainTaunt);
+		JLabel VillainImage = new JLabel("Villain Image");
+		//VillainImage.setIcon(new ImageIcon("/Users/benduke/Desktop/Screen Shot 2018-05-13 at 9.38.55 PM.png"));
+		VillainImage.setBounds(24, 54, 258, 244);
+		VillainLair.add(VillainImage);
+		
+		VillainLairHeroselect = new JList();
+		VillainLairHeroselect.setBounds(300, 54, 246, 248);
+		VillainLair.add(VillainLairHeroselect);
 
 
 
 
 		//MapPanel GUI
 		//Add in team and inventory of team
-//		MapPanel.setBounds(6, 6, 571, 419);
-//		frame.getContentPane().add(MapPanel);
-//		MapPanel.setVisible(true);
-//		MapPanel.setLayout(null);
-//
-//		JButton West_button = new JButton("West");
-//		West_button.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				movetoDestination(3);
-//			}
-//		});
-//		West_button.setBounds(100, 163, 121, 73);
-//		MapPanel.add(West_button);
-//
-//		JButton East_Button = new JButton("East");
-//		East_Button.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				movetoDestination(1);
-//			}
-//		});
-//		East_Button.setBounds(344, 163, 121, 73);
-//		MapPanel.add(East_Button);
-//
-//		JButton South_Button = new JButton("South");
-//		South_Button.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				movetoDestination(2);
-//			}
-//		});
-//		South_Button.setBounds(219, 260, 121, 73);
-//		MapPanel.add(South_Button);
-//
-//		JButton North_Button = new JButton("North");
-//		North_Button.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				movetoDestination(0);
-//			}
-//		});
-//		North_Button.setBounds(219, 62, 121, 73);
-//		MapPanel.add(North_Button);
-//
-//		JLabel lblVillainLives = new JLabel("Villain lives :");
-//		lblVillainLives.setBounds(404, 6, 161, 16);
-//		MapPanel.add(lblVillainLives);
+		MapPanel.setBounds(6, 6, 571, 419);
+		frame.getContentPane().add(MapPanel);
+		MapPanel.setVisible(false);
+		MapPanel.setLayout(null);
+
+		JButton West_button = new JButton("West");
+		West_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				movetoDestination(3);
+			}
+		});
+		West_button.setBounds(6, 133, 121, 73);
+		MapPanel.add(West_button);
+
+		JButton East_Button = new JButton("East");
+		East_Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				movetoDestination(1);
+			}
+		});
+		East_Button.setBounds(219, 133, 121, 73);
+		MapPanel.add(East_Button);
+
+		JButton South_Button = new JButton("South");
+		South_Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				movetoDestination(2);
+			}
+		});
+		South_Button.setBounds(114, 204, 121, 73);
+		MapPanel.add(South_Button);
+
+		JButton North_Button = new JButton("North");
+		North_Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				movetoDestination(0);
+			}
+		});
+		North_Button.setBounds(114, 62, 121, 73);
+		MapPanel.add(North_Button);
+
+		lblVillainLives = new JLabel("Villain lives :");
+		lblVillainLives.setBounds(114, 17, 161, 16);
+		MapPanel.add(lblVillainLives);
+		
+		MapHeroList = new JList();
+		MapHeroList.setBounds(6, 292, 334, 73);
+		MapPanel.add(MapHeroList);
+		
+		JList<String> list_1 = new JList();
+		list_1.setBounds(374, 55, 169, 310);
+		MapPanel.add(list_1);
 //		
+//		Battle out come panel
+		
+		battleOutComePanel.setBounds(6, 6, 571, 403);
+		frame.getContentPane().add(battleOutComePanel);
+		battleOutComePanel.setLayout(null);
+		
+		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Reset Game
+				modelref.createXAndOGame();
+				updateXandOsUI(modelref.XAndOgame.getGameState());
+				WinnerLabel.setText("Winner is ");
+				MapPanel.setVisible(true);
+				battleOutComePanel.setVisible(false);
+				XandOPanel.setVisible(false);
+			}
+		});
+		btnOk.setBounds(222, 345, 117, 29);
+		battleOutComePanel.add(btnOk);
+		
+		OutComeLabel = new JLabel("Congrats!!");
+		OutComeLabel.setBounds(95, 84, 333, 63);
+		battleOutComePanel.add(OutComeLabel);
+		battleOutComePanel.setVisible(false);
+		
+		
 		
 //		Team Panel Gui
 		
-//		TeamNamePanel = new JLayeredPane();
-//		TeamNamePanel.setBounds(40, 35, 512, 368);
-//		frame.getContentPane().add(TeamNamePanel);
-//		
-//		lblNewLabel = new JLabel("Please enter a name between 2 - 10 characters long");
-//		lblNewLabel.setBounds(59, 37, 332, 16);
-//		TeamNamePanel.add(lblNewLabel);
-//		
-//		lblErrormessage = new JLabel("ErrorMessage");
-//		lblErrormessage.setBounds(136, 65, 193, 16);
-//		TeamNamePanel.add(lblErrormessage);
-//		lblErrormessage.setVisible(false);
-//		lblErrormessage.setForeground(Color.RED);
-//		
-//		textField = new JTextField();
-//		textField.setBounds(163, 79, 130, 26);
-//		TeamNamePanel.add(textField);
-//		textField.setColumns(10);
-//		
-//		JButton Done = new JButton("Done");
-//		Done.setBounds(379, 310, 95, 29);
-//		TeamNamePanel.add(Done);
-//		
-//		JLabel lblSelectHowMany = new JLabel("Select how many heros in the team");
-//		lblSelectHowMany.setBounds(40, 111, 289, 16);
-//		TeamNamePanel.add(lblSelectHowMany);
-//		
-//		HeroName = new JTextField();
-//		HeroName.setBounds(121, 139, 130, 26);
-//		TeamNamePanel.add(HeroName);
-//		HeroName.setColumns(10);
-//		
-//		JLabel lblHeroName = new JLabel("Hero Name:");
-//		lblHeroName.setBounds(44, 141, 86, 16);
-//		TeamNamePanel.add(lblHeroName);
-//		
-//		list = new JList<>(typeslist);
-//		list.setBounds(119, 176, 161, 122);
-//		TeamNamePanel.add(list);
-//		
-//		btnAddHero = new JButton("Add Hero");
-//		btnAddHero.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				if (GetHeroType() != null && HeroName != null) {
-//					if(!HeroName.getText().equals("")) {
-//					modelref.game_team.addHeroes(HeroName.getText(), types[GetHeroType().getSelectedIndex()]);
-//					HeroName.setText("");
-//					list.clearSelection();
-//					updateHeroes();
-//					modelref.updateCityCount(cityCount.getSelectedIndex()+1);
-//					System.out.println(modelref.cityCount);
-//					}
-//				}
-//				else {
-//					System.out.println("No value");
-//				}
-//				
-//			}
-//		});
-//		btnAddHero.setBounds(134, 310, 117, 29);
-//		TeamNamePanel.add(btnAddHero);
-//		
-//		HeroList = new JList();
-//		HeroList.setBounds(341, 167, 149, 131);
-//		TeamNamePanel.add(HeroList);
-//		
-//		String[] cities= {"1","2","3" };
-//		cityCount = new JList(cities);
-//		cityCount.setBounds(341, 84, 149, 59);
-//		cityCount.setSelectedIndex(0);
-//		TeamNamePanel.add(cityCount);
-//		
-//		JLabel lblHowManyCities = new JLabel("How many cities?");
-//		lblHowManyCities.setBounds(341, 65, 149, 16);
-//		TeamNamePanel.add(lblHowManyCities);
-//		
-//		Done.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				if (getTeamNameTextField().getText().length() < 2) {
-//					System.out.println("Needs to be longer name");
-//					lblErrormessage.setText("Needs to be a longer name");
-//					lblErrormessage.setVisible(true);
-//				}
-//				else if (getTeamNameTextField().getText().length() > 10) {
-//					System.out.println("Needs to be shorter name");
-//					lblErrormessage.setText("Needs to be a shorter name");
-//					lblErrormessage.setVisible(true);
-//				}
-//				
-//				else {
-//						if (modelref.getTeam().getHeroes().size() == 0) {
-//							System.out.println("Print out that you need more heros");
-//						}
-//						else {
-//							modelref.getTeam().setTeamName(getTeamNameTextField().getText());
-//							System.out.println(modelref.getTeam().getTeamName());
-//							
-//							for (Hero tempHero: modelref.getTeam().getHeroes()) {
-//								System.out.println(tempHero.getName());
-//							}
-//							TeamNamePanel.setVisible(false);
-//							MapPanel.setVisible(true);
-//						}
-//						
-//					
-//					
-//				}
-//			}
-//		});
-//	}
-//	
+		
+		TeamNamePanel.setBounds(40, 35, 512, 368);
+		frame.getContentPane().add(TeamNamePanel);
+		lblNewLabel = new JLabel("Please enter a name between 2 - 10 characters long");
+		lblNewLabel.setBounds(59, 37, 332, 16);
+		TeamNamePanel.add(lblNewLabel);
+		
+		lblErrormessage = new JLabel("ErrorMessage");
+		lblErrormessage.setBounds(136, 65, 193, 16);
+		TeamNamePanel.add(lblErrormessage);
+		lblErrormessage.setVisible(false);
+		lblErrormessage.setForeground(Color.RED);
+		
+		textField = new JTextField();
+		textField.setBounds(163, 79, 130, 26);
+		TeamNamePanel.add(textField);
+		textField.setColumns(10);
+		
+		JButton Done = new JButton("Done");
+		Done.setBounds(379, 310, 95, 29);
+		TeamNamePanel.add(Done);
+		
+		JLabel lblSelectHowMany = new JLabel("Select how many heros in the team");
+		lblSelectHowMany.setBounds(40, 111, 289, 16);
+		TeamNamePanel.add(lblSelectHowMany);
+		
+		HeroName = new JTextField();
+		HeroName.setBounds(121, 139, 130, 26);
+		TeamNamePanel.add(HeroName);
+		HeroName.setColumns(10);
+		
+		JLabel lblHeroName = new JLabel("Hero Name:");
+		lblHeroName.setBounds(44, 141, 86, 16);
+		TeamNamePanel.add(lblHeroName);
+		
+		list = new JList<>(typeslist);
+		list.setBounds(119, 176, 161, 122);
+		TeamNamePanel.add(list);
+		
+		btnAddHero = new JButton("Add Hero");
+		btnAddHero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (GetHeroType() != null && HeroName != null && list.getSelectedIndex() > -1) {
+					if(!HeroName.getText().equals("")) {
+					modelref.game_team.addHeroes(HeroName.getText(), types[GetHeroType().getSelectedIndex()]);
+					HeroName.setText("");
+					list.clearSelection();
+					updateHeroes();
+					modelref.updateCityCount(cityCount.getSelectedIndex()+1);
+					System.out.println(modelref.cityCount);
+					}
+				}
+				else {
+					System.out.println("No value");
+				}
+				
+			}
+		});
+		btnAddHero.setBounds(134, 310, 117, 29);
+		TeamNamePanel.add(btnAddHero);
+		
+		HeroList = new JList();
+		HeroList.setBounds(341, 167, 149, 131);
+		TeamNamePanel.add(HeroList);
+		
+		
+		cityCount = new JList(cities);
+		cityCount.setBounds(341, 84, 149, 68);
+		cityCount.setModel(new AbstractListModel() {
+			String[] values = new String[] {"3", "4", "5", "6"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		cityCount.setSelectedIndex(0);
+		TeamNamePanel.add(cityCount);
+		
+		JLabel lblHowManyCities = new JLabel("How many cities?");
+		lblHowManyCities.setBounds(341, 65, 149, 16);
+		TeamNamePanel.add(lblHowManyCities);
+		
+		Done.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (getTeamNameTextField().getText().length() < 2) {
+					System.out.println("Needs to be longer name");
+					lblErrormessage.setText("Needs to be a longer name");
+					lblErrormessage.setVisible(true);
+				}
+				else if (getTeamNameTextField().getText().length() > 10) {
+					System.out.println("Needs to be shorter name");
+					lblErrormessage.setText("Needs to be a shorter name");
+					lblErrormessage.setVisible(true);
+				}
+				
+				else {
+						if (modelref.getTeam().getHeroes().size() == 0) {
+							System.out.println("Print out that you need more heros");
+						}
+						else {
+							modelref.getTeam().setTeamName(getTeamNameTextField().getText());
+							System.out.println(modelref.getTeam().getTeamName());
+							
+							for (Hero tempHero: modelref.getTeam().getHeroes()) {
+								System.out.println(tempHero.getName());
+							}
+							
+							modelref.setCities(Integer.parseInt(cities[getCityCountList().getSelectedIndex()]));
+							UpdateHospitalUI();
+							UpdatePlayeritems();
+							updateShopUI();
+							updateDenUI();
+							updateMapUI();
+							UpdateLairUI();
+							TeamNamePanel.setVisible(false);
+							MapPanel.setVisible(true);
+						}
+						
+					
+					
+				}
+			}
+		});
+		
+	}	
 	public void updateHeroes() {
 		String[] heroNames = new String[modelref.getTeam().getHeroes().size()];
 		int index = 0;
@@ -707,7 +773,7 @@ public class GameView {
 	
 	void movetoDestination(int direction) {
 		//System.out.println(modelref.getCities()[0].getCityDestination().toArray()[0]);
-		City cityref = modelref.getCities()[modelref.getCurrentCity()];
+		City cityref = modelref.getCities().get(modelref.getCurrentCity());
 		cityref.setlocations(direction, cityref.getCityDestination().get(direction));
 		System.out.println(cityref.getCityDestination().get(direction));
 		//The indices of the Array List stands for the map directions 0 - North, 1 - South, 2 - East, 3 - West and 4 - Center
@@ -749,8 +815,9 @@ public class GameView {
 	void XandOButtonfunction(int row, int col) {
 		int[] move = {row,col};
 		modelref.getXAndOGame().makeMove(move);
-		updateUI(modelref.getXAndOGame().getGameState());
-		modelref.getXAndOGame().printState();
+		updateXandOsUI(modelref.getXAndOGame().getGameState());
+		//modelref.getXAndOGame().printState();
+		openbattleoutcomescreen (modelref.getXAndOGame().checkforWinner());
 	}
 	/*
 	 * Updates the hospital UI 
@@ -767,7 +834,43 @@ public class GameView {
 		UpdateHospitalHealingHerosUI();
 		}
 	
-	
+
+	public void openbattleoutcomescreen (String marker){
+		System.out.println("Opening");
+		if (marker == "X" | marker == "O") { 
+			if (marker == "X") {
+				modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
+				
+				if (modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().isAlive() == false) {
+					System.out.println(""+modelref.getCurrentCity() + " size is " + modelref.getCities().size()) ;
+					if(modelref.getCurrentCity()+1 == modelref.getCities().size()) {
+						getOutComeLabel().setText("You won the Game the world is safe for now");
+					}
+					else {
+						getOutComeLabel().setText("Yay you defeated the Villain, Time for the next city");
+						modelref.moveCity();
+						UpdateLairUI();
+					}			
+					
+				}
+				else {
+					getOutComeLabel().setText("Congratulations but the Villain \n is still kicking get back in there");
+					UpdateLairUI();
+				}
+				
+			}
+			else {
+				getOutComeLabel().setText("You may have lost this one but keep fighting you can do this!");
+			}
+			
+			
+			updateMapUI();
+			battleOutComePanel.setVisible(true);
+			XandOPanel.setVisible(false);
+			
+		}
+		
+	}
 	
 	void UpdateHospitalHerosUI(){		
 		DefaultListModel<String> Team = new DefaultListModel<String>();
@@ -860,7 +963,7 @@ public class GameView {
 	/*
 	 * Updates the XAndOs game board
 	 */
-	void updateUI(String[][] board) {
+	void updateXandOsUI(String[][] board) {
 		ArrayList<JButton[]> boardarray = new ArrayList<JButton[]>(); 
 		JButton[] row0 = new JButton[3];
 		JButton[] row1 = new JButton[3];
@@ -902,39 +1005,48 @@ public class GameView {
 		return textField;
 	}
 	
-//	void updateDenUI() {
-//		
-//		ArrayList<String> PlayerItems = new ArrayList<String>();
-//		DefaultListModel<String> Playeritemlist = new DefaultListModel<String>();
-//		DefaultListModel<String> Team = new DefaultListModel<String>();
-//		
-//		System.out.println("UpdateDen " + (modelref.getTeam().getPowerUpList().toArray().length) + " items");
-//		for (int i_playeritemstring = 0; i_playeritemstring < modelref.getTeam().getPowerUpList().size();i_playeritemstring++) {
-//			PlayerItems.add(modelref.getTeam().getPowerUpList().toArray()[i_playeritemstring].toString());
-//		}
-//
-//		
-//			if (modelref.getTeam().getAllItems().size() != 0) {
-//				for (int j_playeritemtolist = 0; j_playeritemtolist < PlayerItems.size();j_playeritemtolist++) {
-//				System.out.println(modelref.getTeam().getPowerUpList().toArray()[j_playeritemtolist].toString());
-//				Playeritemlist.addElement(modelref.getTeam().getPowerUpList().toArray()[j_playeritemtolist].toString());}
-//			}else {
-//				System.out.print("Less than 1 item in player items");
-//			}
-//		
-//		for (int heroindex = 0; heroindex < modelref.getTeam().getHeroes().size(); heroindex++) {
-//			if (modelref.getTeam().getHeroes().size() != 0) {
-//				//System.out.println(modelref.getTeam().getPowerUpList().toArray()[heroindex].toString());
-//				Team.addElement(modelref.getTeam().getHeroes().toArray()[heroindex].toString());
-//			}else {
-//				System.out.print("Less than 1 item in player items");
-//			}
-//		}
-//		
-//		PowerUpListDen.setModel(Playeritemlist);
-//		teamOfHerosList.setModel(Team);
-//		}
+	void updateMapUI() {
+		System.out.println("Size is " + modelref.getCities().size());
+		getLblVillainLives().setText("Villains Lifes : "+ modelref.getCities().get(modelref.currentCity).getCityVillain().lifeCount());
+		getMapHeroList();
+	}
 	
+	void updateDenUI() {
+		
+		ArrayList<String> PlayerItems = new ArrayList<String>();
+		DefaultListModel<String> Playeritemlist = new DefaultListModel<String>();
+		DefaultListModel<String> Team = new DefaultListModel<String>();
+		
+		System.out.println("UpdateDen " + (modelref.getTeam().getPowerUpList().toArray().length) + " items");
+		for (int i_playeritemstring = 0; i_playeritemstring < modelref.getTeam().getPowerUpList().size();i_playeritemstring++) {
+			PlayerItems.add(modelref.getTeam().getPowerUpList().toArray()[i_playeritemstring].toString());
+		}
+
+		
+			if (modelref.getTeam().getAllItems().size() != 0) {
+				for (int j_playeritemtolist = 0; j_playeritemtolist < PlayerItems.size();j_playeritemtolist++) {
+				System.out.println(modelref.getTeam().getPowerUpList().toArray()[j_playeritemtolist].toString());
+				Playeritemlist.addElement(modelref.getTeam().getPowerUpList().toArray()[j_playeritemtolist].toString());}
+			}else {
+				System.out.print("Less than 1 item in player items");
+			}
+		
+		for (int heroindex = 0; heroindex < modelref.getTeam().getHeroes().size(); heroindex++) {
+			if (modelref.getTeam().getHeroes().size() != 0) {
+				//System.out.println(modelref.getTeam().getPowerUpList().toArray()[heroindex].toString());
+				Team.addElement(modelref.getTeam().getHeroes().toArray()[heroindex].toString());
+			}else {
+				System.out.print("Less than 1 item in player items");
+			}
+		}
+		
+		PowerUpListDen.setModel(Playeritemlist);
+		teamOfHerosList.setModel(Team);
+		}
+	
+	void UpdateLairUI() {
+		getLblVillainLivesLeft().setText("Villian Lives Left: " + modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().lifeCount());
+	}
 	
 	public JTextField getHeroName() {
 		return HeroName;
@@ -991,6 +1103,24 @@ public class GameView {
 	
 	public JList getCurrenthealingheroes() {
 		return currenthealingheroes;
+	}
+	public JLabel getOutComeLabel() {
+		return OutComeLabel;
+	}
+	public JLabel getLblVillainLives() {
+		return lblVillainLives;
+	}
+	public JList getMapHeroList() {
+		return MapHeroList;
+	}
+	public JList getVillainLairHeroselect() {
+		return VillainLairHeroselect;
+	}
+	public JLabel getLblVillainLivesLeft() {
+		return lblVillainLivesLeft;
+	}
+	public JList getCityCountList() {
+		return cityCount;
 	}
 }
 	
