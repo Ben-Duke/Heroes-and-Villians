@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ShopTest {
+	private GameModel modelref;
 	private Shop testingShop;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -23,9 +24,19 @@ public class ShopTest {
 	@After
 	public void tearDown() throws Exception {
 	}
+	
+	@Test
+	public void testShowTeamInventory() {
+		testingShop = new Shop();
+	}
 
 	@Test
 	public void testShop() {
+		testingShop = new Shop();
+	}
+	
+	@Test 
+	public void testShowTeamMoney() {
 		testingShop = new Shop();
 	}
 	

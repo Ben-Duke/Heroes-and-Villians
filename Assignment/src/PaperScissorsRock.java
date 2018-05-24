@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class PaperScissorsRock {
 	
 	private boolean win = false;
+	private int compAnswer;
 	private int choice;
 	private String computerChoice;
 	private String userChoice;
@@ -15,12 +16,19 @@ public class PaperScissorsRock {
 		int answer = number.nextInt(3) + 1;
 		if(answer == 1) {
 			computerChoice = "Paper";
+			compAnswer = 1;
 		} else if(answer == 2) {
 			computerChoice = "Scissors";
+			compAnswer = 2;
 		} else if(answer == 3) {
 			computerChoice = "Rock";
+			compAnswer = 3;
 		}
 		return computerChoice;
+	}
+	
+	public int getAnswer() {
+		return compAnswer;
 	}
 	
 	public void userMove() {
@@ -92,9 +100,9 @@ public class PaperScissorsRock {
 		}
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		PaperScissorsRock game = new PaperScissorsRock();
-		game.playGame();
-	}
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//		PaperScissorsRock game = new PaperScissorsRock();
+//		game.playGame();
+//	}
 }

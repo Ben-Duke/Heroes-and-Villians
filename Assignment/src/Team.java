@@ -210,14 +210,6 @@ public class Team {
 			teamMoney = 0;
 		}
 	}
-
-//	public static void main(String[] args) {
-//		Team testingTeam = new Team();
-//		testingTeam.addHeroes("Ruby", "Fire");
-//		testingTeam.addHeroes("Wave", "Water");
-//		System.out.println(testingTeam.getHeroes());
-//		System.out.println(testingTeam.getHealingHeroes());	
-//	}
 } 
 
 

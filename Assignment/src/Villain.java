@@ -29,7 +29,7 @@ public class Villain {
 	private boolean alive = true;
 	
 	/**
-	 * The constructor for the Villain which sets its name, lives, damage and favourite game.
+	 * The constructor for the Villain which sets its name, lives, damage and favorite game.
 	 * 
 	 * @param newName A String that is used to set the name of the Villain.
 	 * @param newLives A Integer used to set the number of lives.

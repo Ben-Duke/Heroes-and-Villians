@@ -11,14 +11,34 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-
-
+/**
+ * This class implements a Timer 
+ * 
+ * @author Ben Duke & Angelica Dela Cruz
+ * @version 1.1, May 2018.
+ */
 public class Timertest {
+	/**
+	 * The Timer
+	 */
 	private int timer = 0;
-	int timeremaining = 30;
+	/**
+	 * Remaining time
+	 */
+	private int timeremaining = 30;
+	/**
+	 * The Frame
+	 */
 	private JFrame frame;
-	final Timer timerOne = new Timer(1000, this::timerOneMethod);
+	/**
+	 * The Timer initializer
+	 */
+	private final Timer timerOne = new Timer(1000, this::timerOneMethod);
+	/**
+	 * The timer label
+	 */
 	private JLabel timerlb;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -43,8 +63,10 @@ public class Timertest {
 		initialize();
 		
 	}
-
-	
+	/**
+	 * This function gets the Timer going
+	 * @param e An action event
+	 */
 	public void timerOneMethod(ActionEvent e)
 	  {
 	    // do something exciting
@@ -63,9 +85,6 @@ public class Timertest {
 		}
 	  }
 
-	
-	
-	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -78,11 +97,13 @@ public class Timertest {
 		timerlb = new JLabel("New label");
 		timerlb.setBounds(182, 28, 185, 16);
 		frame.getContentPane().add(timerlb);
-		timerOne.start();
-		
-		
+		timerOne.start();		
 	}
 
+	/**
+	 * The label of the Timer
+	 * @return Returns the Timer label
+	 */
 	public JLabel getTimerlb() {
 		return timerlb;
 	}

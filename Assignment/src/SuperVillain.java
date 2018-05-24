@@ -83,12 +83,4 @@ public class SuperVillain extends Villain {
 			killVillain();
 		}
 	}
-	
-//	public static void main(String[] args) {
-//		SuperVillain testingSuperVillain = new SuperVillain("Evil", 3, 50, "XandO's");
-//		testingSuperVillain.decreaseLives();
-//		System.out.println(testingSuperVillain.lifeCount());
-//	}
-	
-	}
-
+}
