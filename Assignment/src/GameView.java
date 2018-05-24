@@ -933,22 +933,22 @@ public class GameView {
 		
 		getLblTeamMoney().setText("Team Money: $" + modelref.getTeam().getTeamMoney());
 		//Load healinhitems
-		for (int i_string = 0; i_string < shopref.HealingInventory.size();i_string++) {
-			shopItems.add(shopref.HealingInventory.toArray()[i_string].toString());
+		for (int i_string = 0; i_string < shopref.getHealingItems().size();i_string++) {
+			shopItems.add(shopref.getHealingItems().toArray()[i_string].toString());
 		}
 		
-		for (int j_tolist = 0; j_tolist < shopref.HealingInventory.size();j_tolist++) {
+		for (int j_tolist = 0; j_tolist < shopref.getHealingItems().size();j_tolist++) {
 			
-			itemlist.addElement(((Item) shopref.HealingInventory.toArray()[j_tolist]).toStringShop());
+			itemlist.addElement(((Item) shopref.getHealingItems().toArray()[j_tolist]).toStringShop());
 		}
 		//Power Up item
-		for (int i_powerupstring = 0; i_powerupstring < shopref.PowerUpInventory.size();i_powerupstring++) {
-			shopItems.add(((Item) shopref.PowerUpInventory.toArray()[i_powerupstring]).toStringShop());
+		for (int i_powerupstring = 0; i_powerupstring < shopref.getHealingItems().size();i_powerupstring++) {
+			shopItems.add(((Item) shopref.getPowerUpItems().toArray()[i_powerupstring]).toStringShop());
 		}
 		
-		for (int j_poweruptolist = 0; j_poweruptolist < shopref.PowerUpInventory.size();j_poweruptolist++) {
+		for (int j_poweruptolist = 0; j_poweruptolist < shopref.getPowerUpItems().size();j_poweruptolist++) {
 			
-			itemPowerUplist.addElement(((Item) shopref.PowerUpInventory.toArray()[j_poweruptolist]).toStringShop());
+			itemPowerUplist.addElement(((Item) shopref.getPowerUpItems().toArray()[j_poweruptolist]).toStringShop());
 		}
 
 		
