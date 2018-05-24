@@ -2,15 +2,39 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
-
+/**
+ * This class implements Paper Scissors Rock game.
+ * 
+ * @author Angelica Dela Cruz & Ben Duke
+ * @version 1.1, May 2018.
+ */
 public class PaperScissorsRock {
 	
+	/**
+	 * The win condition
+	 */
 	private boolean win = false;
+	/**
+	 * The Integer answer of the Computer
+	 */
 	private int compAnswer;
+	/**
+	 * The Integer answer of the player
+	 */
 	private int choice;
+	/**
+	 * The String answer of the Computer
+	 */
 	private String computerChoice;
+	/**
+	 * The String answer of the player
+	 */
 	private String userChoice;
 	
+	/**
+	 * This function initializes the computer's choice of answer.
+	 * @return Returns the String answer of the computer
+	 */
 	public String computerMove() {
 		Random number = new Random();
 		int answer = number.nextInt(3) + 1;
@@ -27,10 +51,17 @@ public class PaperScissorsRock {
 		return computerChoice;
 	}
 	
+	/**
+	 * This function returns the Integer answer of the Computer
+	 * @return Returns the Integer answer of the Computer
+	 */
 	public int getAnswer() {
 		return compAnswer;
 	}
 	
+	/**
+	 * This function initializes the move of the Player.
+	 */
 	public void userMove() {
 		ArrayList<Integer> choices = new ArrayList<Integer>(Arrays.asList(1, 2, 3));
 		Scanner scanner = new Scanner(System.in);
@@ -64,6 +95,11 @@ public class PaperScissorsRock {
 		}
 	}
 	
+	/**
+	 * This function determines if either the Player or the Computer wins
+	 * @param compMove The String move of the Computer
+	 * @param userMove The String move of the Player
+	 */
 	public void whoWin(String compMove, String userMove) {
 		System.out.println("Villain move is: " + compMove);
 		System.out.println("Your move is: " + userMove);
@@ -92,6 +128,9 @@ public class PaperScissorsRock {
 		}
 	}
 	
+	/**
+	 * This function initialize the Game to play.
+	 */
 	public void playGame() {
 		while (win == false) {
 			computerMove();

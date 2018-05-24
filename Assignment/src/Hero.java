@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertEquals;
+
 import java.awt.event.ActionEvent;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -381,8 +383,9 @@ public class Hero {
 	}
 	
 //	public static void main(String[] args) {
-//		Hero testingHero = new Hero("Evil", "Demonic");
-//		System.out.println(testingHero.toStringHospitalTimer());
+//		Hero testingHero = new Hero("Bob", "Earth");
+//		testingHero.applyResistance(20);
+//		System.out.println(testingHero.getResistance());
 //		
 ////		Hero creature = new Hero("Divine", "Brighty");
 ////		System.out.println("Creature type: " + creature.getType());
@@ -401,5 +404,5 @@ public class Hero {
 ////		System.out.println("Start");
 ////		//c1.givenUsingTimer_whenSchedulingTaskOnce_thenCorrect();
 ////		System.out.println("End");
-//	}
+//}
 }

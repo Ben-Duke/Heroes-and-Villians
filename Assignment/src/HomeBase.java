@@ -13,6 +13,13 @@ public class HomeBase {
 	private ArrayList<Hero> teamHeroes = new ArrayList<Hero>();
 
 	/**
+	 * This function adds Heroes to the Team of Heroes
+	 */
+	public void addHero(Hero hero) {
+		teamHeroes.add(hero);
+	}
+	
+	/**
 	 * This function allows us to see the attributes of each Hero based on their type.
 	 * @return Returns the String representation of the attributes of the Hero.
 	 */
@@ -21,7 +28,6 @@ public class HomeBase {
 			System.out.println(hero + "The attributes of the Hero is" + hero.getAbility());
 		}
 		return "";
-		
 	}
 	
 	/**
