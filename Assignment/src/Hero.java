@@ -62,7 +62,7 @@ public class Hero {
 	private int resistance = 0;
 
 	/**
-	 * Used for a refrence to rest the 
+	 * Used for a reference to rest the 
 	 */
 	int orignalhealcount = 30;
 	int healtimer = 30;
@@ -73,6 +73,7 @@ public class Hero {
 	 */
 	private int increaseMaxHealthBy = 0;
 	
+	private int healingAmount = 0;
 	
 	/**
 	 * This is a constructor for the class Hero that sets the name and the type of Hero.
@@ -89,6 +90,11 @@ public class Hero {
 		return healtimer;
 	}
 	
+	
+	void setHealingAmount(int amount) {
+		healingAmount = amount;
+	}
+	
 	public void startHealTimer() {
 		herotimer.start();
 		healingflag = true;
@@ -100,15 +106,12 @@ public class Hero {
 	
 	public void HealTimer(ActionEvent e)
 	  {
-	    // do something exciting
-		//;
-		
 		System.out.println("has been 1 seconds");
 		healtimer--;
 		if (healtimer == 0) {
 			herotimer.stop();
 			healingflag = false;
-			increaseHealth(10);
+			increaseHealth(healingAmount);
 			System.out.println("timer hit zero");
 			healtimer = orignalhealcount;
 		}
@@ -117,6 +120,7 @@ public class Hero {
 			
 		}
 	  }
+	
 	
 	/**
 	 * This function applies the added damage reduction in battles to the health of the Hero.
@@ -332,11 +336,12 @@ public class Hero {
 		return "Hero: " + name + " Health: " + currentHealth + "/" + maxHealth + " Res: " + resistance;
 	}
 	
+	
 	/**
 	 * The string representation of a Hero
 	 */
 	public String toStringHospitalTimer() {
-		return "Hero: " + name + " Health: " + currentHealth + "/" + maxHealth + " Res: " + resistance + " Time to heal " +  healtimer;
+		return "Hero: " + name + " Health: " + currentHealth + "/" + maxHealth + " Time to heal: " +  healtimer + " Seconds";
 	}
 	
 	public static void main(String[] args) {
