@@ -44,7 +44,7 @@ public class HealingItemTest {
 		Hero hero = new Hero("Ruby", "Fire");
 		hero.decreaseHealth(70);
 		testingHealing.useOn(hero, 50);
-		assertEquals(hero.getCurrentHealth(), 80);
+		assertEquals(hero.getHealingAmount(), 50);
 	}
 
 }
