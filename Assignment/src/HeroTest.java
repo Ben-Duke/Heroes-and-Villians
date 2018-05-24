@@ -62,7 +62,7 @@ public class HeroTest {
 	
 	@Test
 	public void testApplyResistance() {
-		testingHero = new Hero("Bob", "Earth");
+		testingHero = new Hero("Bob", "Air");
 		testingHero.applyResistance(20);
 		assertEquals(testingHero.getResistance(), 20);
 		

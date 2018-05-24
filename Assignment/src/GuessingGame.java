@@ -36,7 +36,10 @@ public class GuessingGame {
 	 */
 	private int guess;
 	
-	public void validInput() {
+	/**
+	 * This function determines if the Computer or the Player won.
+	 */
+	public void whoWin() {
 		if(guess == answer) {
 			win = true;
 			gameStatus = "correct";
@@ -54,6 +57,10 @@ public class GuessingGame {
 		}
 	}
 	
+	/**
+	 * This function initializes the user input and checks if the input is valid.
+	 * If not, it initializes again.
+	 */
 	public void userInput() {
 		ArrayList<Integer> possibles = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
 		Scanner scanner = new Scanner(System.in);
@@ -65,7 +72,7 @@ public class GuessingGame {
 			scanner.next();
 		} guess = scanner.nextInt();
 		if(possibles.contains(guess)) {
-			validInput();
+			whoWin();
 		} else {
 			System.out.println("---------------------------------");
 			System.out.println("Integer is out of range.");

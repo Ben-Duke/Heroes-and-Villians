@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class HomeBaseTest {
-	private HomeBase testingHome;
+public class GuessingGameTest {
+	private GuessingGame game;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -25,19 +25,19 @@ public class HomeBaseTest {
 	}
 
 	@Test
-	public void testViewHeroAttributes() {
-		testingHome = new HomeBase();
-		Hero hero1 = new Hero("Bob", "Air");
-		Hero hero2 = new Hero("Eve", "Divine");
-		testingHome.addHero(hero1);
-		testingHome.addHero(hero2);
-		testingHome.viewHeroAttributes();
+	public void testWhoWin() {
+		game = new GuessingGame();
+		game.whoWin();
 	}
 
 	@Test
-	public void testViewHeroStatus() {
-		testingHome = new HomeBase();
-		assertTrue(testingHome.viewHeroStatus());
+	public void testUserInput() {
+		game = new GuessingGame();
+	}
+
+	@Test
+	public void testPlayGame() {
+		game = new GuessingGame();
 	}
 
 }
