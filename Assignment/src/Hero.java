@@ -2,8 +2,10 @@ import java.awt.event.ActionEvent;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Timer;
+import javax.swing.Timer;
 import java.util.TimerTask;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /**
  * This class implements a Hero that has a health, type, special ability and 
  * different types of inventories
@@ -36,6 +38,8 @@ public class Hero {
 	 * The special abilities of the Hero based on its type
 	 */
 	private String heroAbility;
+	
+	private boolean healingflag = false;
 	/**
 	 * The inventory for the power-up items
 	 */
@@ -57,10 +61,12 @@ public class Hero {
 	 */
 	private int resistance = 0;
 
-	
+	/**
+	 * Used for a refrence to rest the 
+	 */
 	int orignalhealcount = 30;
-	int timer = 30;
-	final Timer heroTimer = new Timer();
+	int healtimer = 30;
+	final Timer herotimer = new Timer(1000, this::HealTimer);
 			//new Timer(1000, this::HealTimer);
 	/**
 	 * The added increase max health by a power-up item
@@ -79,35 +85,36 @@ public class Hero {
 		setAbility();
 	}
 
-	public void givenUsingTimer_whenSchedulingTaskOnce_thenCorrect() {
-	    TimerTask task = new TimerTask() {
-	        public void run() {
-	            System.out.println("Task performed on: " + "n" +
-	              "Thread's name: " + Thread.currentThread().getName());
-	        }
-	    };
-	    Timer timer = new Timer("Timer");
-	     
-	    long delay = 1000L;
-	    timer.schedule(task, delay);
+	public int currentTime() {
+		return healtimer;
+	}
+	
+	public void startHealTimer() {
+		herotimer.start();
+		healingflag = true;
+	}
+	
+	public boolean herohealingflag() {
+		return healingflag;
 	}
 	
 	public void HealTimer(ActionEvent e)
 	  {
 	    // do something exciting
 		//;
+		
 		System.out.println("has been 1 seconds");
-		timer--;
-		//timer -=1;
-		if (timer == 0) {
-			//timerOne.stop();
+		healtimer--;
+		if (healtimer == 0) {
+			herotimer.stop();
+			healingflag = false;
+			increaseHealth(10);
 			System.out.println("timer hit zero");
-			  // .setText("Yay healed up");
-			//timer.stop();
+			healtimer = orignalhealcount;
 		}
 		else{
 			System.out.println();
-			//getTimerlb().setText(""+timeremaining);
+			
 		}
 	  }
 	
@@ -325,6 +332,13 @@ public class Hero {
 		return "Hero: " + name + " Health: " + currentHealth + "/" + maxHealth + " Res: " + resistance;
 	}
 	
+	/**
+	 * The string representation of a Hero
+	 */
+	public String toStringHospitalTimer() {
+		return "Hero: " + name + " Health: " + currentHealth + "/" + maxHealth + " Res: " + resistance + " Time to heal " +  healtimer;
+	}
+	
 	public static void main(String[] args) {
 
 		Hero creature = new Hero("Divine", "Brighty");
@@ -342,7 +356,7 @@ public class Hero {
 		System.out.println(c1.getCurrentHealth());
 		System.out.println(c1.getMaxHealth());
 		System.out.println("Start");
-		c1.givenUsingTimer_whenSchedulingTaskOnce_thenCorrect();
+		//c1.givenUsingTimer_whenSchedulingTaskOnce_thenCorrect();
 		System.out.println("End");
 	}
 }
