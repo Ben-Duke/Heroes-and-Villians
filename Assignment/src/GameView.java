@@ -103,6 +103,7 @@ public class GameView {
 		modelref.createTeam("AA");
 		modelref.getTeam().addHealingItems(new HealingItem("Add 50", 50, 50));
 		modelref.getTeam().addHeroes("DDD", "Demonic");
+		modelref.getTeam().getHeroes().get(0).decreaseHealth(60);;
 		///
 		
 		
@@ -329,21 +330,18 @@ public class GameView {
 				ArrayList<HealingItem> healingitems = modelref.getTeam().getHealingItemsList();
 				
 				if (!getHealingItemsList().isSelectionEmpty() && !getHospitalHeroList().isSelectionEmpty()) {
-					System.out.println(healingitems.size());
 					
 					if ( healingitems.size() > 0) {
 						HealingItem item = (HealingItem) healingitems.toArray()[getHealingItemsList().getSelectedIndex()];
-						item.useOn((Hero) modelref.getTeam().getHeroes().toArray()[getHospitalHeroList().getSelectedIndex()], 0);
+						item.useOn(modelref.getTeam().getHeroes().get(getHospitalHeroList().getSelectedIndex()), item.healAmount());
+						
 						int index = getHealingItemsList().getSelectedIndex();
 						getHealingItemsList().clearSelection();
 						getHospitalHeroList().clearSelection();
 						UpdateHospitalUI();
 						
-						System.out.println("Index is "+index);
-						System.out.println(healingitems.toArray()[index].toString());
-						//modelref.getTeam().removeHealingItem(item);
 						modelref.getTeam().removeHealingItem((HealingItem) healingitems.toArray()[index]);
-						//System.out.println("Size is " + modelref.getTeam().getHealingItemsList().size());
+						System.out.println(modelref.getTeam().getHeroes().get(0).getCurrentHealth());
 						UpdateHospitalUI();
 					}
 					else {
@@ -800,7 +798,7 @@ public class GameView {
 		ArrayList<String> shopPowerUpItems = new ArrayList<String>();
 		DefaultListModel<String> itemPowerUplist = new DefaultListModel<String>();
 		
-		getLblTeamMoney().setText("Team Money: $" + modelref.getTeam().getMoney());
+		getLblTeamMoney().setText("Team Money: $" + modelref.getTeam().getTeamMoney());
 		//Load healinhitems
 		for (int i_string = 0; i_string < shopref.HealingInventory.size();i_string++) {
 			shopItems.add(shopref.HealingInventory.toArray()[i_string].toString());
@@ -936,18 +934,23 @@ public class GameView {
 	public JLabel getLblTeamMoney() {
 		return lblTeamMoney;
 	}
+	
+	/*
+	 * Returns a reference to the too low money error
+	 */
 	public JLabel ShowLowMoneyError() {
 		return lblNeedMoreMoney;
 	}
-	/*
-	 * Returns the Hero list for the hospital
+	/** 
+	 * @return the Hero list for the hospital
 	 */
 	public JList getHospitalHeroList() {
 		return HospitalHeroList;
 	}
 	
-	/*
+	/**
 	 * Returns the healing list for the hospital
+	 * @return
 	 */
 	public JList getHealingItemsList() {
 		return healingItemsList;
