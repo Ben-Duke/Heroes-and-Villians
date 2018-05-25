@@ -43,6 +43,8 @@ public class GameModel {
 		currentCity ++;
 	}
 	
+	
+	int gametime = 0;
 	/**
 	 * This function creates the Team for the Game.
 	 * @param name The String representation of the name of the Team
@@ -52,6 +54,14 @@ public class GameModel {
 		game_team = new Team();
 		game_team.setTeamName(name);
 		return true;
+	}
+	
+	/**
+	 * Returns an int in the form of seconds 
+	 * @return int gametime
+	 */
+	int getGameTime() {
+		return gametime;
 	}
 	
 	/**
