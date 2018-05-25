@@ -92,6 +92,11 @@ public class Hero {
 		heroType = type;
 		name = _name;
 		setAbility();
+		if(type == "Water") {
+			//Ability bonus
+			orignalhealcount = 15;
+			healtimer = 15;
+		}
 	}
 
 	/**

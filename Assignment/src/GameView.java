@@ -508,7 +508,7 @@ public class GameView {
 			public void actionPerformed(ActionEvent e) {
 				MapPanel.setVisible(true);
 				modelref.createXAndOGame();
-				updateXandOsUI(modelref.XAndOgame.getGameState());
+				updateXandOsUI(modelref.getXAndOGame().getGameState());
 				WinnerLabel.setText("Winner is ");
 				refreshUIs();
 				XandOPanel.setVisible(false);
@@ -651,7 +651,7 @@ public class GameView {
 			public void actionPerformed(ActionEvent e) {
 				//Reset Game
 				modelref.createXAndOGame();
-				updateXandOsUI(modelref.XAndOgame.getGameState());
+				updateXandOsUI(modelref.getXAndOGame().getGameState());
 				WinnerLabel.setText("Winner is ");
 				MapPanel.setVisible(true);
 				battleOutComePanel.setVisible(false);
@@ -714,7 +714,7 @@ public class GameView {
 			public void actionPerformed(ActionEvent e) {
 				if (GetHeroType() != null && HeroName != null && list.getSelectedIndex() > -1) {
 					if(!HeroName.getText().equals("")) {
-					modelref.game_team.addHeroes(HeroName.getText(), types[GetHeroType().getSelectedIndex()]);
+					modelref.getTeam().addHeroes(HeroName.getText(), types[GetHeroType().getSelectedIndex()]);
 					HeroName.setText("");
 					list.clearSelection();
 					updateHeroes();
@@ -989,7 +989,7 @@ public class GameView {
 	}
 	
 	void updateShopUI() {
-		Shop shopref = modelref.shop;
+		Shop shopref = modelref.getShop();
 		ArrayList<String> shopItems = new ArrayList<String>();
 		DefaultListModel<String> itemlist = new DefaultListModel<String>();
 		
@@ -1076,7 +1076,7 @@ public class GameView {
 	
 	void updateMapUI() {
 		//System.out.println("Size is " + modelref.getCities().size());
-		getLblVillainLives().setText("Villains Lifes : "+ modelref.getCities().get(modelref.currentCity).getCityVillain().lifeCount());
+		getLblVillainLives().setText("Villains Lifes : "+ modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().lifeCount());
 		getMapHeroList();
 	}
 	
@@ -1084,7 +1084,7 @@ public class GameView {
 		UpdateLairHerosUI();
 		updateDenUI();
 		UpdateLairUI();
-		updateXandOsUI(modelref.XAndOgame.getGameState());
+		updateXandOsUI(modelref.getXAndOGame().getGameState());
 		updateShopUI();
 		updateMapUI();
 		UpdatePlayeritems();
