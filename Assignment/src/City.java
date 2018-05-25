@@ -36,7 +36,7 @@ public class City {
 	/**
 	 * The constructor for the class Villain to the class City
 	 */
-	Villain villain;
+	private Villain villain;
 	
 	/**
 	 * The constructor for the City that sets its name.
@@ -53,16 +53,17 @@ public class City {
 		villain = new Villain("Dibs", 2, 20, "XAndOs");
 	}
 	
+	/**
+	 * The constructor for the Super Villain in the City
+	 */
 	public void setSuperVillain() {
 		villain = new SuperVillain("Lord of death Reaper", 3, 80, "XAndOs");
 	}
-	
 
 	/**
 	 * This function returns the name of the City
 	 * @return Returns String representation of the City's name.
 	 */
-
 	public String getName() {
 		return cityName;
 	}
@@ -78,7 +79,7 @@ public class City {
 	/**
 	 * A function that sets the life status of the villain in the city.
 	 */
-	public void setVillainStatus () {
+	public void setVillainStatus() {
 		villainStatus = villain.isAlive();
 	}
 	
