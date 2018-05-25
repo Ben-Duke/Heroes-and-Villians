@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 public class XAndOs {
 	/**
-	 * The design seperator
+	 * The design separator
 	 */
 	private String sep = "*";
 	/**
@@ -68,7 +68,6 @@ public class XAndOs {
 					System.out.println("Please put in different coordinates");
 				}
 				else {
-					
 					valid = true;
 					cpuMove();
 				}
@@ -102,12 +101,9 @@ public class XAndOs {
 			
 			//Changes valid to false so the user can pick again.
 			winner = checkforWinner();
-<<<<<<< HEAD
-			System.out.println(winner);
-=======
 			//System.out.println(winner);
 		
->>>>>>> 8cadd62234e39c9e668d007c540f7083111bde6f
+
 	}
 	
 	/**
@@ -329,7 +325,6 @@ public class XAndOs {
 		else {
 			return false;
 		}
-		
 	}
 	
 //	public static void main(String[] args) {
