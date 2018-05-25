@@ -82,9 +82,9 @@ public class Shop {
 		return "";
 	}
 
-	public static void main(String[] args) {
-		Shop testingShop = new Shop();
-		System.out.println(testingShop.getPowerUpItems());
-	}
+//	public static void main(String[] args) {
+//		Shop testingShop = new Shop();
+//		System.out.println(testingShop.getPowerUpItems());
+//	}
 
 }
