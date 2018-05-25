@@ -56,7 +56,6 @@ public class GameModel {
 			tempcity.setCityDestination();
 			if (i+1 == numberOfCities) {
 				tempcity.setSuperVillain();
-				System.out.print("Added Super villain");
 			}else {
 				tempcity.setVillain();
 			}

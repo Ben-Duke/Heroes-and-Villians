@@ -66,12 +66,12 @@ public class XAndOs {
 				
 				
 				if (placeMarker("X", move[0], move[1]) == "Failed" && move[0] < 3 && move[1] < 3) {
-					System.out.println("MoveFailed");
+					//System.out.println("MoveFailed");
 				}
 				else {
 					winner = checkforWinner();
 					if (winner == "X"){
-						System.out.println(winner);
+						//System.out.println(winner);
 					}
 					else {
 						if (winner != "X" || winner != "O") {
@@ -85,7 +85,7 @@ public class XAndOs {
 			//Changes valid to false so the user can pick again.
 			
 			winner = checkforWinner();
-			System.out.println(winner);
+			//System.out.println(winner);
 		
 	}
 	
@@ -236,7 +236,7 @@ public class XAndOs {
 			game[row][col] = marker;
 			return "Successful";
 		}
-		System.out.println("Failed");
+		//System.out.println("Failed");
 		return "Failed";
 	}
 	
