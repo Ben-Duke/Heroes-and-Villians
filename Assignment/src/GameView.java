@@ -54,7 +54,7 @@ public class GameView {
 	JPanel MapPanel = new JPanel();
 	JPanel XandOPanel = new JPanel();
 	JPanel battleOutComePanel = new JPanel();
-		
+//		
 	//button refrences
 	JButton button_0 = new JButton("-");
 	JButton button_1 = new JButton("-");
@@ -89,6 +89,11 @@ public class GameView {
 	String[] cities= {"3","4","5","6" };
 	private JButton btnOk;
 	private JLabel lbl50offlabel;
+	private JList<String> PlayerItemsMap;
+	private JButton West_button;
+	private JButton North_Button;
+	private JButton East_Button;
+	private JButton South_Button;
 	/**
 	 * Launch the application.
 	 */
@@ -231,7 +236,7 @@ public class GameView {
 		ShopPanel.add(Team_items);
 //		
 		ShopItems_list = new JList<String>();
-		ShopItems_list.setBounds(22, 44, 223, 115);
+		ShopItems_list.setBounds(22, 44, 269, 115);
 		ShopPanel.add(ShopItems_list);
 //		
 		JButton btnBuy = new JButton("Buy");
@@ -270,11 +275,11 @@ public class GameView {
 				refreshUIs();
 			}
 		});
-		btnBuy.setBounds(128, 171, 117, 29);
+		btnBuy.setBounds(174, 171, 117, 29);
 		ShopPanel.add(btnBuy);
 //		
 		PowerUpList = new JList<String>();
-		PowerUpList.setBounds(22, 205, 223, 115);
+		PowerUpList.setBounds(22, 205, 269, 115);
 		ShopPanel.add(PowerUpList);
 		
 		JButton buttonpowerup = new JButton("Buy");
@@ -313,7 +318,7 @@ public class GameView {
 			}
 			
 		});
-		buttonpowerup.setBounds(128, 332, 117, 29);
+		buttonpowerup.setBounds(174, 332, 117, 29);
 		ShopPanel.add(buttonpowerup);
 //		
 		lblTeamMoney = new JLabel("Team Money:");
@@ -328,7 +333,7 @@ public class GameView {
 		
 		lbl50offlabel = new JLabel("Fire ability: 50% off!!");
 		lbl50offlabel.setForeground(Color.GREEN);
-		lbl50offlabel.setBounds(299, 18, 227, 16);
+		lbl50offlabel.setBounds(303, 22, 227, 16);
 		ShopPanel.add(lbl50offlabel);
 		//UpdatePlayeritems();
 		//updateShopUI();
@@ -363,10 +368,6 @@ public class GameView {
 		HospitalHeroList = new JList<String>();
 		HospitalHeroList.setBounds(214, 78, 351, 95);
 		HospitalPanel.add(HospitalHeroList);
-		
-		JLabel Timerlabel = new JLabel("New label");
-		Timerlabel.setBounds(354, 50, 149, 16);
-		HospitalPanel.add(Timerlabel);
 		
 		healingItemsList = new JList<String>();
 		healingItemsList.setBounds(6, 78, 188, 188);
@@ -538,11 +539,12 @@ public class GameView {
 		frame.getContentPane().add(VillainLair);
 		VillainLair.setLayout(null);
 //		
-		JButton btnReturnToHero = new JButton("Return to hero base");
+		JButton btnReturnToHero = new JButton("Return to base");
 		btnReturnToHero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MapPanel.setVisible(true);
 				VillainLair.setVisible(false);
+				refreshUIs();
 			}
 		});
 		btnReturnToHero.setBounds(73, 359, 167, 29);
@@ -592,7 +594,7 @@ public class GameView {
 		MapPanel.setVisible(false);
 		MapPanel.setLayout(null);
 
-		JButton West_button = new JButton("West");
+		West_button = new JButton("West");
 		West_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				movetoDestination(3);
@@ -601,7 +603,7 @@ public class GameView {
 		West_button.setBounds(6, 133, 121, 73);
 		MapPanel.add(West_button);
 
-		JButton East_Button = new JButton("East");
+		East_Button = new JButton("East");
 		East_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				movetoDestination(1);
@@ -610,7 +612,7 @@ public class GameView {
 		East_Button.setBounds(219, 133, 121, 73);
 		MapPanel.add(East_Button);
 
-		JButton South_Button = new JButton("South");
+		South_Button = new JButton("South");
 		South_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				movetoDestination(2);
@@ -619,7 +621,7 @@ public class GameView {
 		South_Button.setBounds(114, 204, 121, 73);
 		MapPanel.add(South_Button);
 
-		JButton North_Button = new JButton("North");
+		North_Button = new JButton("North");
 		North_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				movetoDestination(0);
@@ -633,12 +635,20 @@ public class GameView {
 		MapPanel.add(lblVillainLives);
 		
 		MapHeroList = new JList();
-		MapHeroList.setBounds(6, 292, 334, 73);
+		MapHeroList.setBounds(6, 303, 334, 73);
 		MapPanel.add(MapHeroList);
 		
-		JList<String> list_1 = new JList();
-		list_1.setBounds(374, 55, 169, 310);
-		MapPanel.add(list_1);
+		PlayerItemsMap = new JList();
+		PlayerItemsMap.setBounds(374, 55, 169, 310);
+		MapPanel.add(PlayerItemsMap);
+		
+		JLabel lblPlayerItems = new JLabel("Player Items");
+		lblPlayerItems.setBounds(374, 27, 169, 16);
+		MapPanel.add(lblPlayerItems);
+		
+		JLabel lblCurrentTeam = new JLabel("Current Team");
+		lblCurrentTeam.setBounds(6, 275, 96, 16);
+		MapPanel.add(lblCurrentTeam);
 //		
 //		Battle out come panel
 		
@@ -988,7 +998,7 @@ public class GameView {
 			if (modelref.getTeam().getAllItems().size() != 0) {
 				Playeritemlist.addElement(modelref.getTeam().getAllItems().toArray()[j_playeritemtolist].toString());
 			}
-		
+		getPlayerItemsMap().setModel(Playeritemlist);
 		Team_items.setModel(Playeritemlist); 
 	
 		}
@@ -1082,6 +1092,32 @@ public class GameView {
 	
 	void updateMapUI() {
 		//System.out.println("Size is " + modelref.getCities().size());
+		City currentcity = modelref.getCities().get(modelref.getCurrentCity());
+		System.out.println(currentcity.getKnownDestination());
+//		 * The indices of the Array List stands for the map directions 0 - North, 1 - South, 2 - East, 3 - West and 4 - Center
+//		 * The elements in the Array List stands for the destination 0 - Shop, 1 - Power up den, 2 - Hospital, 3 - Villain's Lair and 4 - Home Base.
+		
+		ArrayList<Integer> directionList = new ArrayList<Integer>();
+		
+		for (int i = 0; i < currentcity.getKnownDestination().size(); i++) {
+			if(currentcity.getKnownDestination().get(i) == null) {
+				Integer temp = 9999;
+				directionList.add(temp);
+			}else {
+				directionList.add(currentcity.getKnownDestination().get(i));
+			}
+		}
+		
+		getNorth_Button().setText(getLocation(directionList.get(0)));
+		
+		getEast_Button().setText(getLocation(directionList.get(1)));
+		
+		getSouth_Button().setText(getLocation(directionList.get(2)));
+		
+		
+		//int x = currentcity.getKnownDestination().get(2);
+		getWest_button().setText(getLocation(directionList.get(3)));
+		
 		getLblVillainLives().setText("Villains Lifes : "+ modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().lifeCount());
 		getMapHeroList();
 	}
@@ -1133,6 +1169,36 @@ public class GameView {
 	
 	void UpdateLairUI() {
 		getLblVillainLivesLeft().setText("Villian Lives Left: " + modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().lifeCount());
+	}
+	
+	String getLocation(int location) {
+		String out = "";
+		
+		switch(location +1) {		
+
+		case 1:
+		//System.out.println("Shop Found");
+			out = "Shop";
+		break;
+		case 2:
+		//System.out.println("Den Found");
+			out = "PowerUp Den";
+		break;	
+					
+		case 3: 
+		//System.out.println("Hospital Found");
+		out = "Hospital";
+		break;
+
+		case 4:
+		//System.out.println("Lair Found");
+		out = "Villain Lair";
+		break;
+		default:
+			out = "?????";
+			break;
+		}
+		return out;
 	}
 	
 	public JTextField getHeroName() {
@@ -1214,6 +1280,21 @@ public class GameView {
 	}
 	public JLabel getLbl50offlabel() {
 		return lbl50offlabel;
+	}
+	public JList getPlayerItemsMap() {
+		return PlayerItemsMap;
+	}
+	public JButton getWest_button() {
+		return West_button;
+	}
+	public JButton getNorth_Button() {
+		return North_Button;
+	}
+	public JButton getEast_Button() {
+		return East_Button;
+	}
+	public JButton getSouth_Button() {
+		return South_Button;
 	}
 }
 	
