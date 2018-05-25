@@ -516,7 +516,7 @@ public class GameView {
 				int index = getVillainLairHeroselect().getSelectedIndex();
 				if (index > -1) {
 					battlingHero = modelref.getTeam().getHeroes().get(index);
-					System.out.println(modelref.getTeam().getHeroes().get(index).toString());
+					//System.out.println(modelref.getTeam().getHeroes().get(index).toString());
 					XandOPanel.setVisible(true);
 					VillainLair.setVisible(false);
 				}
@@ -844,7 +844,13 @@ public class GameView {
 		//System.out.println("Opening");
 		if (marker == "X" | marker == "O") { 
 			if (marker == "X") {
-				modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
+				if(battlingHero.getType() == "Demonic") {
+					modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
+					modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
+				}
+				else {
+					modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
+				}
 				
 				if (modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().isAlive() == false) {
 					//System.out.println(""+modelref.getCurrentCity() + " size is " + modelref.getCities().size()) ;
@@ -885,7 +891,7 @@ public class GameView {
 				
 			}
 			
-			
+			battlingHero = null;
 			refreshUIs();
 			battleOutComePanel.setVisible(true);
 			XandOPanel.setVisible(false);

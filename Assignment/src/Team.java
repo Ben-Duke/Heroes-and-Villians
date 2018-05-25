@@ -170,9 +170,20 @@ public class Team {
 		for (int i = 0; i < getHeroes().size();i++) {
 			if (getHeroes().get(i).getStatus() == false) {
 				getHeroes().remove(getHeroes().get(i));
-				System.out.println("Removed");
+				//System.out.println("Removed " + " Size is now " + getHeroes().size());
+				
 			}
 		}
+	}
+	
+	public boolean checkTypeInTeam(String type) {
+		for (int i = 0; i < getHeroes().size();i++) {
+			if (getHeroes().get(i).getType() == type) {
+				return true;
+				
+			}
+		}
+		return false;
 	}
 	
 	/**
