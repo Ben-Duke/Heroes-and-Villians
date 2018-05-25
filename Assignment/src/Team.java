@@ -48,6 +48,10 @@ public class Team {
 		for (int j = 0; j < teamPowerup.size();j++) {
 			items.add((Item) teamPowerup.toArray()[j]);
 		}
+		
+		if (items.size() == 0) {
+			items = new ArrayList<Item>();
+		}
 		return items;
 	}
 	

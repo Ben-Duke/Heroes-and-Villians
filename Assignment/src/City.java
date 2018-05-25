@@ -55,7 +55,7 @@ public class City {
 		Random randVillain = new Random();
 
 		int  gameint = randVillain.nextInt(2);
-		villain = new Villain("Clone", 3, 20, games[gameint]);
+		villain = new Villain("Clone", 3, 30, games[gameint]);
 		System.out.println(games[gameint]);
 	}
 	
@@ -63,7 +63,7 @@ public class City {
 	 * The constructor for the Super Villain in the City
 	 */
 	public void setSuperVillain() {
-		villain = new SuperVillain("Lord of death", 3, 80, "XAndOs");
+		villain = new SuperVillain("Lord of death", 3, 60, "XAndOs");
 	}
 
 	/**

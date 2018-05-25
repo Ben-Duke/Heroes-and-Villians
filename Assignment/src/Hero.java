@@ -218,6 +218,7 @@ public class Hero {
 	 * @param damage The given damage that decreases the health of a Hero from its current health.
 	 */
 	public void decreaseHealth(int damage) {
+		damage = damage - resistance;
 		if(damage > 0) {
 			currentHealth -= damage;
 			if(currentHealth <= 0) {
@@ -289,7 +290,7 @@ public class Hero {
 		}
 		if(heroType == "Earth") {
 			heroAbility = "Takes less Damage";
-			applyResistance(50);
+			applyResistance(20);
 		}
 		if(heroType == "Divine") {
 			heroAbility = "Double Maximum Health";

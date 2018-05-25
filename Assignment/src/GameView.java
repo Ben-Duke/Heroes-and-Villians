@@ -1126,7 +1126,7 @@ public class GameView {
 		//System.out.println("Opening");
 		if (marker == "X" | marker == "O") { 
 			if (marker == "X") {
-				modelref.getTeam().increaseMoney(1000);
+				
 				if(battlingHero.getType() == "Demonic") {
 					modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
 					modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
@@ -1149,6 +1149,7 @@ public class GameView {
 					}
 					else {
 						getOutComeLabel().setText("<html>Yay you defeated the Villain,<br> Time for the next city</html>");
+						modelref.getTeam().increaseMoney(1000);
 						modelref.moveCity();
 						UpdateLairUI();
 					}			
@@ -1161,6 +1162,8 @@ public class GameView {
 				
 			}
 			else {
+				int damage = 0;
+				//damage = 
 				
 				battlingHero.decreaseHealth(modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().getDamage());
 				modelref.getTeam().checkLifeOfTeam();
@@ -1228,11 +1231,15 @@ public class GameView {
 			PlayerItems.add(modelref.getTeam().getAllItems().toArray()[i_playeritemstring].toString());
 		}
 		
+		if (PlayerItems.size() > 0) {
+			for (int j_playeritemtolist = 0; j_playeritemtolist < PlayerItems.size();j_playeritemtolist++) {
+				if (modelref.getTeam().getAllItems().size() != 0) {
+					Playeritemlist.addElement(modelref.getTeam().getAllItems().toArray()[j_playeritemtolist].toString());
+				}
+		}
 		
-		for (int j_playeritemtolist = 0; j_playeritemtolist < PlayerItems.size();j_playeritemtolist++) {
-			if (modelref.getTeam().getAllItems().size() != 0) {
-				Playeritemlist.addElement(modelref.getTeam().getAllItems().toArray()[j_playeritemtolist].toString());
-			}
+		
+		System.out.println("Player Items should update");
 		getPlayerItemsMap().setModel(Playeritemlist);
 		Team_items.setModel(Playeritemlist); 
 	
