@@ -50,7 +50,7 @@ public class City {
 	 * damage and the favorite game of the Villain in the city.
 	 */
 	public void setVillain() {
-		villain = new Villain("Dibs", 3, 20, "XAndOs");
+		villain = new Villain("Dibs", 3, 20, "RPS");
 	}
 	
 	/**

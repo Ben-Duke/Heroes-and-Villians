@@ -28,6 +28,10 @@ public class Villain {
 	 */
 	private boolean alive = true;
 	
+	public String getVillainGame() {
+		return villainFaveGame;
+	}
+	
 	/**
 	 * The constructor for the Villain which sets its name, lives, damage and favorite game.
 	 * 

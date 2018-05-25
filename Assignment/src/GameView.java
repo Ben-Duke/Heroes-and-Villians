@@ -140,7 +140,7 @@ public class GameView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-<<<<<<< HEAD
+
 		///RPS
 				RockPaperSissorsPanel.setVisible(false);
 				RockPaperSissorsPanel.setBounds(6, 6, 538, 374);
@@ -150,7 +150,18 @@ public class GameView {
 				JButton btnRock = new JButton("Rock");
 				btnRock.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						String outcome = "";
+						PaperScissorsRock game = modelref.getPRSGame();
+						String CPUmove = game.computerMove();
+						game.whoWin(CPUmove, "Rock");
+						if (game.getWinner() == "X" || game.getWinner() == "O") {
+							RockPaperSissorsPanel.setVisible(false);
+							openbattleoutcomescreen(game.getWinner());
+						}
+						else {
+							RockPaperSissorsPanel.setVisible(false);
+							modelref.createNewRPSGame();
+						}
 						
 					}
 				});
@@ -170,6 +181,7 @@ public class GameView {
 						}
 						else {
 							RockPaperSissorsPanel.setVisible(false);
+							modelref.createNewRPSGame();
 						}
 						
 					}
@@ -180,7 +192,19 @@ public class GameView {
 				JButton scissors = new JButton("Scissors");
 				scissors.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						String outcome = "";
+						PaperScissorsRock game = modelref.getPRSGame();
+						String CPUmove = game.computerMove();
+						game.whoWin(CPUmove, "Scissors");
+						if (game.getWinner() == "X" || game.getWinner() == "O") {
+							RockPaperSissorsPanel.setVisible(false);
+							openbattleoutcomescreen(game.getWinner());
+						}
+						else {
+							RockPaperSissorsPanel.setVisible(false);
+							MapPanel.setVisible(true);
+							modelref.createNewRPSGame();
+						}
 						
 					}
 				});
@@ -192,10 +216,6 @@ public class GameView {
 				RockPaperSissorsPanel.add(lblPlayTheVillain);
 		
 		
-		
-=======
-	
->>>>>>> bd74ddbf84d563219e4248787b3c39a6033a16f4
 		//Power up den panel
 	PowerUpDenPanel.setVisible(false);
 	PowerUpDenPanel.setBounds(6, 6, 571, 398);
@@ -623,8 +643,15 @@ public class GameView {
 				if (index > -1) {
 					battlingHero = modelref.getTeam().getHeroes().get(index);
 					//System.out.println(modelref.getTeam().getHeroes().get(index).toString());
-					XandOPanel.setVisible(true);
-					VillainLair.setVisible(false);
+					if(modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().getVillainGame() == "XAndOs") {
+						XandOPanel.setVisible(true);
+						VillainLair.setVisible(false);
+					}else {
+						RockPaperSissorsPanel.setVisible(true);
+						VillainLair.setVisible(false);
+					}
+				
+					
 				}
 				
 				
@@ -846,7 +873,7 @@ public class GameView {
 						}
 						else {
 							modelref.getTeam().setTeamName(getTeamNameTextField().getText());
-							
+							modelref.createNewRPSGame();
 							modelref.setCities(Integer.parseInt(cities[getCityCountList().getSelectedIndex()]));
 							refreshUIs();
 							TeamNamePanel.setVisible(false);
