@@ -93,11 +93,11 @@ public class GuessingGame {
 		}
 	}
 
-	public static void main(String[] args) {
-		GuessingGame g1 = new GuessingGame();
-		g1.PlayGame();
-		// TODO Auto-generated method stub
-
-	}
+//	public static void main(String[] args) {
+//		GuessingGame g1 = new GuessingGame();
+//		g1.PlayGame();
+//		// TODO Auto-generated method stub
+//
+//	}
 
 }
