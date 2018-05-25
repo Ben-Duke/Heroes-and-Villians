@@ -50,14 +50,14 @@ public class City {
 	 * damage and the favorite game of the Villain in the city.
 	 */
 	public void setVillain() {
-		villain = new Villain("Dibs", 2, 20, "XAndOs");
+		villain = new Villain("Dibs", 3, 20, "XAndOs");
 	}
 	
 	/**
 	 * The constructor for the Super Villain in the City
 	 */
 	public void setSuperVillain() {
-		villain = new SuperVillain("Lord of death Reaper", 3, 80, "XAndOs");
+		villain = new SuperVillain("Lord of death", 3, 80, "XAndOs");
 	}
 
 	/**

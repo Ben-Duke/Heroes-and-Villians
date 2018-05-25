@@ -80,7 +80,6 @@ public class GameModel {
 	public void addtime(ActionEvent e)
 	  {
 	    // do something exciting
-		//;
 		gametime++;
 	  }
 	

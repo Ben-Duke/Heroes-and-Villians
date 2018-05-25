@@ -55,7 +55,7 @@ public class Shop {
 	 * @return Returns an instance of the money of the Team
 	 */
 	public int showTeamMoney() {
-		return modelref.game_team.getTeamMoney();
+		return modelref.getTeam().getTeamMoney();
 	}
 	
 	/**
