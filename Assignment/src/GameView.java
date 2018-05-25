@@ -82,6 +82,7 @@ public class GameView {
 	Hero battlingHero = null;
 	String[] cities= {"3","4","5","6" };
 	private JButton btnOk;
+	private JLabel lbl50offlabel;
 	/**
 	 * Launch the application.
 	 */
@@ -234,12 +235,24 @@ public class GameView {
 				int index = getShopItems_list().getSelectedIndex();
 				getShopItems_list().clearSelection();
 				if (index > -1) {
-					if (modelref.getTeam().getTeamMoney() - ((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice() >= 0 ) {
-						modelref.getTeam().decreaseMoney(((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice());
-						modelref.getTeam().addHealingItems((HealingItem) shopref.getHealingItems().toArray()[index]);
-					}else {
-						ShowLowMoneyError().setVisible(true);
+					
+					if (modelref.getTeam().checkTypeInTeam("Fire") == true) {
+						if (modelref.getTeam().getTeamMoney() - (((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice())/2 >= 0 ) {
+							modelref.getTeam().decreaseMoney((((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice())/2);
+							modelref.getTeam().addHealingItems((HealingItem) shopref.getHealingItems().toArray()[index]);
+						}else {
+							ShowLowMoneyError().setVisible(true);
+						}
 					}
+					else {
+						if (modelref.getTeam().getTeamMoney() - ((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice() >= 0 ) {
+							modelref.getTeam().decreaseMoney(((HealingItem) shopref.getHealingItems().toArray()[index]).getPrice());
+							modelref.getTeam().addHealingItems((HealingItem) shopref.getHealingItems().toArray()[index]);
+						}else {
+							ShowLowMoneyError().setVisible(true);
+						}
+					}
+					
 //						
 					UpdatePlayeritems();
 					updateShopUI();	
@@ -265,20 +278,34 @@ public class GameView {
 				int index = getPowerUpList().getSelectedIndex();
 				getShopItems_list().clearSelection();
 				if (index > -1) {
-					if (modelref.getTeam().getTeamMoney() - ((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice() >= 0 ) {
-						modelref.getTeam().decreaseMoney(((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice());
+				if(modelref.getTeam().checkTypeInTeam("Fire")) {
+					if (modelref.getTeam().getTeamMoney() - (((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice())/2 >= 0 ) {
+						modelref.getTeam().decreaseMoney((((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice())/2);
 						modelref.getTeam().addPowerUpitem((PowerUpItem) shopref.getPowerUpItems().toArray()[index]);
 		
 					}else {
 						ShowLowMoneyError().setVisible(true);
 					}
-										
-					UpdatePlayeritems();
-					updateShopUI();
+				}
+				else {
 					
+						if (modelref.getTeam().getTeamMoney() - ((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice() >= 0 ) {
+							modelref.getTeam().decreaseMoney(((PowerUpItem) shopref.getPowerUpItems().toArray()[index]).getPrice());
+							modelref.getTeam().addPowerUpitem((PowerUpItem) shopref.getPowerUpItems().toArray()[index]);
+			
+						}else {
+							ShowLowMoneyError().setVisible(true);
+						}
+											
+						
+						
+					}
 				}
 				
+				UpdatePlayeritems();
+				updateShopUI();
 			}
+			
 		});
 		buttonpowerup.setBounds(128, 332, 117, 29);
 		ShopPanel.add(buttonpowerup);
@@ -292,6 +319,11 @@ public class GameView {
 		lblNeedMoreMoney.setForeground(Color.RED);
 		lblNeedMoreMoney.setBounds(303, 65, 123, 16);
 		ShopPanel.add(lblNeedMoreMoney);
+		
+		lbl50offlabel = new JLabel("Fire ability: 50% off!!");
+		lbl50offlabel.setForeground(Color.GREEN);
+		lbl50offlabel.setBounds(299, 18, 227, 16);
+		ShopPanel.add(lbl50offlabel);
 		//UpdatePlayeritems();
 		//updateShopUI();
 //		
@@ -516,7 +548,7 @@ public class GameView {
 				int index = getVillainLairHeroselect().getSelectedIndex();
 				if (index > -1) {
 					battlingHero = modelref.getTeam().getHeroes().get(index);
-					System.out.println(modelref.getTeam().getHeroes().get(index).toString());
+					//System.out.println(modelref.getTeam().getHeroes().get(index).toString());
 					XandOPanel.setVisible(true);
 					VillainLair.setVisible(false);
 				}
@@ -844,7 +876,13 @@ public class GameView {
 		//System.out.println("Opening");
 		if (marker == "X" | marker == "O") { 
 			if (marker == "X") {
-				modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
+				if(battlingHero.getType() == "Demonic") {
+					modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
+					modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
+				}
+				else {
+					modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
+				}
 				
 				if (modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().isAlive() == false) {
 					//System.out.println(""+modelref.getCurrentCity() + " size is " + modelref.getCities().size()) ;
@@ -866,26 +904,28 @@ public class GameView {
 				
 			}
 			else {
+				
 				battlingHero.decreaseHealth(modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().getDamage());
 				modelref.getTeam().checkLifeOfTeam();
 				
 				if (modelref.getTeam().getHeroes().size() == 0) {
 					getOutComeLabel().setText("<html>The heroes have been all been killed,<br> evil will now rule the world!</html>");
+					refreshUIs();
 					getBtnOkBattleScreen().setVisible(false);
 				}
 				else if (battlingHero.getStatus() == false) {
 					getOutComeLabel().setText("<html> hero " + battlingHero.getName() +",<br> was killed in this battle<br>"
 							+ "avenge this defeat. </html>");
-					
+					refreshUIs();
 				}
 				else {
 					getOutComeLabel().setText("<html>You may have lost this one,<br> but keep fighting you can do this!</html>");
-					
+					refreshUIs();
 				}
 				
 			}
 			
-			
+			battlingHero = null;
 			refreshUIs();
 			battleOutComePanel.setVisible(true);
 			XandOPanel.setVisible(false);
@@ -948,8 +988,13 @@ public class GameView {
 		DefaultListModel<String> itemlist = new DefaultListModel<String>();
 		
 		DefaultListModel<String> itemPowerUplist = new DefaultListModel<String>();
-		
+		getLbl50offlabel().setVisible(false);
 		getLblTeamMoney().setText("Team Money: $" + modelref.getTeam().getTeamMoney());
+		
+		if(modelref.getTeam().checkTypeInTeam("Fire")) {
+			getLbl50offlabel().setVisible(true);
+		}
+		
 		//Load healinhitems
 		for (int i_string = 0; i_string < shopref.getHealingItems().size();i_string++) {
 			shopItems.add(shopref.getHealingItems().toArray()[i_string].toString());
@@ -1154,6 +1199,9 @@ public class GameView {
 	}
 	public JButton getBtnOkBattleScreen() {
 		return btnOk;
+	}
+	public JLabel getLbl50offlabel() {
+		return lbl50offlabel;
 	}
 }
 	
