@@ -41,7 +41,7 @@ public class CityTest {
 		assertEquals(testingCity.getCityVillain().getName(), "Dibs");
 		assertEquals(testingCity.getCityVillain().lifeCount(), 3);
 		assertEquals(testingCity.getCityVillain().getDamage(), 20);
-		assertEquals(testingCity.getCityVillain().favGame(), "XAndOs");
+		assertEquals(testingCity.getCityVillain().favGame(), "RPS");
 	}
 	
 	@Test
@@ -61,7 +61,7 @@ public class CityTest {
 		assertEquals(testingCity.getCityVillain().getName(), "Dibs");
 		assertEquals(testingCity.getCityVillain().lifeCount(), 3);
 		assertEquals(testingCity.getCityVillain().getDamage(), 20);
-		assertEquals(testingCity.getCityVillain().favGame(), "XAndOs");
+		assertEquals(testingCity.getCityVillain().favGame(), "RPS");
 	}
 
 	@Test
