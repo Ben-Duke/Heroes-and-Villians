@@ -1143,7 +1143,7 @@ public class GameView {
 						getOutComeLabel().setText("<html>You won the Game the world is safe for now <br> <br> Thanks for playing!"
 								+ "<br>"
 								+ "<br>"
-								+ "Total Game time in minutes " + modelref.getGameTime() 
+								+ "Total Game time in " + modelref.getGameTime() 
 								+ " <html>");
 						getBtnOkBattleScreen().setVisible(false);
 					}

@@ -68,13 +68,13 @@ public class GameModel {
 	 * Returns an int in the form of seconds 
 	 * @return int gametime
 	 */
-	float getGameTime() {
+	String getGameTime() {
 		if(gametime < 60) {
 			
-			return (float) gametime;
+			return (float) gametime + "seconds.";
 		}
 		else {
-			return ((float) gametime)/60;
+			return ((float) gametime)/60 + "minutes.";
 		}
 		
 		
