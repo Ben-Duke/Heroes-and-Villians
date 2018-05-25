@@ -776,7 +776,7 @@ public class GameView {
 				}
 			}
 		});
-		
+		modelref.startTimer();
 	}	
 	public void updateHeroes() {
 		String[] heroNames = new String[modelref.getTeam().getHeroes().size()];
@@ -887,7 +887,13 @@ public class GameView {
 				if (modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().isAlive() == false) {
 					//System.out.println(""+modelref.getCurrentCity() + " size is " + modelref.getCities().size()) ;
 					if(modelref.getCurrentCity()+1 == modelref.getCities().size()) {
-						getOutComeLabel().setText("<html>You won the Game the world is safe for now <br> <br> Thanks for playing! <html>");
+						
+						
+						getOutComeLabel().setText("<html>You won the Game the world is safe for now <br> <br> Thanks for playing!"
+								+ "<br>"
+								+ "<br>"
+								+ "Total Game time in minutes " + modelref.getGameTime() 
+								+ " <html>");
 						getBtnOkBattleScreen().setVisible(false);
 					}
 					else {

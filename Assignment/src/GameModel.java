@@ -1,4 +1,7 @@
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+
+import javax.swing.Timer;
 
 /**
  * This class implements a Game Model that stores references for the game and hold the core references
@@ -60,8 +63,29 @@ public class GameModel {
 	 * Returns an int in the form of seconds 
 	 * @return int gametime
 	 */
-	int getGameTime() {
-		return gametime;
+	float getGameTime() {
+		if(gametime < 60) {
+			
+			return (float) gametime;
+		}
+		else {
+			return ((float) gametime)/60;
+		}
+		
+		
+	}
+	
+	private final Timer gametimer = new Timer(1000, this::addtime);
+	
+	public void addtime(ActionEvent e)
+	  {
+	    // do something exciting
+		//;
+		gametime++;
+	  }
+	
+	public void startTimer() {
+		gametimer.start();
 	}
 	
 	/**
