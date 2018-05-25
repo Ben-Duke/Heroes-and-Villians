@@ -166,6 +166,15 @@ public class Team {
 		teamMapList.add(items);
 	}
 	
+	public void checkLifeOfTeam() {
+		for (int i = 0; i < getHeroes().size();i++) {
+			if (getHeroes().get(i).getStatus() == false) {
+				getHeroes().remove(getHeroes().get(i));
+				System.out.println("Removed");
+			}
+		}
+	}
+	
 	/**
 	 * A function that returns the maps the Team have.
 	 * @return Returns an Array List of the maps of the Team.

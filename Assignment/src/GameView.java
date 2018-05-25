@@ -79,7 +79,9 @@ public class GameView {
 	private JList VillainLairHeroselect;
 	private JLabel lblVillainLivesLeft;
 	
+	Hero battlingHero = null;
 	String[] cities= {"3","4","5","6" };
+	private JButton btnOk;
 	/**
 	 * Launch the application.
 	 */
@@ -108,22 +110,8 @@ public class GameView {
 	 * @wbp.parser.entryPoint
 	 */
 	private void initialize() {
-		//modelref.setCities();
 		
-		
-		//delete after!!!!!!!!!
-//		modelref.createTeam("AA");
-//		modelref.getTeam().addHealingItems(new HealingItem("Add 50", 50, 50));
-//		modelref.getTeam().addHealingItems(new HealingItem("Add 50", 50, 50));
-//		modelref.getTeam().addHeroes("DDD", "Demonic");
-//		modelref.getTeam().getHeroes().get(0).decreaseHealth(60);
-//		modelref.getTeam().addHeroes("Alice", "Divine");
-//		modelref.getTeam().getHeroes().get(1).decreaseHealth(60);
-		///
-		
-		
-		
-		//System.out.println(modelref.getCities().get(0).getCityDestination());
+
 		frame = new JFrame();
 		frame.setBounds(100, 100, 583, 453);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -256,11 +244,11 @@ public class GameView {
 					UpdatePlayeritems();
 					updateShopUI();	
 					
-					
-				//modelref.getTeam().addHealingItems(shopref.getHealingItems().toArray()[index]);
+				
+				}
 				UpdatePlayeritems();
 				updateShopUI();
-				}
+				refreshUIs();
 			}
 		});
 		btnBuy.setBounds(128, 171, 117, 29);
@@ -491,6 +479,7 @@ public class GameView {
 		});
 		btnReturnToHomebase.setBounds(392, 340, 152, 29);
 		XandOPanel.add(btnReturnToHomebase);
+		//Used for loading but will be overwritten
 		modelref.createTeam("Team 1");
 		//Panel end
 		
@@ -503,6 +492,8 @@ public class GameView {
 		}
 		updateDenUI();
 			
+		
+		
 		//Villain fight
 		VillainLair.setVisible(false);
 		VillainLair.setBounds(6, 6, 571, 413);
@@ -522,8 +513,16 @@ public class GameView {
 		JButton BattleVillainButton = new JButton("FIGHT!!!");
 		BattleVillainButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				XandOPanel.setVisible(true);
-				VillainLair.setVisible(false);
+				int index = getVillainLairHeroselect().getSelectedIndex();
+				if (index > -1) {
+					battlingHero = modelref.getTeam().getHeroes().get(index);
+					System.out.println(modelref.getTeam().getHeroes().get(index).toString());
+					XandOPanel.setVisible(true);
+					VillainLair.setVisible(false);
+				}
+				
+				
+				
 			}
 		});
 		BattleVillainButton.setBounds(306, 359, 187, 29);
@@ -609,7 +608,7 @@ public class GameView {
 		frame.getContentPane().add(battleOutComePanel);
 		battleOutComePanel.setLayout(null);
 		
-		JButton btnOk = new JButton("OK");
+		btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Reset Game
@@ -625,7 +624,7 @@ public class GameView {
 		battleOutComePanel.add(btnOk);
 		
 		OutComeLabel = new JLabel("Congrats!!");
-		OutComeLabel.setBounds(26, 84, 522, 180);
+		OutComeLabel.setBounds(129, 84, 348, 180);
 		battleOutComePanel.add(OutComeLabel);
 		battleOutComePanel.setVisible(false);
 		
@@ -682,11 +681,8 @@ public class GameView {
 					list.clearSelection();
 					updateHeroes();
 					modelref.updateCityCount(cityCount.getSelectedIndex()+1);
-					System.out.println(modelref.cityCount);
+					
 					}
-				}
-				else {
-					System.out.println("No value");
 				}
 				
 			}
@@ -720,12 +716,12 @@ public class GameView {
 		Done.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (getTeamNameTextField().getText().length() < 2) {
-					System.out.println("Needs to be longer name");
+					//System.out.println("Needs to be longer name");
 					lblErrormessage.setText("Needs to be a longer name");
 					lblErrormessage.setVisible(true);
 				}
 				else if (getTeamNameTextField().getText().length() > 10) {
-					System.out.println("Needs to be shorter name");
+					//System.out.println("Needs to be shorter name");
 					lblErrormessage.setText("Needs to be a shorter name");
 					lblErrormessage.setVisible(true);
 				}
@@ -736,19 +732,8 @@ public class GameView {
 						}
 						else {
 							modelref.getTeam().setTeamName(getTeamNameTextField().getText());
-							System.out.println(modelref.getTeam().getTeamName());
-							
-							for (Hero tempHero: modelref.getTeam().getHeroes()) {
-								System.out.println(tempHero.getName());
-							}
 							
 							modelref.setCities(Integer.parseInt(cities[getCityCountList().getSelectedIndex()]));
-//							UpdateHospitalUI();
-//							UpdatePlayeritems();
-//							updateShopUI();
-//							updateDenUI();
-//							updateMapUI();
-//							UpdateLairUI();
 							refreshUIs();
 							TeamNamePanel.setVisible(false);
 							MapPanel.setVisible(true);
@@ -783,34 +768,34 @@ public class GameView {
 		//System.out.println(modelref.getCities()[0].getCityDestination().toArray()[0]);
 		City cityref = modelref.getCities().get(modelref.getCurrentCity());
 		cityref.setlocations(direction, cityref.getCityDestination().get(direction));
-		System.out.println(cityref.getCityDestination().get(direction));
+		//System.out.println(cityref.getCityDestination().get(direction));
 		//The indices of the Array List stands for the map directions 0 - North, 1 - South, 2 - East, 3 - West and 4 - Center
 		// * The elements in the Array List stands for the destination 0 - Shop, 1 - Power up den, 2 - Hospital, 3 - Villain's Lair and 4 - Home Base.
 		int switchCase = cityref.getCityDestination().get(direction);
-		System.out.println(switchCase);
+		//System.out.println(switchCase);
 		switch(switchCase +1) {		
 		
 		
 		case 1:
-		System.out.println("Shop Found");
+		//System.out.println("Shop Found");
 		MapPanel.setVisible(false);
 		ShopPanel.setVisible(true);
 		break;
 		case 2:
-		System.out.println("Den Found");
+		//System.out.println("Den Found");
 		MapPanel.setVisible(false);
 		PowerUpDenPanel.setVisible(true);
 		break;	
 					
 		case 3: 
-		System.out.println("Hospital Found");
+		//System.out.println("Hospital Found");
 		MapPanel.setVisible(false);
 		HospitalPanel.setVisible(true);
 		break;
 			
 			
 		case 4:
-		System.out.println("Lair Found");
+		//System.out.println("Lair Found");
 		MapPanel.setVisible(false);
 		VillainLair.setVisible(true);
 		break;
@@ -850,20 +835,22 @@ public class GameView {
 			if (modelref.getTeam().getHeroes().size() != 0) {
 				Team.addElement(modelref.getTeam().getHeroes().get(heroindex).toString());
 			}
+		getMapHeroList().setModel(Team);
 		getVillainLairHeroselect().setModel(Team);
 		}
 	}
 	
 	public void openbattleoutcomescreen (String marker){
-		System.out.println("Opening");
+		//System.out.println("Opening");
 		if (marker == "X" | marker == "O") { 
 			if (marker == "X") {
 				modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
 				
 				if (modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().isAlive() == false) {
-					System.out.println(""+modelref.getCurrentCity() + " size is " + modelref.getCities().size()) ;
+					//System.out.println(""+modelref.getCurrentCity() + " size is " + modelref.getCities().size()) ;
 					if(modelref.getCurrentCity()+1 == modelref.getCities().size()) {
-						getOutComeLabel().setText("You won the Game the world is safe for now");
+						getOutComeLabel().setText("<html>You won the Game the world is safe for now <br> <br> Thanks for playing! <html>");
+						getBtnOkBattleScreen().setVisible(false);
 					}
 					else {
 						getOutComeLabel().setText("<html>Yay you defeated the Villain,<br> Time for the next city</html>");
@@ -879,11 +866,27 @@ public class GameView {
 				
 			}
 			else {
-				getOutComeLabel().setText("You may have lost this one but keep fighting you can do this!");
+				battlingHero.decreaseHealth(modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().getDamage());
+				modelref.getTeam().checkLifeOfTeam();
+				
+				if (modelref.getTeam().getHeroes().size() == 0) {
+					getOutComeLabel().setText("<html>The heroes have been all been killed,<br> evil will now rule the world!</html>");
+					getBtnOkBattleScreen().setVisible(false);
+				}
+				else if (battlingHero.getStatus() == false) {
+					getOutComeLabel().setText("<html> hero " + battlingHero.getName() +",<br> was killed in this battle<br>"
+							+ "avenge this defeat. </html>");
+					
+				}
+				else {
+					getOutComeLabel().setText("<html>You may have lost this one,<br> but keep fighting you can do this!</html>");
+					
+				}
+				
 			}
 			
 			
-			updateMapUI();
+			refreshUIs();
 			battleOutComePanel.setVisible(true);
 			XandOPanel.setVisible(false);
 			
@@ -908,13 +911,11 @@ public class GameView {
 		for (int heroindex = 0; heroindex < modelref.getTeam().getHeroes().size(); heroindex++) {
 			if (modelref.getTeam().getHeroes().size() != 0) {
 				Team.addElement(modelref.getTeam().getHeroes().get(heroindex).toStringHospitalTimer());
-				}else {
-					System.out.print("Less than 1 item in player items");
 				}
 			
 		if (Team.size() < 1) {
 			Team = new DefaultListModel<String>();
-			System.out.println("Should be empty");
+			//System.out.println("Should be empty");
 		}
 		getCurrenthealingheroes().setModel(Team);
 		}
@@ -934,8 +935,6 @@ public class GameView {
 		for (int j_playeritemtolist = 0; j_playeritemtolist < PlayerItems.size();j_playeritemtolist++) {
 			if (modelref.getTeam().getAllItems().size() != 0) {
 				Playeritemlist.addElement(modelref.getTeam().getAllItems().toArray()[j_playeritemtolist].toString());
-			}else {
-				System.out.print("Less than 1 item in player items");
 			}
 		
 		Team_items.setModel(Playeritemlist); 
@@ -1018,14 +1017,14 @@ public class GameView {
 			}
 		}
 		
-		System.out.println("updating ui");
+		//System.out.println("updating ui");
 	}
 	public JTextField getTeamNameTextField() {
 		return textField;
 	}
 	
 	void updateMapUI() {
-		System.out.println("Size is " + modelref.getCities().size());
+		//System.out.println("Size is " + modelref.getCities().size());
 		getLblVillainLives().setText("Villains Lifes : "+ modelref.getCities().get(modelref.currentCity).getCityVillain().lifeCount());
 		getMapHeroList();
 	}
@@ -1052,7 +1051,7 @@ public class GameView {
 		DefaultListModel<String> Playeritemlist = new DefaultListModel<String>();
 		DefaultListModel<String> Team = new DefaultListModel<String>();
 		
-		System.out.println("UpdateDen " + (modelref.getTeam().getPowerUpList().toArray().length) + " items");
+		//System.out.println("UpdateDen " + (modelref.getTeam().getPowerUpList().toArray().length) + " items");
 		for (int i_playeritemstring = 0; i_playeritemstring < modelref.getTeam().getPowerUpList().size();i_playeritemstring++) {
 			PlayerItems.add(modelref.getTeam().getPowerUpList().toArray()[i_playeritemstring].toString());
 		}
@@ -1060,18 +1059,14 @@ public class GameView {
 		
 			if (modelref.getTeam().getAllItems().size() != 0) {
 				for (int j_playeritemtolist = 0; j_playeritemtolist < PlayerItems.size();j_playeritemtolist++) {
-				System.out.println(modelref.getTeam().getPowerUpList().toArray()[j_playeritemtolist].toString());
+				//System.out.println(modelref.getTeam().getPowerUpList().toArray()[j_playeritemtolist].toString());
 				Playeritemlist.addElement(modelref.getTeam().getPowerUpList().toArray()[j_playeritemtolist].toString());}
-			}else {
-				System.out.print("Less than 1 item in player items");
 			}
 		
 		for (int heroindex = 0; heroindex < modelref.getTeam().getHeroes().size(); heroindex++) {
 			if (modelref.getTeam().getHeroes().size() != 0) {
 				//System.out.println(modelref.getTeam().getPowerUpList().toArray()[heroindex].toString());
 				Team.addElement(modelref.getTeam().getHeroes().toArray()[heroindex].toString());
-			}else {
-				System.out.print("Less than 1 item in player items");
 			}
 		}
 		
@@ -1156,6 +1151,9 @@ public class GameView {
 	}
 	public JList getCityCountList() {
 		return cityCount;
+	}
+	public JButton getBtnOkBattleScreen() {
+		return btnOk;
 	}
 }
 	

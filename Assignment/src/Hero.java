@@ -278,6 +278,8 @@ public class Hero {
 			heroAbility = "Lower Price in Shops";
 		}
 		if(heroType == "Water") {
+			maxHealth = 70;
+			currentHealth = 70;
 			heroAbility = "Faster Recovery Rates";
 		}
 		if(heroType == "Earth") {
