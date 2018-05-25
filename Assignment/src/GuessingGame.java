@@ -20,7 +20,10 @@ public class GuessingGame {
 	 * A boolean value which represents win (true) and loss (false)
 	 */
 	private boolean win = false;
-	
+	/**
+	 * The winner
+	 */
+	String winner;
 	/**
 	 * The status of the game, whether the answer is correct or incorrect
 	 */
@@ -43,6 +46,7 @@ public class GuessingGame {
 		if(guess == answer) {
 			win = true;
 			gameStatus = "correct";
+			winner = "Player";
 				
 		} else if(guess != answer) {
 			gameStatus = "incorrect";
@@ -54,6 +58,7 @@ public class GuessingGame {
 			System.out.println("You won. Congratulations!");
 		} else if((win == false) && (tries >= 3)) {
 			System.out.println("You lost. Better luck next time!");
+			winner = "Computer";
 		}
 	}
 	
@@ -80,14 +85,16 @@ public class GuessingGame {
 		}
 	}
 	
+	public void initialiseAnswer() {
+		Random number = new Random();
+		answer = number.nextInt(11);
+	}
+	
 	/**
 	 * A function that starts the game of Guessing Game and lets the user
 	 * input the guessed answer.
 	 */
-	public void PlayGame() {
-		Random number = new Random();
-		answer = number.nextInt(11);
-		
+	public void PlayGame() {		
 		while ((tries < 3) && (win == false)) {
 			userInput();
 		}
