@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -139,9 +141,9 @@ public class PaperScissorsRock {
 		}
 	}
 
-//	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
-//		PaperScissorsRock game = new PaperScissorsRock();
-//		game.playGame();
-//	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		PaperScissorsRock game = new PaperScissorsRock();
+		System.out.println((game.getAnswer()));
+	}
 }

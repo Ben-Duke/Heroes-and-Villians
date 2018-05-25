@@ -1,4 +1,3 @@
-
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -38,6 +37,17 @@ public class PaperScissorsRockTest {
 	}
 
 	@Test
+	public void testGetAnswer() {
+		game = new PaperScissorsRock();
+		game.computerMove();
+		ArrayList<Integer> nums = new ArrayList<Integer>(Arrays.asList(1, 2, 3));
+		assertTrue(nums.contains(game.getAnswer()));
+		
+		game = new PaperScissorsRock();
+		assertEquals(game.getAnswer(), 0);
+	}
+
+	@Test
 	public void testUserMove() {
 		game = new PaperScissorsRock();
 	}
@@ -45,10 +55,36 @@ public class PaperScissorsRockTest {
 	@Test
 	public void testWhoWin() {
 		game = new PaperScissorsRock();
+		game.whoWin("Scissors", "Rock");
+		
+		game = new PaperScissorsRock();
+		game.whoWin("Rock", "Scissors");
+		
+		game = new PaperScissorsRock();
+		game.whoWin("Paper", "Scissors");
+		
+		game = new PaperScissorsRock();
+		game.whoWin("Scissors", "Paper");
+		
+		game = new PaperScissorsRock();
+		game.whoWin("Paper", "Rock");
+		
+		game = new PaperScissorsRock();
+		game.whoWin("Rock", "Paper");
+		
+		game = new PaperScissorsRock();
+		game.whoWin("Paper", "Paper");
+		
+		game = new PaperScissorsRock();
+		game.whoWin("Rock", "Rock");
+		
+		game = new PaperScissorsRock();
+		game.whoWin("Scissors", "Scissors");
 	}
 
 	@Test
 	public void testPlayGame() {
 		game = new PaperScissorsRock();
 	}
+
 }

@@ -8,27 +8,45 @@ import java.util.Scanner;
  *
  */
 public class XAndOs {
+	/**
+	 * The design seperator
+	 */
 	private String sep = "*";
+	/**
+	 * The Game View
+	 */
 	private GameView gameviewref = null;
+	/**
+	 * The board Game
+	 */
 	private String[][] game = { 
 			{"-","-","-"},
 			{"-","-","-"},
 			{"-","-","-"}
 	};
+	/**
+	 * The winner of the Game
+	 */
 	private String winner = "None";
 	
 	/**
 	 * Starts the game loop for Xs and Os.
 	 */
-	
 	public String[][] getGameState(){
 		return game;
 	}
 
+	/**
+	 * This function sets up the Game View
+	 * @param ref This is the setup of the Game View
+	 */
 	void setViewRef(GameView ref) {
 		gameviewref = ref;
 	}
 	
+	/**
+	 * This function initializes the game play.
+	 */
 	public void playGame() {
 	
 		boolean valid = false;
@@ -62,9 +80,11 @@ public class XAndOs {
 			
 	}
 	
+	/**
+	 * This function makes the Player make a move
+	 * @param move The move of the Player 
+	 */
 	void makeMove(int[] move) {
-				
-				
 				if (placeMarker("X", move[0], move[1]) == "Failed" && move[0] < 3 && move[1] < 3) {
 					//System.out.println("MoveFailed");
 				}
@@ -78,21 +98,21 @@ public class XAndOs {
 						cpuMove();
 						}
 					}
-					
-					
 				}
 			
 			//Changes valid to false so the user can pick again.
-			
 			winner = checkforWinner();
+<<<<<<< HEAD
+			System.out.println(winner);
+=======
 			//System.out.println(winner);
 		
+>>>>>>> 8cadd62234e39c9e668d007c540f7083111bde6f
 	}
 	
 	/**
 	 * Checks the game string array to see if there is a winner based
 	 * on rows.
-	 * @return 
 	 * @return Returns who won, otherwise returns none as a string.
 	 */
 	
@@ -113,18 +133,22 @@ public class XAndOs {
 		return moves;
 	}
 	
+	/**
+	 * This function initializes the Game move of the Computer
+	 */
 	public void cpuMove() {
 		if (ableToPlay()) {
 			ArrayList<Integer[]> moves = cpuMoveHelper();
 			Random rand = new Random();
 			int placement = (int)rand.nextInt(moves.size());
-			placeMarker("O", moves.get(placement)[0], moves.get(placement)[1]);
-			
+			placeMarker("O", moves.get(placement)[0], moves.get(placement)[1]);		
 		}
-		
-		
 	}
 	
+	/**
+	 * This function checks the rows of the game to see if there is a winner.
+	 * @return Returns a String of either X, O or None.
+	 */
 	public String checkRows() {
 		for(int row = 0; row < game.length; row++) {
 			int x = 0;
@@ -308,10 +332,10 @@ public class XAndOs {
 		
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		XAndOs game = new XAndOs();
-		game.playGame();
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//		XAndOs game = new XAndOs();
+//		game.playGame();
 //		int[] move = {0,1};
 //		game.makeMove(move);
 //		
@@ -338,8 +362,8 @@ public class XAndOs {
 //		for(int index = 0; index < x.size(); index++) {
 //			System.out.println(x.get(index)[0]+ "," + x.get(index)[1]);
 //		}
-		game.printState();
-		
-	}
+//		game.printState();
+//		
+//	}
 
 }
