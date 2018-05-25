@@ -141,9 +141,9 @@ public class PaperScissorsRock {
 		}
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		PaperScissorsRock game = new PaperScissorsRock();
-		System.out.println((game.getAnswer()));
-	}
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//		PaperScissorsRock game = new PaperScissorsRock();
+//		System.out.println((game.getAnswer()));
+//	}
 }
