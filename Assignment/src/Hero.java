@@ -65,11 +65,11 @@ public class Hero {
 	/**
 	 * Reference to bring the counter back to the original Count
 	 */
-	int orignalhealcount = 30;
+	private int orignalhealcount = 30;
 	/**
 	 * Count-down of the Timer
 	 */
-	int healtimer = 30;
+	private int healtimer = 30;
 	/**
 	 * Timer of the Hero
 	 */

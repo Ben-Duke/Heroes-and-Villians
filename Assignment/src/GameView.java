@@ -23,7 +23,13 @@ import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.AbstractListModel;
 import javax.swing.JTextPane;
-
+/**
+ * This class implements a Game View which controls the whole state of the game 
+ * and controls what the player can and cannot see.
+ * 
+ * @author Ben Duke & Angelica Dela Cruz
+ * @version 1.2, May 2018.
+ */
 public class GameView {
 
 	private JFrame frame;
