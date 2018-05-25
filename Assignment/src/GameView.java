@@ -159,7 +159,9 @@ public class GameView {
 							openbattleoutcomescreen(game.getWinner());
 						}
 						else {
+							
 							RockPaperSissorsPanel.setVisible(false);
+							MapPanel.setVisible(true);
 							modelref.createNewRPSGame();
 						}
 						
@@ -181,6 +183,7 @@ public class GameView {
 						}
 						else {
 							RockPaperSissorsPanel.setVisible(false);
+							MapPanel.setVisible(true);
 							modelref.createNewRPSGame();
 						}
 						
@@ -666,12 +669,9 @@ public class GameView {
 		VillainLair.add(lblVillainLivesLeft);
 		
 		JLabel lblVillainTaunt = new JLabel("Welcome to your doom!!!");
-		lblVillainTaunt.setBounds(41, 331, 233, 16);
+		lblVillainTaunt.setForeground(Color.RED);
+		lblVillainTaunt.setBounds(46, 97, 233, 16);
 		VillainLair.add(lblVillainTaunt);
-		JLabel VillainImage = new JLabel("Villain Image");
-		//VillainImage.setIcon(new ImageIcon("/Users/benduke/Desktop/Screen Shot 2018-05-13 at 9.38.55 PM.png"));
-		VillainImage.setBounds(24, 54, 258, 244);
-		VillainLair.add(VillainImage);
 		
 		VillainLairHeroselect = new JList();
 		VillainLairHeroselect.setBounds(300, 54, 246, 248);
@@ -988,6 +988,7 @@ public class GameView {
 		//System.out.println("Opening");
 		if (marker == "X" | marker == "O") { 
 			if (marker == "X") {
+				modelref.getTeam().increaseMoney(1000);
 				if(battlingHero.getType() == "Demonic") {
 					modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
 					modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().decreaseLives();
