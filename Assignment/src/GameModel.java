@@ -23,8 +23,14 @@ public class GameModel {
 	 */
 	private XAndOs XAndOgame;
 	
+	/**
+	 * The Game of Paper Scissors Rock
+	 */
 	private PaperScissorsRock PRSGame; 
 	
+	/**
+	 * The Game of Guessing Game
+	 */
 	private GuessingGame guessingGame;
 	
 	/**
@@ -43,16 +49,22 @@ public class GameModel {
 	 * The current City
 	 */
 	private int currentCity = 0;
+	/**
+	 * The Time of the Game
+	 */
+	int gametime = 0;
+	/**
+	 * The Game Timer
+	 */
+	private final Timer gametimer = new Timer(1000, this::addtime);
 	
 	/**
 	 * This function moves the City to the next City
 	 */
 	public void moveCity() {
-		currentCity ++;
+		currentCity++;
 	}
 	
-	
-	int gametime = 0;
 	/**
 	 * This function creates the Team for the Game.
 	 * @param name The String representation of the name of the Team
@@ -65,10 +77,10 @@ public class GameModel {
 	}
 	
 	/**
-	 * Returns an int in the form of seconds 
-	 * @return int gametime
+	 * This function a float value in the form of seconds 
+	 * @return Returns the float value of the Game Time
 	 */
-	float getGameTime() {
+	public float getGameTime() {
 		if(gametime < 60) {
 			
 			return (float) gametime;
@@ -76,18 +88,21 @@ public class GameModel {
 		else {
 			return ((float) gametime)/60;
 		}
-		
-		
 	}
 	
-	private final Timer gametimer = new Timer(1000, this::addtime);
-	
+	/**
+	 * This function adds the time 
+	 * @param e Action Event
+	 */
 	public void addtime(ActionEvent e)
 	  {
 	    // do something exciting
 		gametime++;
 	  }
 	
+	/**
+	 * This function initializes the Timer
+	 */
 	public void startTimer() {
 		gametimer.start();
 	}
@@ -98,6 +113,14 @@ public class GameModel {
 	 */
 	public void updateCityCount(int numOfCity) {
 		cityCount = numOfCity;
+	}
+	
+	/**
+	 * Returns the number of City.
+	 * @return Returns the number of City.
+	 */
+	public int getCityCount() {
+		return cityCount;
 	}
 	
 	/**
@@ -131,18 +154,32 @@ public class GameModel {
 		return XAndOgame;
 	}
 	
+	/**
+	 * This function initializes the game Paper Scissors Rock
+	 */
 	public void createNewRPSGame() {
 		PRSGame = new PaperScissorsRock();
 	}
 	
+	/**
+	 * This function returns the game Paper Scissors Rock
+	 * @return Returns the Paper Scissors Rock game
+	 */
 	public PaperScissorsRock getPRSGame() {
 		return PRSGame;
 	}
 	
+	/**
+	 * This function initializes the Guessing Game
+	 */
 	public void createNewGuessingGame() {
 		guessingGame = new GuessingGame();
 	}
 	
+	/**
+	 * This function returns the Guessing Game
+	 * @return Returns Guessing Game
+	 */
 	public GuessingGame getGuessingGame() {
 		return guessingGame;
 	}
@@ -186,10 +223,13 @@ public class GameModel {
 		citylist = templist;
 	}
 	
-	
 //	public static void main(String[] args) {
 //		// TODO Auto-generated method stub
-//		
+//		GameModel 	game = new GameModel();
+//		game.createTeam("P-Rangers");
+//		game.setCities(3);
+//		System.out.println
+//		(game.getCityCount());
 //	}
 	
 }

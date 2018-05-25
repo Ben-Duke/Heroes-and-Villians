@@ -38,10 +38,11 @@ public class CityTest {
 	public void testSetVillain() {
 		testingCity = new City("City 1");
 		testingCity.setVillain();
-		assertEquals(testingCity.getCityVillain().getName(), "Dibs");
+		ArrayList<String> games = new ArrayList<String>(Arrays.asList("RPS", "Guessing", "XAndOs"));
+		assertEquals(testingCity.getCityVillain().getName(), "Clone");
 		assertEquals(testingCity.getCityVillain().lifeCount(), 3);
-		assertEquals(testingCity.getCityVillain().getDamage(), 20);
-		assertEquals(testingCity.getCityVillain().favGame(), "RPS");
+		assertEquals(testingCity.getCityVillain().getDamage(), 30);
+		assertTrue(games.contains(testingCity.getCityVillain().getVillainGame()));
 	}
 	
 	@Test
@@ -50,7 +51,7 @@ public class CityTest {
 		testingCity.setSuperVillain();
 		assertEquals(testingCity.getCityVillain().getName(), "Lord of death");
 		assertEquals(testingCity.getCityVillain().lifeCount(), 6);
-		assertEquals(testingCity.getCityVillain().getDamage(), 80);
+		assertEquals(testingCity.getCityVillain().getDamage(), 60);
 		assertEquals(testingCity.getCityVillain().favGame(), "XAndOs");
 	}
 	
@@ -58,10 +59,11 @@ public class CityTest {
 	public void testGetCityVillain() {
 		testingCity = new City("City 1");
 		testingCity.setVillain();
-		assertEquals(testingCity.getCityVillain().getName(), "Dibs");
+		ArrayList<String> games = new ArrayList<String>(Arrays.asList("RPS", "Guessing", "XAndOs"));
+		assertEquals(testingCity.getCityVillain().getName(), "Clone");
 		assertEquals(testingCity.getCityVillain().lifeCount(), 3);
-		assertEquals(testingCity.getCityVillain().getDamage(), 20);
-		assertEquals(testingCity.getCityVillain().favGame(), "RPS");
+		assertEquals(testingCity.getCityVillain().getDamage(), 30);
+		assertTrue(games.contains(testingCity.getCityVillain().getVillainGame()));
 	}
 
 	@Test

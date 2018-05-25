@@ -93,9 +93,7 @@ public class HeroTest {
 		assertEquals(testingHero.getCurrentHealth(), 70);
 		
 		testingHero = new Hero("Soil", "Earth");
-		testingHero.decreaseHealth(50);
-		testingHero.increaseHealth(30);
-		assertEquals(testingHero.getCurrentHealth(), 80);
+		assertEquals(testingHero.getCurrentHealth(), 100);
 	}
 
 	@Test

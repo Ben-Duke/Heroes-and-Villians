@@ -30,6 +30,9 @@ public class TeamTest {
 	@Test
 	public void testGetAllItems() {
 		testingTeam = new Team();
+		assertEquals(testingTeam.getAllItems().size(), 0);
+		
+		testingTeam = new Team();
 		HealingItem healUp = new HealingItem("Heal 25%", 100, 25);
 		testingTeam.addHealingItems(healUp);
 		PowerUpItem powerUp = new PowerUpItem("Decrease battle damage", 150, "res", 10);

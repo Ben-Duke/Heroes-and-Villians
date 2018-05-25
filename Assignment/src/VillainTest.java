@@ -55,6 +55,15 @@ public class VillainTest {
 		testingVillain.killVillain();
 		assertFalse(testingVillain.isAlive());
 	}
+	
+	@Test
+	public void testGetVillainGame() {
+		testingVillain = new Villain("Bad", 3, 25, "XandO's");
+		assertEquals(testingVillain.getVillainGame(), "XandO's");
+		
+		testingVillain = new Villain("Super Evil", 3, 40, "GuessingGame");
+		assertEquals(testingVillain.getVillainGame(), "GuessingGame");
+	}
 
 	@Test
 	public void testLifeCount() {

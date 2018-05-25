@@ -1,6 +1,5 @@
 /**
- * This interface Destination is implemented by the Hospital, Shop, Villain Lair 
- * and Power-up Den to make the City.
+ * This interface Destination is implemented by the Hospital
  * 
  * @author Ben Duke & Angelica Dela Cruz
  * @version 1.1, May 2018.

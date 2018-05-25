@@ -1,5 +1,3 @@
-import static org.junit.Assert.assertEquals;
-
 import java.awt.event.ActionEvent;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -391,9 +389,11 @@ public class Hero {
 	}
 	
 //	public static void main(String[] args) {
-//		Hero testingHero = new Hero("Bob", "Earth");
-//		testingHero.applyResistance(20);
-//		System.out.println(testingHero.getResistance());
+//		Hero testingHero = new Hero("Soil", "Earth");
+//		System.out.println(testingHero.getCurrentHealth());
+//		testingHero.decreaseHealth(50);
+//		testingHero.increaseHealth(30);
+//		System.out.println(testingHero.getCurrentHealth());
 //		
 ////		Hero creature = new Hero("Divine", "Brighty");
 ////		System.out.println("Creature type: " + creature.getType());

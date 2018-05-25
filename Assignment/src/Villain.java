@@ -28,6 +28,11 @@ public class Villain {
 	 */
 	private boolean alive = true;
 	
+	/**
+	 * This function returns the favorite game of the Villain
+	 * @return Returns the String representation of the Villain's 
+	 * favorite Game.
+	 */
 	public String getVillainGame() {
 		return villainFaveGame;
 	}

@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -85,10 +87,19 @@ public class GuessingGame {
 		}
 	}
 	
+	/**
+	 * This function return the Answer
+	 * @return Returns answer in integer form
+	 */
 	public int getAnswer() {
 		return answer;
 	}
 	
+	/**
+	 * This returns true or false if the user wins or not.
+	 * @param guess The guess of the User
+	 * @return Returns true or false if user wins or not.
+	 */
 	public boolean userGuess(int guess){
 		if (guess == answer) {
 			return true;
@@ -99,10 +110,18 @@ public class GuessingGame {
 			
 	}
 	
+	/**
+	 * This function returns the number of tries.
+	 * @return Returns integer value of trials of the Game
+	 */
 	public int getTries() {
 		return tries;
 	}
 	
+	/**
+	 * Returns true or false if the player lost or not,
+	 * @return Returns true or false if the player lost or not
+	 */
 	public boolean playerLost() {
 		if (tries == 0) {
 			return true;
@@ -111,10 +130,18 @@ public class GuessingGame {
 			return false;
 		}
 	}
+	
+	/**
+	 * This function initialises the Answer of the Game.
+	 */
 	public void initialiseAnswer() {
 		Random number = new Random();
 		answer = number.nextInt(11) +1;
 	}
+	
+	/**
+	 * This is the constructor for the Game to initialize
+	 */
 	GuessingGame(){
 		initialiseAnswer();
 	}
@@ -129,8 +156,8 @@ public class GuessingGame {
 	}
 
 //	public static void main(String[] args) {
-//		GuessingGame g1 = new GuessingGame();
-//		g1.PlayGame();
+//		GuessingGame game = new GuessingGame();
+//		System.out.println(game.getTries());
 //		// TODO Auto-generated method stub
 //
 //	}
