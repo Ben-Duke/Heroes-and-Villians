@@ -821,7 +821,10 @@ public class GameView {
 		updateShopUI();
 		
 	}
-	
+	/**
+	 * This function moves to the Destination
+	 * @param direction An Integer value of the Direction
+	 */
 	void movetoDestination(int direction) {
 		//System.out.println(modelref.getCities()[0].getCityDestination().toArray()[0]);
 		City cityref = modelref.getCities().get(modelref.getCurrentCity());
@@ -1100,6 +1103,9 @@ public class GameView {
 		return textField;
 	}
 	
+	/**
+	 * This function updates the Map
+	 */
 	void updateMapUI() {
 		//System.out.println("Size is " + modelref.getCities().size());
 		City currentcity = modelref.getCities().get(modelref.getCurrentCity());
