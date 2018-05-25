@@ -85,15 +85,25 @@ public class GameView {
 	private JList VillainLairHeroselect;
 	private JLabel lblVillainLivesLeft;
 	
+	/**
+	 * The Hero battling
+	 */
 	Hero battlingHero = null;
+	/**
+	 * The possible number of Cities
+	 */
 	String[] cities= {"3","4","5","6" };
 	private JButton btnOk;
 	private JLabel lbl50offlabel;
+	/**
+	 * The Map
+	 */
 	private JList<String> PlayerItemsMap;
 	private JButton West_button;
 	private JButton North_Button;
 	private JButton East_Button;
 	private JButton South_Button;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -129,7 +139,7 @@ public class GameView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		
+	
 		//Power up den panel
 	PowerUpDenPanel.setVisible(false);
 	PowerUpDenPanel.setBounds(6, 6, 571, 398);
