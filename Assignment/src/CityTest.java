@@ -38,17 +38,17 @@ public class CityTest {
 	public void testSetVillain() {
 		testingCity = new City("City 1");
 		testingCity.setVillain();
-		assertEquals(testingCity.villain.getName(), "Dibs");
-		assertEquals(testingCity.villain.lifeCount(), 2);
-		assertEquals(testingCity.villain.getDamage(), 20);
-		assertEquals(testingCity.villain.favGame(), "XAndOs");
+		assertEquals(testingCity.getCityVillain().getName(), "Dibs");
+		assertEquals(testingCity.getCityVillain().lifeCount(), 3);
+		assertEquals(testingCity.getCityVillain().getDamage(), 20);
+		assertEquals(testingCity.getCityVillain().favGame(), "XAndOs");
 	}
 	
 	@Test
 	public void testSetSuperVillain() {
 		testingCity = new City("City 6");
 		testingCity.setSuperVillain();
-		assertEquals(testingCity.getCityVillain().getName(), "Lord of death Reaper");
+		assertEquals(testingCity.getCityVillain().getName(), "Lord of death");
 		assertEquals(testingCity.getCityVillain().lifeCount(), 6);
 		assertEquals(testingCity.getCityVillain().getDamage(), 80);
 		assertEquals(testingCity.getCityVillain().favGame(), "XAndOs");
@@ -59,7 +59,7 @@ public class CityTest {
 		testingCity = new City("City 1");
 		testingCity.setVillain();
 		assertEquals(testingCity.getCityVillain().getName(), "Dibs");
-		assertEquals(testingCity.getCityVillain().lifeCount(), 2);
+		assertEquals(testingCity.getCityVillain().lifeCount(), 3);
 		assertEquals(testingCity.getCityVillain().getDamage(), 20);
 		assertEquals(testingCity.getCityVillain().favGame(), "XAndOs");
 	}

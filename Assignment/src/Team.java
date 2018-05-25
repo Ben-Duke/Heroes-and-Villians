@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 /**
  * This class implements a Team of super heroes that will save the world. 

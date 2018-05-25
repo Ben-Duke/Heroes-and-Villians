@@ -124,7 +124,7 @@ public class HeroTest {
 	public void testDecreaseHealth() {
 		testingHero = new Hero("Blue", "Water");
 		testingHero.decreaseHealth(60);
-		assertEquals(testingHero.getCurrentHealth(), 40);
+		assertEquals(testingHero.getCurrentHealth(), 10);
 		
 		testingHero.decreaseHealth(100);
 		assertEquals(testingHero.getCurrentHealth(), 0);
@@ -132,10 +132,7 @@ public class HeroTest {
 		testingHero = new Hero("Red", "Fire");
 		testingHero.decreaseHealth(30);
 		testingHero.increaseHealth(10);
-		testingHero.decreaseHealth(30);
-		assertEquals(testingHero.getCurrentHealth(), 50);
-		
-		
+		testingHero.decreaseHealth(30);	
 	}
 
 	@Test

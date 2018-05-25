@@ -86,15 +86,25 @@ public class GameView {
 	private JList VillainLairHeroselect;
 	private JLabel lblVillainLivesLeft;
 	
+	/**
+	 * The Hero battling
+	 */
 	Hero battlingHero = null;
+	/**
+	 * The possible number of Cities
+	 */
 	String[] cities= {"3","4","5","6" };
 	private JButton btnOk;
 	private JLabel lbl50offlabel;
+	/**
+	 * The Map
+	 */
 	private JList<String> PlayerItemsMap;
 	private JButton West_button;
 	private JButton North_Button;
 	private JButton East_Button;
 	private JButton South_Button;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -130,6 +140,7 @@ public class GameView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+<<<<<<< HEAD
 		///RPS
 				RockPaperSissorsPanel.setVisible(false);
 				RockPaperSissorsPanel.setBounds(6, 6, 538, 374);
@@ -182,6 +193,9 @@ public class GameView {
 		
 		
 		
+=======
+	
+>>>>>>> bd74ddbf84d563219e4248787b3c39a6033a16f4
 		//Power up den panel
 	PowerUpDenPanel.setVisible(false);
 	PowerUpDenPanel.setBounds(6, 6, 571, 398);
@@ -863,7 +877,10 @@ public class GameView {
 		updateShopUI();
 		
 	}
-	
+	/**
+	 * This function moves to the Destination
+	 * @param direction An Integer value of the Direction
+	 */
 	void movetoDestination(int direction) {
 		//System.out.println(modelref.getCities()[0].getCityDestination().toArray()[0]);
 		City cityref = modelref.getCities().get(modelref.getCurrentCity());
@@ -1142,6 +1159,9 @@ public class GameView {
 		return textField;
 	}
 	
+	/**
+	 * This function updates the Map
+	 */
 	void updateMapUI() {
 		//System.out.println("Size is " + modelref.getCities().size());
 		City currentcity = modelref.getCities().get(modelref.getCurrentCity());

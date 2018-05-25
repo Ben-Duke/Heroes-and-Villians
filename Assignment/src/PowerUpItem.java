@@ -9,11 +9,11 @@ public class PowerUpItem extends Item{
 	/**
 	 * The type of the power-up item
 	 */
-	String power;
+	private String power;
 	/**
 	 * The amount of boost the power-up item gives
 	 */
-	int powerAmount;
+	private int powerAmount;
 	
 	/**
 	 * The constructor for the class PowerUpItem which sets the name, price, type and power-up boost
