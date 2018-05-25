@@ -220,7 +220,7 @@ public class Hero {
 	public void decreaseHealth(int damage) {
 		if(damage > 0) {
 			currentHealth -= damage;
-			if(currentHealth < 0) {
+			if(currentHealth <= 0) {
 				currentHealth = 0;
 				heroStatus = false;
 			}

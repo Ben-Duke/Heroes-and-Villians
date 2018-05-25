@@ -50,7 +50,13 @@ public class City {
 	 * damage and the favorite game of the Villain in the city.
 	 */
 	public void setVillain() {
-		villain = new Villain("Dibs", 3, 20, "RPS");
+		String[] games = {"RPS", "Guessing", "XAndOs"};
+		
+		Random randVillain = new Random();
+
+		int  gameint = randVillain.nextInt(2);
+		villain = new Villain("Clone", 3, 20, games[gameint]);
+		System.out.println(games[gameint]);
 	}
 	
 	/**

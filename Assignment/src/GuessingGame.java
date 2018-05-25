@@ -14,7 +14,7 @@ public class GuessingGame {
 	/**
 	 * The number of tries 
 	 */
-	private int tries = 0;
+	private int tries = 3;
 	
 	/**
 	 * A boolean value which represents win (true) and loss (false)
@@ -85,11 +85,39 @@ public class GuessingGame {
 		}
 	}
 	
-	public void initialiseAnswer() {
-		Random number = new Random();
-		answer = number.nextInt(11);
+	public int getAnswer() {
+		return answer;
 	}
 	
+	public boolean userGuess(int guess){
+		if (guess == answer) {
+			return true;
+		}else {
+			tries--;
+			return false;
+		}
+			
+	}
+	
+	public int getTries() {
+		return tries;
+	}
+	
+	public boolean playerLost() {
+		if (tries == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	public void initialiseAnswer() {
+		Random number = new Random();
+		answer = number.nextInt(11) +1;
+	}
+	GuessingGame(){
+		initialiseAnswer();
+	}
 	/**
 	 * A function that starts the game of Guessing Game and lets the user
 	 * input the guessed answer.

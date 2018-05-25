@@ -25,6 +25,8 @@ public class GameModel {
 	
 	private PaperScissorsRock PRSGame; 
 	
+	private GuessingGame guessingGame;
+	
 	/**
 	 * The list of the City
 	 */
@@ -135,6 +137,14 @@ public class GameModel {
 	
 	public PaperScissorsRock getPRSGame() {
 		return PRSGame;
+	}
+	
+	public void createNewGuessingGame() {
+		guessingGame = new GuessingGame();
+	}
+	
+	public GuessingGame getGuessingGame() {
+		return guessingGame;
 	}
 	
 	/**

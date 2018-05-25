@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JLayeredPane;
@@ -46,6 +47,7 @@ public class GameView {
 	private JList cityCount;
 	
 	//Panel refs
+	JPanel GuessingGamePanel = new JPanel();
 	JPanel RockPaperSissorsPanel = new JPanel();
 	JLayeredPane TeamNamePanel = new JLayeredPane();
 	JPanel VillainLair = new JPanel();
@@ -104,6 +106,7 @@ public class GameView {
 	private JButton North_Button;
 	private JButton East_Button;
 	private JButton South_Button;
+	private JLabel lblYouHave;
 	
 	/**
 	 * Launch the application.
@@ -140,6 +143,121 @@ public class GameView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		//Guessing Game panel
+		
+		GuessingGamePanel.setBounds(6, 6, 571, 419);
+		frame.getContentPane().add(GuessingGamePanel);
+		GuessingGamePanel.setLayout(null);
+		
+		JLabel lblGuessTheNumber = new JLabel("Guess the number between 1 to 10.");
+		lblGuessTheNumber.setBounds(18, 11, 223, 16);
+		lblGuessTheNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		GuessingGamePanel.add(lblGuessTheNumber);
+		
+		lblYouHave = new JLabel("You have 3 tries remaining");
+		lblYouHave.setBounds(345, 11, 177, 16);
+		GuessingGamePanel.add(lblYouHave);
+		GuessingGamePanel.setVisible(false);
+		JButton gbutton = new JButton("1");
+		gbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calculateWinGuessing(1);
+				
+			}
+		});
+		gbutton.setBounds(18, 39, 152, 82);
+		GuessingGamePanel.add(gbutton);
+		
+		JButton gbutton_1 = new JButton("2");
+		gbutton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calculateWinGuessing(2);
+				
+			}
+		});
+		gbutton_1.setBounds(178, 39, 152, 80);
+		GuessingGamePanel.add(gbutton_1);
+		
+		JButton gbutton_2 = new JButton("3");
+		gbutton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calculateWinGuessing(3);
+				
+			}
+		});
+		gbutton_2.setBounds(342, 39, 152, 80);
+		GuessingGamePanel.add(gbutton_2);
+		
+		JButton gbutton_3 = new JButton("4");
+		gbutton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calculateWinGuessing(4);
+				
+			}
+		});
+		gbutton_3.setBounds(18, 126, 152, 80);
+		GuessingGamePanel.add(gbutton_3);
+		
+		JButton gbutton_4 = new JButton("5");
+		gbutton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calculateWinGuessing(5);
+				
+			}
+		});
+		gbutton_4.setBounds(178, 126, 152, 80);
+		GuessingGamePanel.add(gbutton_4);
+		
+		JButton gbutton_5 = new JButton("6");
+		gbutton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calculateWinGuessing(5);
+				
+			}
+		});
+		gbutton_5.setBounds(342, 126, 152, 80);
+		GuessingGamePanel.add(gbutton_5);
+		
+		JButton gbutton_6 = new JButton("7");
+		gbutton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calculateWinGuessing(7);
+				
+			}
+		});
+		gbutton_6.setBounds(18, 210, 152, 80);
+		GuessingGamePanel.add(gbutton_6);
+		
+		JButton gbutton_7 = new JButton("8");
+		gbutton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calculateWinGuessing(8);
+				
+			}
+		});
+		gbutton_7.setBounds(178, 210, 152, 80);
+		GuessingGamePanel.add(gbutton_7);
+		
+		JButton gbutton_8 = new JButton("9");
+		gbutton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calculateWinGuessing(9);
+				
+			}
+		});
+		gbutton_8.setBounds(342, 210, 152, 80);
+		GuessingGamePanel.add(gbutton_8);
+		
+		JButton gbutton_9 = new JButton("10");
+		gbutton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calculateWinGuessing(10);
+				
+			}
+		});
+		gbutton_9.setBounds(18, 293, 152, 80);
+		GuessingGamePanel.add(gbutton_9);
+		
 
 		///RPS
 				RockPaperSissorsPanel.setVisible(false);
@@ -167,7 +285,7 @@ public class GameView {
 						
 					}
 				});
-				btnRock.setBounds(23, 138, 154, 114);
+				btnRock.setBounds(23, 138, 150, 110);
 				RockPaperSissorsPanel.add(btnRock);
 				
 				JButton Paper = new JButton("Paper");
@@ -189,7 +307,7 @@ public class GameView {
 						
 					}
 				});
-				Paper.setBounds(194, 140, 158, 110);
+				Paper.setBounds(194, 140, 150, 110);
 				RockPaperSissorsPanel.add(Paper);
 				
 				JButton scissors = new JButton("Scissors");
@@ -211,12 +329,16 @@ public class GameView {
 						
 					}
 				});
-				scissors.setBounds(362, 140, 169, 105);
+				scissors.setBounds(362, 140, 150, 110);
 				RockPaperSissorsPanel.add(scissors);
 				
 				JLabel lblPlayTheVillain = new JLabel("Play the Villain in a game of Rock Paper Scissors");
 				lblPlayTheVillain.setBounds(114, 62, 344, 16);
 				RockPaperSissorsPanel.add(lblPlayTheVillain);
+				
+				JLabel lblIfThereIs = new JLabel("If there is a tie, then you will be transported back to homebase");
+				lblIfThereIs.setBounds(76, 90, 456, 16);
+				RockPaperSissorsPanel.add(lblIfThereIs);
 		
 		
 		//Power up den panel
@@ -639,6 +761,11 @@ public class GameView {
 		btnReturnToHero.setBounds(73, 359, 167, 29);
 		VillainLair.add(btnReturnToHero);
 //		
+		
+		JLabel lblChooseahero = new JLabel("Choose a Hero to do battle");
+		lblChooseahero.setBounds(300, 26, 246, 16);
+		VillainLair.add(lblChooseahero);
+		
 		JButton BattleVillainButton = new JButton("FIGHT!!!");
 		BattleVillainButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -646,15 +773,23 @@ public class GameView {
 				if (index > -1) {
 					battlingHero = modelref.getTeam().getHeroes().get(index);
 					//System.out.println(modelref.getTeam().getHeroes().get(index).toString());
+					lblChooseahero.setForeground(Color.black);
 					if(modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().getVillainGame() == "XAndOs") {
 						XandOPanel.setVisible(true);
 						VillainLair.setVisible(false);
-					}else {
+					}
+					else if(modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().getVillainGame() == "Guessing") {
+						GuessingGamePanel.setVisible(true);
+						VillainLair.setVisible(false);
+					}
+					else {
 						RockPaperSissorsPanel.setVisible(true);
 						VillainLair.setVisible(false);
 					}
 				
 					
+				}else {
+					lblChooseahero.setForeground(Color.RED);
 				}
 				
 				
@@ -676,6 +811,8 @@ public class GameView {
 		VillainLairHeroselect = new JList();
 		VillainLairHeroselect.setBounds(300, 54, 246, 248);
 		VillainLair.add(VillainLairHeroselect);
+		
+		
 
 
 
@@ -874,6 +1011,7 @@ public class GameView {
 						else {
 							modelref.getTeam().setTeamName(getTeamNameTextField().getText());
 							modelref.createNewRPSGame();
+							modelref.createNewGuessingGame();
 							modelref.setCities(Integer.parseInt(cities[getCityCountList().getSelectedIndex()]));
 							refreshUIs();
 							TeamNamePanel.setVisible(false);
@@ -1026,7 +1164,7 @@ public class GameView {
 				
 				battlingHero.decreaseHealth(modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().getDamage());
 				modelref.getTeam().checkLifeOfTeam();
-				
+				refreshUIs();
 				if (modelref.getTeam().getHeroes().size() == 0) {
 					getOutComeLabel().setText("<html>The heroes have been all been killed,<br> evil will now rule the world!</html>");
 					refreshUIs();
@@ -1044,7 +1182,7 @@ public class GameView {
 				
 			}
 			
-			battlingHero = null;
+			//battlingHero = null;
 			refreshUIs();
 			battleOutComePanel.setVisible(true);
 			XandOPanel.setVisible(false);
@@ -1237,6 +1375,9 @@ public class GameView {
 		
 	}
 	
+	void updateGuessingUI() {
+		getLbltrieslabel().setText("You have " + modelref.getGuessingGame().getTries() + " remaining");
+	}
 	
 	void updateDenUI() {
 		
@@ -1270,7 +1411,11 @@ public class GameView {
 	void UpdateLairUI() {
 		getLblVillainLivesLeft().setText("Villian Lives Left: " + modelref.getCities().get(modelref.getCurrentCity()).getCityVillain().lifeCount());
 	}
-	
+	/**
+	 * Converts the area value into a string name of the destination it is keyed to.
+	 * @param location an int number 0-3 will turn into a string number not in this range return ?????
+	 * @return a string based on the number given.
+	 */
 	String getLocation(int location) {
 		String out = "";
 		
@@ -1301,9 +1446,34 @@ public class GameView {
 		return out;
 	}
 	
+	public void calculateWinGuessing(int guess) {
+		System.out.println(modelref.getGuessingGame().getAnswer());
+		System.out.println(modelref.getGuessingGame().getTries());
+		if(modelref.getGuessingGame().userGuess(guess)) {
+			GuessingGamePanel.setVisible(false);
+			System.out.println("Player won");
+			openbattleoutcomescreen ("X");
+			modelref.createNewGuessingGame();
+			updateGuessingUI();
+		}else {
+			if (modelref.getGuessingGame().playerLost() && modelref.getGuessingGame().getTries() == 0  ) {
+				GuessingGamePanel.setVisible(false);
+				openbattleoutcomescreen("O");
+				modelref.createNewGuessingGame();
+				updateGuessingUI();
+			}
+			else {
+				System.out.println("Player not dead");
+				updateGuessingUI();
+			}
+			
+		}
+	}
+	
 	public JTextField getHeroName() {
 		return HeroName;
 	}
+	
 	public JList<String> GetHeroType() {
 		return list;
 	}
@@ -1395,6 +1565,9 @@ public class GameView {
 	}
 	public JButton getSouth_Button() {
 		return South_Button;
+	}
+	public JLabel getLbltrieslabel() {
+		return lblYouHave;
 	}
 }
 	
