@@ -197,7 +197,33 @@ public class TeamTest {
 		testingTeam.addMapList("Map 2");
 		assertEquals(testingTeam.getMapList(), maps);
 	}
+	
+	@Test
+	public void testCheckLifeOfTeam() {
+		testingTeam = new Team();
+		testingTeam.addHeroes("Rob", "Devil");
+		testingTeam.addHeroes("Ace", "Air");
+		testingTeam.checkLifeOfTeam();
+		assertEquals(testingTeam.getHeroes().size(), 2);
+		
+		testingTeam = new Team();
+		testingTeam.addHeroes("Rob", "Devil");
+		testingTeam.addHeroes("Ace", "Air");
+		for (int i = 0; i < testingTeam.getHeroes().size();i++) {
+			testingTeam.getHeroes().get(i).decreaseHealth(1000);
+		}
+		testingTeam.checkLifeOfTeam();
+	}
 
+	@Test
+	public void testCheckTypeInTeam() {
+		testingTeam = new Team();
+		testingTeam.addHeroes("Rob", "Devil");
+		testingTeam.addHeroes("Ace", "Air");
+		testingTeam.checkTypeInTeam("Devil");
+		testingTeam.checkTypeInTeam("Divine");
+	}
+	
 	@Test
 	public void testRemovePowerUp() {
 		testingTeam = new Team();
