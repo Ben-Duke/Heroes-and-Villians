@@ -46,6 +46,7 @@ public class GameView {
 	private JList cityCount;
 	
 	//Panel refs
+	JPanel RockPaperSissorsPanel = new JPanel();
 	JLayeredPane TeamNamePanel = new JLayeredPane();
 	JPanel VillainLair = new JPanel();
 	JPanel HospitalPanel = new JPanel();
@@ -128,6 +129,57 @@ public class GameView {
 		frame.setBounds(100, 100, 583, 453);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		///RPS
+				RockPaperSissorsPanel.setVisible(false);
+				RockPaperSissorsPanel.setBounds(6, 6, 538, 374);
+				frame.getContentPane().add(RockPaperSissorsPanel);
+				RockPaperSissorsPanel.setLayout(null);
+				
+				JButton btnRock = new JButton("Rock");
+				btnRock.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						
+					}
+				});
+				btnRock.setBounds(23, 138, 154, 114);
+				RockPaperSissorsPanel.add(btnRock);
+				
+				JButton Paper = new JButton("Paper");
+				Paper.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String outcome = "";
+						PaperScissorsRock game = modelref.getPRSGame();
+						String CPUmove = game.computerMove();
+						game.whoWin(CPUmove, "Rock");
+						if (game.getWinner() == "X" || game.getWinner() == "O") {
+							RockPaperSissorsPanel.setVisible(false);
+							openbattleoutcomescreen(game.getWinner());
+						}
+						else {
+							RockPaperSissorsPanel.setVisible(false);
+						}
+						
+					}
+				});
+				Paper.setBounds(194, 140, 158, 110);
+				RockPaperSissorsPanel.add(Paper);
+				
+				JButton scissors = new JButton("Scissors");
+				scissors.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						
+					}
+				});
+				scissors.setBounds(362, 140, 169, 105);
+				RockPaperSissorsPanel.add(scissors);
+				
+				JLabel lblPlayTheVillain = new JLabel("Play the Villain in a game of Rock Paper Scissors");
+				lblPlayTheVillain.setBounds(114, 62, 344, 16);
+				RockPaperSissorsPanel.add(lblPlayTheVillain);
+		
 		
 		
 		//Power up den panel

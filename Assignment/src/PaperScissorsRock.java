@@ -33,6 +33,8 @@ public class PaperScissorsRock {
 	 */
 	private String userChoice;
 	
+	
+	private String winner = "";
 	/**
 	 * This function initializes the computer's choice of answer.
 	 * @return Returns the String answer of the computer
@@ -51,6 +53,11 @@ public class PaperScissorsRock {
 			compAnswer = 3;
 		}
 		return computerChoice;
+	}
+	
+	
+	public String getWinner() {
+		return winner;
 	}
 	
 	/**
@@ -108,27 +115,37 @@ public class PaperScissorsRock {
 		 
 		if(compMove.equals("Paper") && userMove.equals("Rock")) {
 			win = true;
+			winner = "O";
 			System.out.println("Villain wins! Better luck next time!");
 		} else if(compMove.equals("Rock") && userMove.equals("Paper")) {
 			win = true;
+			winner = "X";
 			System.out.println("You win!");
 		} else if(compMove.equals("Paper") && userMove.equals("Scissors")) {
 			win = true;
+			winner = "X";
 			System.out.println("You win!");
 		} else if(compMove.equals("Scissors") && userMove.equals("Paper")) {
 			win = true;
+			winner = "O";
 			System.out.println("Villain wins! Better luck next time!");
 		} else if(compMove.equals("Scissors") && userMove.equals("Rock")) {
 			win = true;
+			winner = "X";
 			System.out.println("You win!");
 		} else if(compMove.equals("Rock") && userMove.equals("Scissors")) {
 			win = true;
+			winner = "O";
 			System.out.println("Villain wins! Better luck next time!");
 		} else if(compMove.equals(userMove)) {
+			winner = "None";
 			System.out.println("It's a tie! Try again!");
 			System.out.println("----------------------");
 		}
 	}
+	
+	
+	
 	
 	/**
 	 * This function initialize the Game to play.

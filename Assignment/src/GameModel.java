@@ -22,6 +22,9 @@ public class GameModel {
 	 * The Game X and O'ss
 	 */
 	private XAndOs XAndOgame;
+	
+	private PaperScissorsRock PRSGame; 
+	
 	/**
 	 * The list of the City
 	 */
@@ -124,6 +127,14 @@ public class GameModel {
 	 */
 	public XAndOs getXAndOGame() {
 		return XAndOgame;
+	}
+	
+	public void createNewRPSGame() {
+		PRSGame = new PaperScissorsRock();
+	}
+	
+	public PaperScissorsRock getPRSGame() {
+		return PRSGame;
 	}
 	
 	/**
